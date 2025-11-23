@@ -1,138 +1,47 @@
 [
   {
-    "title": "10 Essential Cycle Maintenance Tips Every Rider in Tumkur Should Know",
-    "slug": "10-essential-cycle-maintenance-tips-tumkur",
-    "excerpt": "Simple weekly habits to keep your bike safe, quiet, and ready for Tumkur traffic.",
-    "category": "maintenance",
-    "readTime": 6,
-    "url": "blog/10-essential-cycle-maintenance-tips-tumkur.html",
-    "tags": ["maintenance", "tumkur", "safety"]
-  },
-  {
-    "title": "Best Bicycles Under ₹5000 in India – 2024 Buying Guide",
-    "slug": "best-bicycles-under-5000-india",
-    "excerpt": "Budget-friendly cycles, what to inspect, and where to buy safely in Tumkur.",
-    "category": "buying",
-    "readTime": 7,
-    "url": "blog/best-bicycles-under-5000-india.html",
-    "tags": ["buying", "budget"]
-  },
-  {
-    "title": "How to Fix Common Cycle Problems at Home",
-    "slug": "fix-common-cycle-problems-home",
-    "excerpt": "DIY instructions for punctures, brake tuning, chain slips, and more.",
-    "category": "maintenance",
-    "readTime": 8,
-    "url": "blog/fix-common-cycle-problems-home.html",
-    "tags": ["maintenance", "diy"]
-  },
-  {
-    "title": "Top 5 Mountain Bikes for Tumkur's Roads and Terrain",
-    "slug": "top-mountain-bikes-tumkur",
-    "excerpt": "MTBs that balance comfort, durability, and price for mixed roads.",
-    "category": "buying",
-    "readTime": 6,
-    "url": "blog/top-mountain-bikes-tumkur.html",
-    "tags": ["buying", "mtb"]
-  },
-  {
-    "title": "Cycle Safety Tips for Riding in Tumkur City Traffic",
-    "slug": "cycle-safety-tumkur-traffic",
-    "excerpt": "Helmet rules, lane discipline, and night-riding basics.",
-    "category": "safety",
-    "readTime": 5,
-    "url": "blog/cycle-safety-tumkur-traffic.html",
-    "tags": ["safety"]
-  },
-  {
-    "title": "Electric Bikes vs Regular Cycles – Which is Better for You?",
-    "slug": "ebike-vs-regular-cycle",
-    "excerpt": "Compare costs, maintenance, and range before buying.",
-    "category": "buying",
-    "readTime": 6,
-    "url": "blog/ebike-vs-regular-cycle.html",
-    "tags": ["buying", "ebike"]
-  },
-  {
-    "title": "Complete Guide to Cycle Gear Systems",
-    "slug": "cycle-gear-systems-guide",
-    "excerpt": "Understand derailleurs, shifters, and how to keep gears smooth.",
-    "category": "maintenance",
-    "readTime": 7,
-    "url": "blog/cycle-gear-systems-guide.html",
-    "tags": ["maintenance", "gears"]
-  },
-  {
-    "title": "Monsoon Cycle Care – Protecting Your Bike in Rainy Season",
-    "slug": "monsoon-cycle-care-tumkur",
-    "excerpt": "Rust prevention, tyre grip tips, and safe storage ideas.",
-    "category": "maintenance",
-    "readTime": 6,
-    "url": "blog/monsoon-cycle-care-tumkur.html",
-    "tags": ["maintenance", "weather"]
-  },
-  {
-    "title": "Kids Cycle Buying Guide – Age, Size, and Safety Features",
-    "slug": "kids-cycle-buying-guide",
-    "excerpt": "Measure the right frame, check brakes, and pick must-have safety gear.",
-    "category": "buying",
-    "readTime": 6,
-    "url": "blog/kids-cycle-buying-guide.html",
-    "tags": ["buying", "kids"]
-  },
-  {
-    "title": "Cycle Accessories Every Rider Needs",
-    "slug": "cycle-accessories-every-rider",
-    "excerpt": "Lights, locks, pumps, and daily-carry tools worth investing in.",
+    "title": "Why Cycling Matters in Tumkur + Essential Tools for Group and Solo Rides",
+    "slug": "importance-of-cycling-tools-tumkur",
+    "excerpt": "Health, environment, and cost wins plus the tool kit every Tumkur rider should carry.",
     "category": "lifestyle",
-    "readTime": 5,
-    "url": "blog/cycle-accessories-every-rider.html",
-    "tags": ["accessories"]
-  },
-  {
-    "title": "Benefits of Cycling for Health and Fitness",
-    "slug": "benefits-of-cycling-health-fitness",
-    "excerpt": "Simple routines to use your bike for better cardio and mood.",
-    "category": "lifestyle",
-    "readTime": 5,
-    "url": "blog/benefits-of-cycling-health-fitness.html",
-    "tags": ["health", "lifestyle"]
-  },
-  {
-    "title": "How to Choose the Right Cycle Frame Size",
-    "slug": "choose-right-cycle-frame-size",
-    "excerpt": "Measure inseam, understand geometry, and test ride with confidence.",
-    "category": "buying",
     "readTime": 6,
-    "url": "blog/choose-right-cycle-frame-size.html",
-    "tags": ["buying", "fit"]
+    "url": "blog/importance-of-cycling-tools-tumkur.html",
+    "tags": ["lifestyle", "tumkur", "safety"]
   },
   {
-    "title": "Cycle Chain Maintenance – Cleaning, Oiling, and Replacement",
-    "slug": "cycle-chain-maintenance",
-    "excerpt": "Step-by-step cleaning, lube tips, and when to swap chains.",
+    "title": "Cycle Maintenance Tips: Keep Your Bike Running Smoothly in Tumkur",
+    "slug": "cycle-maintenance-tips-guide",
+    "excerpt": "Daily, weekly, and monthly checklists for confident commuting.",
     "category": "maintenance",
     "readTime": 6,
-    "url": "blog/cycle-chain-maintenance.html",
+    "url": "blog/cycle-maintenance-tips-guide.html",
+    "tags": ["maintenance", "checklist"]
+  },
+  {
+    "title": "Smart Budget Cycles & Essential Equipment for Riders in Tumkur",
+    "slug": "budget-cycles-smart-equipment-tumkur",
+    "excerpt": "Compare budget bikes and smart accessories for SS Puram commutes.",
+    "category": "buying",
+    "readTime": 6,
+    "url": "blog/budget-cycles-smart-equipment-tumkur.html",
+    "tags": ["buying", "budget", "gear"]
+  },
+  {
+    "title": "Best Budget Cycles for Kids and Adults — Tumkur Buying Guide",
+    "slug": "best-budget-cycles-all-ages",
+    "excerpt": "Sizing and accessory advice for every family member.",
+    "category": "buying",
+    "readTime": 6,
+    "url": "blog/best-budget-cycles-all-ages.html",
+    "tags": ["buying", "family"]
+  },
+  {
+    "title": "Chain Maintenance Guide & Self-Care Routine for Your Bike",
+    "slug": "chain-maintenance-guide-tumkur",
+    "excerpt": "Tools, steps, and replacement cues to keep drivetrains smooth.",
+    "category": "maintenance",
+    "readTime": 6,
+    "url": "blog/chain-maintenance-guide-tumkur.html",
     "tags": ["maintenance", "chain"]
-  },
-  {
-    "title": "Brake Systems Explained – Which Type Is Best?",
-    "slug": "cycle-brake-systems-explained",
-    "excerpt": "Rim vs disc vs hydraulic brakes and how to choose.",
-    "category": "maintenance",
-    "readTime": 5,
-    "url": "blog/cycle-brake-systems-explained.html",
-    "tags": ["maintenance", "brakes"]
-  },
-  {
-    "title": "Used Cycle Buying Guide – Spot Quality and Avoid Scams",
-    "slug": "used-cycle-buying-guide",
-    "excerpt": "Inspection checklist, negotiation tips, and safe sellers.",
-    "category": "buying",
-    "readTime": 6,
-    "url": "blog/used-cycle-buying-guide.html",
-    "tags": ["buying", "used"]
   }
 ]
-
