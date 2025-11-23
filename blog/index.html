@@ -12,6 +12,7 @@
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
+
   <header class="site-header">
     <div class="wrap header-grid">
       <a class="logo" href="/">Raja Cycle Mart</a>
@@ -40,16 +41,18 @@
         <div class="search-bar">
           <input type="search" placeholder="Search articles…" data-blog-search>
         </div>
+
         <div class="chip-group" data-chip-group>
           <button class="chip active" data-category="all">All</button>
           <button class="chip" data-category="maintenance">Maintenance</button>
           <button class="chip" data-category="buying">Buying Guides</button>
           <button class="chip" data-category="lifestyle">Lifestyle</button>
         </div>
+
         <!-- ADSENSE: TOP OF LIST -->
         <div class="ad ad-inline" aria-hidden="true">Blog top ad placeholder</div>
 
-        <!-- AUTO-FILLED LIST -->
+        <!-- THIS IS WHERE JS WILL INJECT THE CARDS -->
         <div class="blog-list" data-blog-list></div>
 
         <!-- ADSENSE: BOTTOM OF LIST -->
@@ -76,6 +79,8 @@
       </div>
     </div>
   </footer>
+
+  <!-- IMPORTANT: path to JS from /blog/ -->
   <script src="../site.js" defer></script>
 </body>
 </html>
