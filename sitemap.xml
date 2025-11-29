@@ -1,18 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">
-
-  <url><loc>https://sumanthgn-cloud.github.io/raja-cycle-mart/</loc></url>
-  <url><loc>https://sumanthgn-cloud.github.io/raja-cycle-mart/about.html</loc></url>
-  <url><loc>https://sumanthgn-cloud.github.io/raja-cycle-mart/services.html</loc></url>
-  <url><loc>https://sumanthgn-cloud.github.io/raja-cycle-mart/contact.html</loc></url>
-  <url><loc>https://sumanthgn-cloud.github.io/raja-cycle-mart/privacy.html</loc></url>
-  <url><loc>https://sumanthgn-cloud.github.io/raja-cycle-mart/disclaimer.html</loc></url>
-  <url><loc>https://sumanthgn-cloud.github.io/raja-cycle-mart/blog/index.html</loc></url>
-
-  <url><loc>https://sumanthgn-cloud.github.io/raja-cycle-mart/blog/importance-of-cycling-tools-tumkur.html</loc></url>
-  <url><loc>https://sumanthgn-cloud.github.io/raja-cycle-mart/blog/cycle-maintenance-tips-guide.html</loc></url>
-  <url><loc>https://sumanthgn-cloud.github.io/raja-cycle-mart/blog/budget-cycles-smart-equipment-tumkur.html</loc></url>
-  <url><loc>https://sumanthgn-cloud.github.io/raja-cycle-mart/blog/best-budget-cycles-all-ages.html</loc></url>
-  <url><loc>https://sumanthgn-cloud.github.io/raja-cycle-mart/blog/chain-maintenance-guide-tumkur.html</loc></url>
-
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://sumanthgn-cloud.github.io/raja-cycle-mart/</loc>
+    <lastmod>2025-11-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://sumanthgn-cloud.github.io/raja-cycle-mart/services.html</loc>
+    <lastmod>2025-11-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://sumanthgn-cloud.github.io/raja-cycle-mart/about.html</loc>
+    <lastmod>2025-11-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://sumanthgn-cloud.github.io/raja-cycle-mart/contact.html</loc>
+    <lastmod>2025-11-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://sumanthgn-cloud.github.io/raja-cycle-mart/blog/index.html</loc>
+    <lastmod>2025-11-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://sumanthgn-cloud.github.io/raja-cycle-mart/privacy.html</loc>
+    <lastmod>2025-11-29</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://sumanthgn-cloud.github.io/raja-cycle-mart/disclaimer.html</loc>
+    <lastmod>2025-11-29</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
 </urlset>

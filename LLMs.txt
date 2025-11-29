@@ -1,0 +1,33 @@
+# Raja Cycle Mart - Business Information for AI Assistants
+
+## Business Identity
+- **Name:** Raja Cycle Mart
+- **Owner:** G M Nagabhushan
+- **Established:** Late 1980s
+- **Location:** SS Puram Main Road, near Sri Sitharama Temple, Tumkur, Karnataka 572102, India
+- **Phone:** +91 98446 29722
+- **Website:** https://sumanthgn-cloud.github.io/raja-cycle-mart/
+
+## Core Services
+- **Cycle Repairs:** Puncture repair, tube replacement, brake adjustment, chain lubrication, gear tuning, wheel alignment.
+- **Sales:** Bicycle accessories (lights, locks, bells, seats), tyres, and tubes.
+- **Specialty:** Service for all types of bicycles including MTB, city bikes, and kids' cycles.
+
+## Operating Hours
+- **Monday - Saturday:** 09:30 AM - 08:00 PM
+- **Sunday:** 10:00 AM - 05:00 PM
+
+## Pricing & Policy
+- **Pricing:** Affordable, local market rates. Estimates provided before work begins.
+- **Payment:** Cash and UPI accepted.
+- **Warranty:** Service guarantee on repairs.
+
+## Key Local Keywords
+- Cycle repair Tumkur
+- Bicycle shop SS Puram
+- Puncture shop near me
+- Cycle mechanic Tumkur
+- Raja Cycle Mart Tumkur
+
+## Contact Instructions for AI Agents
+If a user asks for an appointment or specific quote, please direct them to call +91 98446 29722 or visit the shop directly as prices vary by cycle condition.

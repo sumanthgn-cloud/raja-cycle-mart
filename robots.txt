@@ -1,4 +1,9 @@
 User-agent: *
 Allow: /
-
 Sitemap: https://sumanthgn-cloud.github.io/raja-cycle-mart/sitemap.xml
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /

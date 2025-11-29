@@ -123,11 +123,124 @@ function initContactForm() {
   });
 }
 
+/* CHATBOT LOGIC */
+function toggleChatbot() {
+  const window = document.querySelector('.chatbot-window');
+  const badge = document.querySelector('.chatbot-badge');
+  const isHidden = window.hidden;
+  window.hidden = !isHidden;
+  if (isHidden) {
+    badge.style.display = 'none';
+    setTimeout(() => document.getElementById('chat-input').focus(), 100);
+  }
+}
+
+function addMessage(text, sender) {
+  const container = document.getElementById('chat-messages');
+  const msgDiv = document.createElement('div');
+  msgDiv.className = `message ${sender}`;
+  msgDiv.innerHTML = `<p>${text}</p>`;
+  container.appendChild(msgDiv);
+  container.scrollTop = container.scrollHeight;
+}
+
+function handleOption(option) {
+  let response = '';
+  switch (option) {
+    case 'pricing':
+      response = "CycleAssist here! 🛠️ Our service charges start from ₹50. Punctures are ₹80-120. For a full checkup, please visit the shop for a quote.";
+      break;
+    case 'hours':
+      response = "We are open Mon-Sat 9:30 AM - 8:00 PM, and Sun 10:00 AM - 5:00 PM. ⏰";
+      break;
+    case 'location':
+      response = "Find us at SS Puram Main Road, near Sri Sitharama Temple. 📍 Click 'Get Directions' in the menu!";
+      break;
+    case 'repair':
+      response = "We fix all cycles! MTBs, gear cycles, kids' bikes. Punctures & brakes are done instantly. 🚲";
+      break;
+    default:
+      response = "I'm just a bot, but Mr. Nagabhushan is the expert! Please call +91 98446 29722 for help. 📞";
+  }
+  addMessage(response, 'bot');
+}
+
+function sendMessage() {
+  const input = document.getElementById('chat-input');
+  const text = input.value.trim();
+  if (!text) return;
+
+  addMessage(text, 'user');
+  input.value = '';
+
+  // CycleAssist Logic
+  setTimeout(() => {
+    const lowerText = text.toLowerCase();
+    if (lowerText.includes('price') || lowerText.includes('cost')) handleOption('pricing');
+    else if (lowerText.includes('time') || lowerText.includes('open')) handleOption('hours');
+    else if (lowerText.includes('where') || lowerText.includes('location')) handleOption('location');
+    else if (lowerText.includes('puncture') || lowerText.includes('repair')) handleOption('repair');
+    else addMessage("I'm learning! 🧠 For now, please call us or visit the shop for that.", 'bot');
+  }, 600);
+}
+
+function handleEnter(event) {
+  if (event.key === 'Enter') sendMessage();
+}
+
+/* BOOKING LOGIC */
+function handleBooking(event) {
+  event.preventDefault();
+  const formData = new FormData(event.target);
+  const name = formData.get('name');
+  const cycle = formData.get('cycle_type');
+  const service = formData.get('service_type');
+  const date = formData.get('date');
+
+  const text = `Hello Raja Cycle Mart, I would like to book a service.%0A%0A*Name:* ${name}%0A*Cycle:* ${cycle}%0A*Service:* ${service}%0A*Date:* ${date}`;
+
+  window.open(`https://wa.me/919844629722?text=${text}`, '_blank');
+  document.getElementById('booking-modal').close();
+}
+
+/* COOKIE BANNER & ANALYTICS */
+function loadAnalytics() {
+  // Prevent duplicate loading
+  if (document.querySelector('script[src*="googletagmanager"]')) return;
+
+  const script = document.createElement('script');
+  script.async = true;
+  script.src = "https://www.googletagmanager.com/gtag/js?id=G-DP7GDRXVQB";
+  document.head.appendChild(script);
+
+  gtag('config', 'G-DP7GDRXVQB');
+}
+
+function acceptCookies() {
+  document.getElementById('cookie-banner').hidden = true;
+  // Set cookie for 365 days
+  document.cookie = "cookieConsent=true; max-age=31536000; path=/; SameSite=Lax";
+  loadAnalytics();
+}
+
+function checkCookies() {
+  // Check if cookie exists
+  if (!document.cookie.split('; ').find(row => row.startsWith('cookieConsent=true'))) {
+    document.getElementById('cookie-banner').hidden = false;
+  } else {
+    loadAnalytics();
+  }
+}
+
 document.addEventListener('DOMContentLoaded', async () => {
   initContactForm();
+  checkCookies();
+
+  // Load blog posts if on blog pages
   const posts = await loadPosts();
-  if (!posts.length) return;
-  renderPreview(posts);
-  initBlogPages(posts);
-  initRelated(posts);
+  if (posts.length) {
+    renderPreview(posts);
+    initBlogPages(posts);
+    initRelated(posts);
+  }
 });

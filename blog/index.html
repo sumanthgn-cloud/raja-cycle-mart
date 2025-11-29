@@ -1,21 +1,28 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Raja Cycle Mart Blog • Guides for Tumkur Riders</title>
-  <meta name="description" content="Browse cycling guides, maintenance tips, buyer advice, and monsoon care articles curated by Raja Cycle Mart." />
+  <meta name="description"
+    content="Browse cycling guides, maintenance tips, buyer advice, and monsoon care articles curated by Raja Cycle Mart." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="../styles.css" />
 </head>
+
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="site-header">
     <div class="wrap header-grid">
-      <a class="logo" href="/">Raja Cycle Mart</a>
+      <a class="logo-link" href="../index.html">
+        <img src="../images/brand_design.png" alt="Raja Cycle Mart" class="site-logo" width="180" height="auto">
+      </a>
       <nav class="primary-nav" aria-label="Primary">
         <ul>
           <li><a href="../services.html">Services</a></li>
@@ -50,13 +57,30 @@
         </div>
 
         <!-- ADSENSE: TOP OF LIST -->
-        <div class="ad ad-inline" aria-hidden="true">Blog top ad placeholder</div>
+        <!-- PROMO: TOP OF LIST -->
+        <div class="service-highlight-banner" style="margin-bottom: 32px;">
+          <div class="highlight-content">
+            <h3>Need a Tune-up?</h3>
+            <p>Read our guides, then bring your cycle for a professional check.</p>
+          </div>
+          <div class="highlight-action">
+            <a href="../contact.html" class="btn ghost white">Book Service</a>
+          </div>
+        </div>
 
         <!-- THIS IS WHERE JS WILL INJECT THE CARDS -->
         <div class="blog-list" data-blog-list></div>
 
         <!-- ADSENSE: BOTTOM OF LIST -->
-        <div class="ad ad-inline" aria-hidden="true">Blog bottom ad placeholder</div>
+        <!-- PROMO: BOTTOM OF LIST -->
+        <div class="app-promo-banner">
+          <div class="app-content">
+            <h3>Quick Service Booking</h3>
+            <p>Use our WhatsApp bot to book repairs instantly.</p>
+          </div>
+          <button class="btn small white" onclick="window.open('https://wa.me/919844629722', '_blank')">Book
+            Now</button>
+        </div>
       </div>
     </section>
   </main>
@@ -83,4 +107,5 @@
   <!-- IMPORTANT: path to JS from /blog/ -->
   <script src="../site.js" defer></script>
 </body>
+
 </html>
