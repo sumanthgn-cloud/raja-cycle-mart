@@ -29,7 +29,7 @@ function renderPreview(posts) {
   const container = document.querySelector('[data-blog-preview]');
   if (!container) return;
   container.innerHTML = '';
-  posts.slice(0, 3).forEach((post) => container.appendChild(createBlogCard(post)));
+  posts.slice(0, 5).forEach((post) => container.appendChild(createBlogCard(post)));
 }
 
 function renderBlogList(posts, container) {
@@ -44,6 +44,7 @@ function initBlogPages(posts) {
   const listContainer = document.querySelector('[data-blog-list]');
   const searchInput = document.querySelector('[data-blog-search]');
   const chips = document.querySelectorAll('[data-category]');
+
   if (!listContainer) return;
 
   let activeCategory = 'all';
@@ -91,13 +92,13 @@ function initRelated(posts) {
   const slug = canonical ? canonical.href.split('/').pop()?.replace('.html', '') : '';
   const current = posts.find((post) => post.slug === slug);
   const related = posts
-    .filter((post) => post.slug !== slug && (post.category === current?.category || post.tags.some((tag) => current?.tags?.includes(tag))))
+    .filter((post) => post.slug !== slug && (post.category === current?.category || (post.tags || []).some((tag) => current?.tags?.includes(tag))))
     .slice(0, 3);
 
   relatedContainer.innerHTML = '';
   related.forEach((post) => {
     const link = document.createElement('a');
-    link.href = `/${post.url}`;
+    link.href = post.url;
     link.textContent = post.title;
     relatedContainer.appendChild(link);
   });

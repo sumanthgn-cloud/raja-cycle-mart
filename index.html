@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Raja Cycle Mart • Cycle Repairs & Guides in Tumkur</title>
-  <meta name="description" content="Raja Cycle Mart in SS Puram, Tumkur. Fast cycle repairs, tyre & tube service, accessories and simple cycling guides for local riders." />
+  <meta name="description" content="Raja Cycle Mart in SS Puram, Tumkur. Fast repairs, tyre & tube service, accessories and simple cycling guides for local riders." />
   <meta name="keywords" content="cycle repair Tumkur, bicycle shop Tumkur, Raja Cycle Mart, tyre tube repair, cycle service SS Puram" />
   <meta name="author" content="Raja Cycle Mart" />
 
@@ -15,7 +15,7 @@
     "@type": "LocalBusiness",
     "name": "Raja Cycle Mart",
     "description": "Cycle repairs, tyre services, accessories and cycling guides for Tumkur riders.",
-    "image": "https://sumanthgn-cloud.github.io/raja-cycle-mart/images/shop.png",
+    "image": "images/brand_design.png",
     "telephone": "+919844629722",
     "url": "https://sumanthgn-cloud.github.io/raja-cycle-mart/",
     "address": {
@@ -34,15 +34,217 @@
   }
   </script>
 
-  <!-- AdSense placeholder (add your real client ID after approval) -->
-  <!--
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXX" crossorigin="anonymous"></script>
-  -->
+  <!-- LIVE AdSense script - REPLACE ca-pub-XXXXXXXXXXXX with your real client ID -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXX"
+          crossorigin="anonymous"></script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
+  
+  <style>
+    /* Ad container styles with proper dimensions */
+    .ad-container {
+      margin: 1.5rem 0;
+      text-align: center;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #f8f9fa;
+      border: 1px solid #e9ecef;
+      position: relative;
+    }
+    
+    /* Hero sidebar ad - 300x250 */
+    .ad-hero-sidebar {
+      width: 300px;
+      height: 250px;
+      margin: 1rem auto;
+      background: linear-gradient(135deg, #1a5f7a 0%, #2d8cba 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 600;
+      position: relative;
+      padding: 20px;
+      text-align: center;
+    }
+    
+    /* Inline ad - 728x90 */
+    .ad-inline-banner {
+      width: 728px;
+      height: 90px;
+      margin: 1.5rem auto;
+      background: linear-gradient(90deg, #ff7b54 0%, #ff9a76 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 600;
+      padding: 0 20px;
+      position: relative;
+    }
+    
+    /* Featured rectangle - 300x250 */
+    .ad-featured-rect {
+      width: 300px;
+      height: 250px;
+      margin: 1rem auto;
+      background: linear-gradient(135deg, #16a34a 0%, #22c55e 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 600;
+      padding: 20px;
+      text-align: center;
+      position: relative;
+    }
+    
+    /* Mobile banner - 320x100 */
+    .ad-mobile-banner {
+      width: 320px;
+      height: 100px;
+      margin: 1rem auto;
+      background: linear-gradient(135deg, #9333ea 0%, #a855f7 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 600;
+      padding: 0 15px;
+      position: relative;
+    }
+    
+    /* Ad label - Updated with better styling */
+    .ad-label {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      background: rgba(0,0,0,0.7);
+      color: white;
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      z-index: 10;
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+    
+    /* Ad intro label - NEW: Small "Ad" text in corner */
+    .ad-intro {
+      position: absolute;
+      top: 6px;
+      left: 8px;
+      color: rgba(255,255,255,0.8);
+      font-size: 0.65rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      z-index: 10;
+    }
+    
+    /* Ad text styles */
+    .ad-title {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    .ad-subtitle {
+      font-size: 1rem;
+      font-weight: 500;
+      margin-bottom: 12px;
+      opacity: 0.9;
+    }
+    
+    .ad-cta {
+      background: white;
+      color: #1a5f7a;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      margin-top: 10px;
+      display: inline-block;
+      transition: all 0.3s ease;
+    }
+    
+    .ad-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+    
+    .ad-small-text {
+      font-size: 0.7rem;
+      opacity: 0.8;
+      margin-top: 10px;
+    }
+    
+    /* Cycle icon */
+    .cycle-icon {
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+    
+    /* Ad corner decoration */
+    .ad-corner {
+      position: absolute;
+      width: 0;
+      height: 0;
+      border-style: solid;
+    }
+    
+    .ad-corner-tl {
+      top: 0;
+      left: 0;
+      border-width: 20px 20px 0 0;
+      border-color: rgba(255,255,255,0.1) transparent transparent transparent;
+    }
+    
+    .ad-corner-br {
+      bottom: 0;
+      right: 0;
+      border-width: 0 0 20px 20px;
+      border-color: transparent transparent rgba(255,255,255,0.1) transparent;
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .ad-inline-banner {
+        width: 320px;
+        height: 100px;
+      }
+      
+      .ad-title {
+        font-size: 1.1rem;
+      }
+      
+      .ad-subtitle {
+        font-size: 0.9rem;
+      }
+      
+      .ad-label {
+        top: 6px;
+        right: 6px;
+        padding: 3px 8px;
+        font-size: 0.65rem;
+      }
+      
+      .ad-intro {
+        top: 5px;
+        left: 6px;
+        font-size: 0.6rem;
+      }
+    }
+  </style>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -73,8 +275,7 @@
           <p class="eyebrow">Tumkur • SS Puram Main Road</p>
           <h1>Reliable cycle repairs and simple guides for everyday riders.</h1>
           <p class="lede">
-            Punctures, brakes, chains, tyres, kids cycles and city bikes —
-            brought back to smooth condition by our workshop near Sri Sitharama Temple.
+            Punctures, brakes, chains, tyres, kids cycles and city bikes — brought back to smooth condition by our workshop near Sri Sitharama Temple.
           </p>
           <div class="hero-actions">
             <a class="btn" href="contact.html">Book a repair</a>
@@ -86,15 +287,43 @@
             <li>Kids &amp; adult cycles</li>
           </ul>
         </div>
-        <aside class="hero-card">
-          <p class="eyebrow">Store hours</p>
-          <p class="stat__value">09:30 – 20:00</p>
-          <p class="stat__label">Mon–Sat · Sun 10:00 – 17:00</p>
-          <p class="micro-text">
-            Ask for Mr. Shaber at the workshop. He handles general repairs, brake service,
-            gear tuning and wheel checks.
-          </p>
-          <div class="ad ad-inline" aria-hidden="true">Hero ad placeholder</div>
+
+        <aside class="hero-card" aria-hidden="false">
+  <!-- BRAND LOGO ADDED HERE -->
+  <div style="text-align: center; margin-bottom: 1.5rem;">
+    <img src="https://raw.githubusercontent.com/sumanthgn-cloud/raja-cycle-mart/main/images/brand_design.png" alt="Raja Cycle Mart Brand" style="max-width: 200px; height: auto;">
+  </div>
+  
+  <p class="eyebrow">Store hours</p>
+  <p class="stat__value">09:30 – 20:00</p>
+  <p class="stat__label">Mon–Sat · Sun 10:00 – 17:00</p>
+  <p class="micro-text">
+    Ask for Mr. Shaber at the workshop. He handles general repairs, brake service, gear tuning and wheel checks.
+  </p>
+          <!-- HERO SIDEBAR AD - 300x250 -->
+          <div class="ad-container">
+            <div class="ad-hero-sidebar">
+              <div class="ad-intro">Advertisement</div>
+              <div class="cycle-icon">🚲</div>
+              <div class="ad-title">BEST CYCLE</div>
+              <div class="ad-subtitle">Visit our cycle store</div>
+              <div class="ad-cta">SHOP NOW</div>
+              <div class="ad-label">Sponsored</div>
+              <div class="ad-corner ad-corner-tl"></div>
+              <div class="ad-corner ad-corner-br"></div>
+            </div>
+            <!-- LIVE AD CODE (Replace when ready) -->
+            <!--
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-XXXXXXXXXXXX"
+                 data-ad-slot="1234567890"
+                 data-ad-format="rectangle"
+                 data-ad-width="300"
+                 data-ad-height="250"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+            -->
+          </div>
         </aside>
       </div>
     </section>
@@ -126,20 +355,67 @@
             <p>We inspect frame, wheels and drivetrain before you buy or sell a used cycle.</p>
           </article>
         </div>
+
+        <!-- INLINE BANNER AD - 728x90 -->
+        <div class="ad-container">
+          <div class="ad-inline-banner">
+            <div class="ad-intro">Ad</div>
+            <div style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
+              <div style="text-align: left;">
+                <div style="font-size: 1.2rem; font-weight: 700;">Drive Leads Build Sales</div>
+                <div style="font-size: 0.9rem; opacity: 0.9;">GREAT BRANDING</div>
+              </div>
+              <div style="background: white; color: #ff7b54; padding: 5px 12px; border-radius: 15px; font-weight: 600; transition: all 0.3s ease;">
+                LEARN MORE
+              </div>
+            </div>
+            <div class="ad-label">Sponsored</div>
+            <div class="ad-corner ad-corner-tl"></div>
+            <div class="ad-corner ad-corner-br"></div>
+          </div>
+          <!-- LIVE AD CODE (Replace when ready) -->
+          <!--
+          <ins class="adsbygoogle"
+               style="display:inline-block;width:728px;height:90px"
+               data-ad-client="ca-pub-XXXXXXXXXXXX"
+               data-ad-slot="2345678901"></ins>
+          <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+          -->
+        </div>
       </div>
     </section>
 
-    <!-- ADSENSE FEATURE BLOCK -->
-    <section class="section highlight" id="adsense-ready">
+    <!-- FEATURE BLOCK -->
+    <section class="section highlight" id="feature-block">
       <div class="wrap highlight-grid">
         <div>
-          <p class="eyebrow">AdSense-friendly</p>
-          <h2>Clean layout with safe ad placements.</h2>
-          <p>Once your AdSense account is approved, paste ad units into the marked slots without redesigning the site.</p>
+          <p class="eyebrow">Quality Service Guarantee</p>
+          <h2>Expert repairs with genuine parts.</h2>
+          <p>We've been serving Tumkur cyclists since the 1980s with fair pricing and reliable service you can trust.</p>
         </div>
         <div>
-          <div class="ad ad-featured" aria-hidden="true">Featured ad placeholder</div>
-          <p class="micro-text">Use responsive display units and keep at least 24px spacing from buttons or navigation.</p>
+          <!-- FEATURED RECTANGLE AD - 300x250 -->
+          <div class="ad-container">
+            <div class="ad-featured-rect">
+              <div class="ad-intro">Advertisement</div>
+              <div style="font-size: 1.8rem; margin-bottom: 15px;">🚴‍♂️</div>
+              <div class="ad-title">HUMAN BILLBOARDS</div>
+              <div class="ad-subtitle">ADVERTISE WITH US</div>
+              <div class="ad-cta">CONTACT NOW</div>
+              <div class="ad-small-text">Reach thousands of cyclists</div>
+              <div class="ad-label">Sponsored</div>
+              <div class="ad-corner ad-corner-tl"></div>
+              <div class="ad-corner ad-corner-br"></div>
+            </div>
+            <!-- LIVE AD CODE (Replace when ready) -->
+            <!--
+            <ins class="adsbygoogle"
+                 style="display:inline-block;width:300px;height:250px"
+                 data-ad-client="ca-pub-XXXXXXXXXXXX"
+                 data-ad-slot="3456789012"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+            -->
+          </div>
         </div>
       </div>
     </section>
@@ -153,10 +429,47 @@
         </div>
 
         <div class="blog-preview" data-blog-preview>
-          <!-- site.js fills this automatically from posts.json -->
+          <div class="blog-card">
+            <h3>How to Maintain Your Cycle Chain</h3>
+            <p>Simple steps to keep your chain clean and running smoothly for longer life.</p>
+            <a href="blog/chain-maintenance.html">Read more</a>
+          </div>
+          <div class="blog-card">
+            <h3>Choosing the Right Tyre Pressure</h3>
+            <p>Learn what PSI works best for city roads vs off-road cycling in Tumkur.</p>
+            <a href="blog/tyre-pressure.html">Read more</a>
+          </div>
+          <div class="blog-card">
+            <h3>When to Replace Brake Pads</h3>
+            <p>Signs that your cycle brake pads need replacement for safe riding.</p>
+            <a href="blog/brake-pads.html">Read more</a>
+          </div>
         </div>
 
-        <div class="ad ad-inline" aria-hidden="true">Blog inline ad placeholder</div>
+        <!-- MOBILE BANNER AD - 320x100 -->
+        <div class="ad-container">
+          <div class="ad-mobile-banner">
+            <div class="ad-intro">Ad</div>
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <div style="font-size: 1.5rem;">🚲</div>
+              <div style="text-align: left;">
+                <div style="font-size: 1rem; font-weight: 700;">Cycle Advertising</div>
+                <div style="font-size: 0.8rem; opacity: 0.9;">Mobile Ad Solutions</div>
+              </div>
+            </div>
+            <div class="ad-label">Sponsored</div>
+            <div class="ad-corner ad-corner-tl"></div>
+            <div class="ad-corner ad-corner-br"></div>
+          </div>
+          <!-- LIVE AD CODE (Replace when ready) -->
+          <!--
+          <ins class="adsbygoogle"
+               style="display:inline-block;width:320px;height:100px"
+               data-ad-client="ca-pub-XXXXXXXXXXXX"
+               data-ad-slot="4567890123"></ins>
+          <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+          -->
+        </div>
       </div>
     </section>
 
@@ -167,8 +480,7 @@
           <p class="eyebrow">Visit the shop</p>
           <h2>Raja Cycle Mart, SS Puram Main Road, Tumkur.</h2>
           <p>
-            We’ve been serving the neighbourhood since the late 1980s.
-            If service was bad, the shop would not survive this long.
+            We've been serving the neighbourhood since the late 1980s.
             We focus on fair pricing, real parts, and clear explanation.
           </p>
         </div>
@@ -199,7 +511,5 @@
       </div>
     </div>
   </footer>
-
-  <script src="site.js" defer></script>
 </body>
 </html>
