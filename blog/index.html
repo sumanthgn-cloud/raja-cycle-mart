@@ -1,111 +1,235 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Raja Cycle Mart Blog • Guides for Tumkur Riders</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cycling Tips & Guides - Raja Cycle Mart</title>
   <meta name="description"
-    content="Browse cycling guides, maintenance tips, buyer advice, and monsoon care articles curated by Raja Cycle Mart." />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600&display=swap"
-    rel="stylesheet">
-  <link rel="stylesheet" href="../styles.css" />
+    content="Expert advice on cycle maintenance, buying guides, and safety tips from Tumkur's trusted mechanics.">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://www.google.com/recaptcha/api.js?render=6Lffex0sAAAAAO-vjM9yhAYuKSUj_UbUSOiPPwj0"></script>
 </head>
 
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
 
+  <!-- Header -->
   <header class="site-header">
-    <div class="wrap header-grid">
-      <a class="logo-link" href="../index.html">
-        <img src="../images/brand_design.png" alt="Raja Cycle Mart" class="site-logo" width="180" height="auto">
+    <div class="container header-inner">
+      <a href="../index.html" class="logo">
+        <img src="../images/brand_design.png" alt="Raja Cycle Mart">
       </a>
-      <nav class="primary-nav" aria-label="Primary">
-        <ul>
-          <li><a href="../services.html">Services</a></li>
-          <li><a href="../about.html">About</a></li>
-          <li><a href="index.html" aria-current="page">Blog</a></li>
-          <li><a href="../contact.html">Contact</a></li>
-        </ul>
+
+      <button class="mobile-toggle" onclick="toggleMobileMenu()" aria-label="Toggle Menu">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <nav class="nav-links">
+        <a href="../index.html">Home</a>
+        <a href="../services.html">Services</a>
+        <a href="../about.html">About</a>
+        <a href="index.html" class="active">Blog</a>
+        <a href="../contact.html">Contact</a>
       </nav>
+      <div class="header-actions">
+        <a href="tel:+919844629722" class="btn btn-primary">Call Now</a>
+        <a href="https://wa.me/919844629722" class="btn btn-outline">WhatsApp</a>
+      </div>
     </div>
   </header>
 
-  <main id="main">
-    <section class="page-hero">
-      <div class="wrap">
-        <p class="eyebrow">Cycling stories</p>
-        <h1>Guides, how-tos, and buying tips made for Tumkur riders.</h1>
-        <p>Use the search box or category chips to find what you need.</p>
+  <!-- Hero -->
+  <section class="hero-section" style="padding-bottom: 60px;">
+    <div class="container text-center">
+      <span class="section-label">THE BLOG</span>
+      <h1>Cycling Tips & Guides</h1>
+      <p style="margin: 1rem auto; max-width: 600px;">Learn how to maintain your cycle, choose the right gear, and ride
+        safely in Tumkur.</p>
+    </div>
+  </section>
+
+  <!-- Blog Grid -->
+  <section class="section section-white">
+    <div class="container">
+      <div class="blog-grid">
+
+        <!-- Post 1 -->
+        <div class="blog-card card">
+          <div class="blog-card-content">
+            <span class="blog-tag">MAINTENANCE</span>
+            <h3>Simple DIY Puncture Repair Guide</h3>
+            <p>Step-by-step guide to fixing a flat tyre at home. Save time and money.</p>
+            <a href="diy-puncture-repair.html" class="blog-link">Read guide →</a>
+          </div>
+        </div>
+
+        <!-- Post 2 -->
+        <div class="blog-card card">
+          <div class="blog-card-content">
+            <span class="blog-tag">BUYING GUIDE</span>
+            <h3>Best Budget Cycles for 2025</h3>
+            <p>Top recommendations for durable and affordable cycles suitable for Indian roads.</p>
+            <a href="best-budget-cycles-guide.html" class="blog-link">Read guide →</a>
+          </div>
+        </div>
+
+        <!-- Post 3 -->
+        <div class="blog-card card">
+          <div class="blog-card-content">
+            <span class="blog-tag">SAFETY</span>
+            <h3>Monsoon Cycle Care Checklist</h3>
+            <p>Essential tips to protect your cycle from rust and damage during the rainy season.</p>
+            <a href="monsoon-cycle-care.html" class="blog-link">Read guide →</a>
+          </div>
+        </div>
+
+        <!-- Post 4 -->
+        <div class="blog-card card">
+          <div class="blog-card-content">
+            <span class="blog-tag">MAINTENANCE</span>
+            <h3>Complete Cycle Maintenance Checklist</h3>
+            <p>Keep your bike in top condition with this comprehensive maintenance schedule.</p>
+            <a href="cycle-maintenance-checklist.html" class="blog-link">Read guide →</a>
+          </div>
+        </div>
+
+        <!-- Post 5 -->
+        <div class="blog-card card">
+          <div class="blog-card-content">
+            <span class="blog-tag">TIPS</span>
+            <h3>Cycle Maintenance Tips Guide</h3>
+            <p>Quick tips for everyday riders to extend the life of their bicycle.</p>
+            <a href="cycle-maintenance-tips-guide.html" class="blog-link">Read guide →</a>
+          </div>
+        </div>
+
+        <!-- Post 6 -->
+        <div class="blog-card card">
+          <div class="blog-card-content">
+            <span class="blog-tag">MAINTENANCE</span>
+            <h3>Chain Maintenance Guide</h3>
+            <p>How to clean and lubricate your cycle chain for a smooth, silent ride.</p>
+            <a href="chain-maintenance-guide-tumkur.html" class="blog-link">Read guide →</a>
+          </div>
+        </div>
+
+        <!-- Post 7 -->
+        <div class="blog-card card">
+          <div class="blog-card-content">
+            <span class="blog-tag">TOOLS</span>
+            <h3>Importance of Cycling Tools</h3>
+            <p>The essential tools every cyclist should own for basic repairs.</p>
+            <a href="importance-of-cycling-tools-tumkur.html" class="blog-link">Read guide →</a>
+          </div>
+        </div>
+
+        <!-- Post 8 -->
+        <div class="blog-card card">
+          <div class="blog-card-content">
+            <span class="blog-tag">BUYING GUIDE</span>
+            <h3>Budget Cycles & Smart Equipment</h3>
+            <p>How to choose the right accessories and gear without breaking the bank.</p>
+            <a href="budget-cycles-smart-equipment-tumkur.html" class="blog-link">Read guide →</a>
+          </div>
+        </div>
+
+        <!-- Post 9 -->
+        <div class="blog-card card">
+          <div class="blog-card-content">
+            <span class="blog-tag">BUYING GUIDE</span>
+            <h3>Best Budget Cycles for All Ages</h3>
+            <p>Finding the perfect cycle for kids, teens, and adults.</p>
+            <a href="best-budget-cycles-all-ages.html" class="blog-link">Read guide →</a>
+          </div>
+        </div>
+
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="page-content">
-      <div class="wrap">
-        <div class="search-bar">
-          <input type="search" placeholder="Search articles…" data-blog-search>
-        </div>
-
-        <div class="chip-group" data-chip-group>
-          <button class="chip active" data-category="all">All</button>
-          <button class="chip" data-category="maintenance">Maintenance</button>
-          <button class="chip" data-category="buying">Buying Guides</button>
-          <button class="chip" data-category="lifestyle">Lifestyle</button>
-        </div>
-
-        <!-- ADSENSE: TOP OF LIST -->
-        <!-- PROMO: TOP OF LIST -->
-        <div class="service-highlight-banner" style="margin-bottom: 32px;">
-          <div class="highlight-content">
-            <h3>Need a Tune-up?</h3>
-            <p>Read our guides, then bring your cycle for a professional check.</p>
-          </div>
-          <div class="highlight-action">
-            <a href="../contact.html" class="btn ghost white">Book Service</a>
-          </div>
-        </div>
-
-        <!-- THIS IS WHERE JS WILL INJECT THE CARDS -->
-        <div class="blog-list" data-blog-list></div>
-
-        <!-- ADSENSE: BOTTOM OF LIST -->
-        <!-- PROMO: BOTTOM OF LIST -->
-        <div class="app-promo-banner">
-          <div class="app-content">
-            <h3>Quick Service Booking</h3>
-            <p>Use our WhatsApp bot to book repairs instantly.</p>
-          </div>
-          <button class="btn small white" onclick="window.open('https://wa.me/919844629722', '_blank')">Book
-            Now</button>
-        </div>
-      </div>
-    </section>
-  </main>
-
+  <!-- Footer -->
   <footer class="site-footer">
-    <div class="wrap footer-grid">
-      <div>
-        <p class="logo">Raja Cycle Mart</p>
-        <p>SS Puram Main Road, Tumkur · Karnataka</p>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h4 style="color: white;">Raja Cycle Mart</h4>
+          <p>Your trusted neighborhood cycle expert. Keeping Tumkur moving for over 3 decades.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../services.html">Services</a></li>
+            <li><a href="../about.html">About</a></li>
+            <li><a href="../contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Services</h4>
+          <ul class="footer-links">
+            <li><a href="../services.html">Puncture Repair</a></li>
+            <li><a href="../services.html">Full Tune-up</a></li>
+            <li><a href="../services.html">Kids Cycles</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul class="footer-links">
+            <li>+91 98446 29722</li>
+            <li>SS Puram, Tumkur</li>
+          </ul>
+        </div>
       </div>
-      <div>
-        <ul>
-          <li><a href="../privacy.html">Privacy</a></li>
-          <li><a href="../disclaimer.html">Disclaimer</a></li>
-          <li><a href="../sitemap.xml">Sitemap</a></li>
-        </ul>
-      </div>
-      <div>
-        <p>© 2025 Raja Cycle Mart</p>
+      <div class="footer-bottom">
+        <div>&copy; 2025 Raja Cycle Mart. All rights reserved.</div>
+        <div style="font-size: 0.85rem;">
+          <a href="../privacy.html" style="margin-right: 1rem;">Privacy Policy</a>
+          <a href="../disclaimer.html">Disclaimer</a>
+        </div>
       </div>
     </div>
   </footer>
 
-  <!-- IMPORTANT: path to JS from /blog/ -->
-  <script src="../site.js" defer></script>
+  <!-- Cookie Bar -->
+  <div class="cookie-bar" id="cookieBar" style="display: none;">
+    <div class="cookie-content">
+      <p>We use cookies to improve your experience.</p>
+      <a href="../privacy.html" class="cookie-link">Learn more</a>
+    </div>
+    <div class="cookie-actions">
+      <button class="btn btn-secondary btn-sm" onclick="rejectAllCookies()">Reject</button>
+      <button class="btn btn-primary btn-sm" onclick="acceptCookies()">Accept</button>
+    </div>
+  </div>
+
+  <!-- WhatsApp Chatbot -->
+  <div class="chatbot-container" id="chatbotContainer">
+    <div class="chatbot-window" id="chatbotWindow">
+      <div class="chat-header">
+        <div>
+          <strong>Raja Cycle Mart</strong>
+          <p style="font-size: 0.8rem; opacity: 0.9;">Usually replies instantly</p>
+        </div>
+        <button onclick="toggleChatbot()" style="background: none; color: white; font-size: 1.5rem;">&times;</button>
+      </div>
+      <div class="chat-body" id="chatBody">
+        <div class="message bot">
+          Hi! Need cycle service? We're here to help! 🚴‍♂️
+        </div>
+        <div class="chat-options">
+          <button class="chat-btn" onclick="sendChatMessage('Book a service')">Book a service</button>
+          <button class="chat-btn" onclick="sendChatMessage('Service price')">Service price</button>
+          <button class="chat-btn" onclick="sendChatMessage('Timing & location')">Timing & location</button>
+        </div>
+      </div>
+    </div>
+    <button class="chatbot-toggle" onclick="toggleChatbot()">
+      <i class="fas fa-comments"></i>
+    </button>
+  </div>
+
+  <script src="../site.js"></script>
 </body>
 
 </html>

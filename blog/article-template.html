@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -7,7 +8,9 @@
   <meta name="description" content="{{META_DESCRIPTION}}" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="../styles.css" />
   <link rel="canonical" href="https://your-domain.com/blog/{{SLUG}}.html">
   <script type="application/ld+json">
@@ -19,29 +22,6 @@
     "publisher":{"@type":"Organization","name":"Raja Cycle Mart","logo":{"@type":"ImageObject","url":"https://your-domain.com/images/shop.png"}},
     "datePublished":"2025-11-21",
     "image":"https://your-domain.com/images/shop.png"
-  }
-  </script>
-</head>
-<body>
-  <a class="skip-link" href="#main">Skip to content</a>
-  <header class="site-header">
-    <div class="wrap header-grid">
-      <a class="logo-link" href="../index.html"><img src="../images/brand_design.png" alt="Raja Cycle Mart" class="site-logo" width="180" height="auto"></a>
-      <nav class="primary-nav" aria-label="Primary">
-        <ul>
-          <li><a href="../services.html">Services</a></li>
-          <li><a href="../about.html">About</a></li>
-          <li><a href="index.html" aria-current="page">Blog</a></li>
-          <li><a href="../contact.html">Contact</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
-
-  <main id="main" class="page-content">
-    <article class="wrap post">
-      <header>
-        <p class="post-meta">By Raja Cycle Mart · Updated: 21 Nov 2025</p>
         <h1>{{TITLE}}</h1>
         <p>{{INTRO}}</p>
       </header>
@@ -51,7 +31,13 @@
       <p>Paragraph text…</p>
 
       <!-- ADSENSE: IN-ARTICLE AD -->
-      <div class="service-highlight-banner"><div class="highlight-content"><h3>Need Help?</h3><p>Visit Raja Cycle Mart for expert service.</p></div><div class="highlight-action"><a href="../contact.html" class="btn ghost white">Contact Us</a></div></div>
+      <div class="service-highlight-banner">
+        <div class="highlight-content">
+          <h3>Need Help?</h3>
+          <p>Visit Raja Cycle Mart for expert service.</p>
+        </div>
+        <div class="highlight-action"><a href="../contact.html" class="btn ghost white">Contact Us</a></div>
+      </div>
 
       <p>Continue article content…</p>
 
@@ -62,30 +48,73 @@
 
     <section class="wrap section muted">
       <h2>Related articles</h2>
-      <div class="related-list" data-related></div>
     </section>
   </main>
 
   <footer class="site-footer">
-    <div class="wrap footer-grid">
-      <div>
-        <p class="logo">Raja Cycle Mart</p>
-        <p>SS Puram Main Road, Tumkur · Karnataka</p>
+    <div class="wrap">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h4>Raja Cycle Mart</h4>
+          <p>Family-owned cycle repair shop serving Tumkur since 1987.</p>
+          <p style="margin-top: 0.5rem; font-size: 0.9rem; opacity: 0.8;">Owner: Mr. G. M. Nagabhushan</p>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../services.html">Services</a></li>
+            <li><a href="index.html">Blog</a></li>
+            <li><a href="../about.html">About</a></li>
+            <li><a href="../contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul class="footer-links">
+            <li><a href="tel:+919844629722">+91 98446 29722</a></li>
+            <li><a href="https://wa.me/919844629722">WhatsApp</a></li>
+            <li>SS Puram Main Road, Tumkur</li>
+          </ul>
+        </div>
       </div>
-      <div>
-        <ul>
-          <li><a href="../privacy.html">Privacy</a></li>
-          <li><a href="../disclaimer.html">Disclaimer</a></li>
-          <li><a href="../sitemap.xml">Sitemap</a></li>
-        </ul>
-      </div>
-      <div>
-        <p>© 2025 Raja Cycle Mart</p>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Raja Cycle Mart. All rights reserved.</p>
       </div>
     </div>
   </footer>
+
+  <a href="https://wa.me/919844629722?text=Hi!%20I%20need%20cycle%20service.%20Can%20you%20help?" class="whatsapp-float"
+    target="_blank">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <!-- WhatsApp Chatbot -->
+  <div class="chatbot-container" id="chatbotContainer">
+    <div class="chatbot-window" id="chatbotWindow">
+      <div class="chat-header">
+        <div>
+          <strong>Raja Cycle Mart</strong>
+          <p style="font-size: 0.8rem; opacity: 0.9;">Usually replies instantly</p>
+        </div>
+        <button onclick="toggleChatbot()" style="background: none; color: white; font-size: 1.5rem;">&times;</button>
+      </div>
+      <div class="chat-body" id="chatBody">
+        <div class="message bot">
+          Hi! Need cycle service? We're here to help! 🚴‍♂️
+        </div>
+        <div class="chat-options">
+          <button class="chat-btn" onclick="sendChatMessage('Book a service')">Book a service</button>
+          <button class="chat-btn" onclick="sendChatMessage('Service price')">Service price</button>
+          <button class="chat-btn" onclick="sendChatMessage('Timing & location')">Timing & location</button>
+        </div>
+      </div>
+    </div>
+    <button class="chatbot-toggle" onclick="toggleChatbot()">
+      <i class="fas fa-comments"></i>
+    </button>
+  </div>
   <script src="../site.js" defer></script>
-</body>
+  </body>
+
 </html>
-
-

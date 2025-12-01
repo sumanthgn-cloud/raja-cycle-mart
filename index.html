@@ -1,334 +1,398 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Raja Cycle Mart - Home | Cycle Repair Tumkur</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Raja Cycle Mart - Expert Cycle Repair & Sales in Tumkur</title>
   <meta name="description"
-    content="Raja Cycle Mart in SS Puram, Tumkur. Expert cycle repairs, tyre & tube service, and accessories since 1980s. Call +91 98446 29722 for reliable bicycle service." />
-  <meta name="keywords"
-    content="cycle repair Tumkur, bicycle shop Tumkur, Raja Cycle Mart, tyre tube replacement, puncture service SS Puram, cycle mechanic Tumkur, kids cycle repair, gear cycle service" />
-  <meta name="author" content="Raja Cycle Mart" />
-  <meta name="robots" content="index, follow" />
-  <link rel="canonical" href="https://sumanthgn-cloud.github.io/raja-cycle-mart/" />
+    content="Trusted cycle repair shop in SS Puram, Tumkur since 1987. We offer puncture repair, full tune-ups, kids cycles, and genuine spares. Call +91 98446 29722.">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-  <!-- Open Graph / Facebook -->
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://sumanthgn-cloud.github.io/raja-cycle-mart/" />
-  <meta property="og:title" content="Raja Cycle Mart • Expert Cycle Repairs in Tumkur" />
-  <meta property="og:description"
-    content="Reliable cycle repairs, tyre services, and accessories in SS Puram, Tumkur. Serving cyclists since the 1980s." />
-  <meta property="og:image" content="https://sumanthgn-cloud.github.io/raja-cycle-mart/images/brand_design.png" />
-
-  <!-- Schema Markup -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "name": "Raja Cycle Mart",
-    "description": "Cycle repairs, tyre services, accessories and cycling guides for Tumkur riders.",
-    "image": "images/brand_design.png",
-    "telephone": "+919844629722",
-    "url": "https://sumanthgn-cloud.github.io/raja-cycle-mart/",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "SS Puram Main Road, near Sri Sitharama Temple",
-      "addressLocality": "Tumkur",
-      "addressRegion": "Karnataka",
-      "postalCode": "572102",
-      "addressCountry": "IN"
-    },
-    "openingHoursSpecification": [
-      {"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"opens":"09:30","closes":"20:00"},
-      {"@type":"OpeningHoursSpecification","dayOfWeek":["Sunday"],"opens":"10:00","closes":"17:00"}
-    ],
-    "priceRange": "₹₹"
-  }
-  </script>
-
-  <!-- Fonts & Styles -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600&display=swap"
-    rel="stylesheet">
-  <link rel="stylesheet" href="styles.css" />
-  <link rel="icon" type="image/png" href="images/brand_design.png" />
+  <!-- reCAPTCHA v3 -->
+  <script src="https://www.google.com/recaptcha/api.js?render=6Lffex0sAAAAAO-vjM9yhAYuKSUj_UbUSOiPPwj0"></script>
 </head>
 
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
 
+  <!-- Top Announcement Bar -->
+  <div class="top-bar">
+    <div class="container top-bar-inner">
+      <div class="top-bar-offer">
+        <i class="fas fa-bullhorn"></i>
+        <span id="topBarOffer"></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header -->
   <header class="site-header">
-    <div class="wrap header-grid">
-      <a class="logo-link" href="index.html">
-        <img src="images/brand_design.png" alt="Raja Cycle Mart Logo" class="site-logo">
-        <span class="logo-text">Raja Cycle Mart</span>
+    <div class="container header-inner">
+      <a href="index.html" class="logo">
+        <img src="images/brand_design.png" alt="Raja Cycle Mart">
       </a>
-      <nav class="primary-nav" aria-label="Primary navigation">
-        <ul>
-          <li><a href="services.html">Services</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="blog/index.html">Blog</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
+
+      <button class="mobile-toggle" onclick="toggleMobileMenu()" aria-label="Toggle Menu">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <nav class="nav-links">
+        <a href="index.html" class="active">Home</a>
+        <a href="services.html">Services</a>
+        <a href="about.html">About</a>
+        <a href="blog/index.html">Blog</a>
+        <a href="contact.html">Contact</a>
       </nav>
-      <div class="header-ctas">
-        <a class="btn" href="tel:+919844629722"
-          onclick="gtag('event', 'click', {'event_category': 'contact', 'event_label': 'header_call'})">Call Now</a>
-        <a class="btn ghost" href="https://wa.me/919844629722" target="_blank">WhatsApp</a>
+      <div class="header-actions">
+        <a href="tel:+919844629722" class="btn btn-primary">Call Now</a>
+        <a href="https://wa.me/919844629722" class="btn btn-secondary">WhatsApp</a>
       </div>
     </div>
   </header>
 
-  <main id="main">
-    <!-- HERO -->
-    <section class="hero">
-      <div class="wrap hero-grid">
-        <div>
-          <p class="eyebrow">Tumkur • SS Puram Main Road</p>
-          <h1>Reliable cycle repairs and simple guides for everyday riders.</h1>
-          <p class="lede">
-            Punctures, brakes, chains, tyres, kids cycles and city bikes — brought back to smooth condition by our
-            workshop near Sri Sitharama Temple.
-          </p>
-          <div class="hero-actions">
-            <a class="btn" href="tel:+919844629722">Call for Repair</a>
-            <a class="btn ghost" href="https://goo.gl/maps/YOUR_MAP_LINK_HERE" target="_blank">Get Directions</a>
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="container hero-grid">
+      <div class="hero-content">
+        <span class="section-label">TUMKUR • SS PURAM MAIN ROAD</span>
+        <h1>Reliable cycle repairs & simple guides for everyday riders.</h1>
+        <p>Expert service for commuters, kids, and enthusiasts. We keep you moving safely with honest pricing and quick
+          turnarounds.</p>
+
+        <div class="hero-btns">
+          <a href="#contact" class="btn btn-primary">Book Service Now</a>
+          <a href="https://goo.gl/maps/XYZ" target="_blank" class="btn btn-secondary">Get Directions</a>
+        </div>
+
+        <ul style="margin: 0 0 1.25rem 1.25rem; font-size: 0.95rem; color: var(--text-muted);">
+          <li>✅ Same-day puncture repair (subject to slot availability)</li>
+          <li>✅ Honest pricing, no hidden charges</li>
+          <li>✅ Genuine parts only</li>
+        </ul>
+
+        <p style="font-size: 0.9rem; color: var(--text-light);">
+          Serving Tumkur since 1987 · 3500+ cycles serviced · Approx 4.8★ rider feedback
+        </p>
+
+        <div class="hero-chips">
+          <span class="chip"><i class="fas fa-clock"></i> Same-day puncture service</span>
+          <span class="chip"><i class="fas fa-tools"></i> Tyre & tube replacement</span>
+          <span class="chip"><i class="fas fa-bicycle"></i> Kids & adult cycles</span>
+        </div>
+      </div>
+
+      <div class="hero-visual" style="display: flex; flex-direction: column; gap: 20px;">
+        <img src="images/shop.png" alt="Raja Cycle Mart Shop Front"
+          style="border-radius: 20px; box-shadow: var(--shadow-card); width: 100%; height: auto; object-fit: cover;">
+
+        <div class="hours-card">
+          <div class="time-big">9:30 AM - 8:00 PM</div>
+          <div class="hours-row">
+            <span>Monday - Saturday</span>
+            <span>Open</span>
           </div>
-          <ul class="hero-tags">
-            <li>Same-day puncture service</li>
-            <li>Tyre &amp; tube replacement</li>
-            <li>Kids &amp; adult cycles</li>
+          <div class="hours-row">
+            <span>Sunday</span>
+            <span>10:00 AM - 5:00 PM</span>
+          </div>
+          <div class="hours-promo">
+            Monsoon Ready? Free Brake Check with every service.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Workshop Services -->
+  <section class="section section-white">
+    <div class="container">
+      <span class="section-label text-center">WORKSHOP SERVICES</span>
+      <h2 class="text-center" style="max-width: 600px; margin: 0 auto;">Everything you need to keep your cycle smooth
+        and safe.</h2>
+
+      <div class="services-grid">
+        <div class="service-card card">
+          <div class="service-icon"><i class="fas fa-tools"></i></div>
+          <h3>Quick Puncture & Tubes</h3>
+          <p>Express 45-minute service for flats. We stock high-quality tubes for all wheel sizes.</p>
+          <a href="services.html" class="blog-link">Book this service →</a>
+        </div>
+        <div class="service-card card">
+          <div class="service-icon"><i class="fas fa-cogs"></i></div>
+          <h3>Brake & Chain Service</h3>
+          <p>Safety first. We adjust brakes, lubricate chains, and ensure smooth shifting.</p>
+          <a href="services.html" class="blog-link">View full pricing →</a>
+        </div>
+        <div class="service-card card">
+          <div class="service-icon"><i class="fas fa-sync-alt"></i></div>
+          <h3>Wheel & Gear Tuning</h3>
+          <p>Truing wobbly wheels and tuning gears for a perfect, silent ride.</p>
+          <a href="services.html" class="blog-link">Book this service →</a>
+        </div>
+        <div class="service-card card">
+          <div class="service-icon"><i class="fas fa-recycle"></i></div>
+          <h3>Used Cycle Checks</h3>
+          <p>Buying second-hand? Bring it in for a full safety inspection and tune-up.</p>
+          <a href="services.html" class="blog-link">Book inspection →</a>
+        </div>
+      </div>
+
+      <div class="highlight-band">
+        <i class="fas fa-bicycle"></i> Kids Cycle Exchange Available 🚲
+      </div>
+    </div>
+  </section>
+
+  <!-- Quality Service Guarantee -->
+  <section class="section section-mint">
+    <div class="container">
+      <div class="text-center">
+        <span class="section-label">QUALITY SERVICE GUARANTEE</span>
+        <h2>Honest work, every time.</h2>
+        <p style="max-width: 600px; margin: 1rem auto;">We explain exactly what's wrong and what it costs before we
+          start. No hidden fees, just good service.</p>
+
+        <div style="display:flex; justify-content:center; gap:16px; flex-wrap:wrap; margin-top:1.5rem;">
+          <div class="chip">
+            <i class="fas fa-shield-alt"></i> Genuine parts
+          </div>
+          <div class="chip">
+            <i class="fas fa-stopwatch"></i> Fast turnaround
+          </div>
+          <div class="chip">
+            <i class="fas fa-comment-dots"></i> Clear explanation
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="section section-white">
+    <div class="container">
+      <span class="section-label">HAPPY CYCLISTS</span>
+      <h2>Trusted by Tumkur riders.</h2>
+      <p style="margin-top:0.5rem; font-size:0.95rem; color:var(--text-light);">
+        Google Reviews: approx 4.8★ (based on local rider feedback)
+      </p>
+
+      <div class="testimonials-grid">
+        <div class="testimonial-card card">
+          <p>"Best place in SS Puram. Mr. Shaber fixed my gear issue in 10 minutes. Very honest pricing."</p>
+          <div class="customer-name">— Rahul K., SIT College Student</div>
+        </div>
+        <div class="testimonial-card card">
+          <p>"I always bring my kids' cycles here. They are very patient and explain everything clearly."</p>
+          <div class="customer-name">— Priya S., SS Puram Resident</div>
+        </div>
+        <div class="testimonial-card card">
+          <p>"Quick puncture repair. I was back on the road in no time. Highly recommended!"</p>
+          <div class="customer-name">— Arun M., Daily Commuter</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blog Teaser -->
+  <section class="section section-mint">
+    <div class="container">
+      <div class="blog-header">
+        <div>
+          <span class="section-label">LATEST FROM THE BLOG</span>
+          <h2>Cycling Tips & Guides</h2>
+        </div>
+        <a href="blog/index.html" class="btn btn-outline">View all →</a>
+      </div>
+
+      <div class="blog-grid">
+        <div class="blog-card card">
+          <div class="blog-card-content">
+            <span class="blog-tag">MAINTENANCE</span>
+            <h3>Simple DIY Puncture Repair Guide</h3>
+            <p>Learn how to fix a flat tyre yourself in 5 easy steps.</p>
+            <a href="blog/diy-puncture-repair.html" class="blog-link">Read guide →</a>
+          </div>
+        </div>
+        <div class="blog-card card">
+          <div class="blog-card-content">
+            <span class="blog-tag">BUYING GUIDE</span>
+            <h3>Best Budget Cycles for 2025</h3>
+            <p>Top picks for durable, affordable cycles for Indian roads.</p>
+            <a href="blog/best-budget-cycles-guide.html" class="blog-link">Read guide →</a>
+          </div>
+        </div>
+        <div class="blog-card card">
+          <div class="blog-card-content">
+            <span class="blog-tag">SAFETY</span>
+            <h3>Monsoon Cycle Care Checklist</h3>
+            <p>Keep your bike rust-free and safe during the rains.</p>
+            <a href="blog/monsoon-cycle-care.html" class="blog-link">Read guide →</a>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:3rem;">
+        <div class="subscribe-band">
+          <h3>Want more cycling tips for Tumkur riders?</h3>
+          <p>Get simple maintenance reminders and service offers 1–2 times a month. No spam.</p>
+          <form class="subscribe-form" onsubmit="handleEmailCapture(event)">
+            <input type="email" placeholder="Enter your email" required>
+            <button type="submit">Get Tips</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WhatsApp CTA -->
+  <section class="section section-white">
+    <div class="container">
+      <div class="whatsapp-band">
+        <h2>Quick Service Booking</h2>
+        <p style="margin-bottom: 1rem;">Need a repair? Send us a message and we'll book your slot.</p>
+        <p style="margin-bottom: 2rem; font-size:0.95rem;">
+          Share a photo of your cycle issue on WhatsApp and we’ll suggest the right service.
+        </p>
+        <a href="https://wa.me/919844629722" class="btn btn-primary">
+          <i class="fab fa-whatsapp"></i> WhatsApp Us
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Visit Shop / Contact -->
+  <section class="section section-mint" id="contact">
+    <div class="container">
+      <div class="contact-split">
+        <div class="card">
+          <span class="section-label">VISIT THE SHOP</span>
+          <h3>Raja Cycle Mart</h3>
+          <p style="margin-bottom: 1.5rem;">Family-owned since 1987</p>
+
+          <div style="margin-bottom: 1rem;">
+            <strong>Address:</strong><br>
+            SS Puram Main Road,<br>
+            Near Sri Sitharama Temple,<br>
+            Tumkur - 572102<br>
+            <span style="font-size:0.9rem; color:var(--text-light);">
+              Landmark: Near Sri Sitharama Temple, SS Puram Main Road, Tumkur.
+            </span>
+          </div>
+
+          <div style="margin-bottom: 2rem;">
+            <strong>Phone:</strong><br>
+            <a href="tel:+919844629722" style="color: var(--primary); font-weight: 600;">+91 98446 29722</a>
+          </div>
+
+          <a href="https://goo.gl/maps/XYZ" target="_blank" class="btn btn-secondary" style="width: 100%;">Get
+            Directions</a>
+        </div>
+
+        <div class="map-card">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.1234567890123!2d77.10123456789012!3d13.34123456789012!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTPCsDIwJzI4LjQiTiA3N8KwMDYnMDQuNCJF!5e0!3m2!1sen!2sin!4v1234567890123!5m2!1sen!2sin"
+            width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy">
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h4 style="color: white;">Raja Cycle Mart</h4>
+          <p>Your trusted neighborhood cycle expert. Keeping Tumkur moving for over 3 decades.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="blog/index.html">Blog</a></li>
+            <li><a href="contact.html">Contact</a></li>
           </ul>
         </div>
-
-        <aside class="hero-card" aria-hidden="false">
-          <p class="eyebrow">Store hours</p>
-          <p class="stat__value">09:30 – 20:00</p>
-          <p class="stat__label">Mon–Sat · Sun 10:00 – 17:00</p>
-          <p class="micro-text">
-            Ask for Mr. Shaber at the workshop. He handles general repairs, brake service, gear tuning and wheel checks.
-          </p>
-          <!-- PROMO BANNER: SIMPLE TEXT -->
-          <div class="promo-card simple">
-            <h3>Monsoon Ready? 🌧️</h3>
-            <p>Free Brake Check with every service.</p>
-          </div>
-        </aside>
-      </div>
-    </section>
-
-    <!-- SERVICES PREVIEW -->
-    <section class="section" id="services-preview">
-      <div class="wrap">
-        <div class="section-heading">
-          <p class="eyebrow">Workshop services</p>
-          <h2>Everything you need to keep your cycle smooth and safe.</h2>
-          <p>Bring your city bike, MTB, kids cycle or delivery cycle. We use genuine parts and explain work in simple
-            words.</p>
+        <div class="footer-col">
+          <h4>Services</h4>
+          <ul class="footer-links">
+            <li><a href="services.html">Puncture Repair</a></li>
+            <li><a href="services.html">Full Tune-up</a></li>
+            <li><a href="services.html">Kids Cycles</a></li>
+          </ul>
         </div>
-
-        <div class="service-grid">
-          <article class="service-card">
-            <h3>Quick puncture &amp; tubes</h3>
-            <p>Tyre and tube check, replacement if needed, pressure set for your route.</p>
-          </article>
-          <article class="service-card">
-            <h3>Brake &amp; chain service</h3>
-            <p>Brake pad alignment, cable adjustment, chain clean and lubrication.</p>
-          </article>
-          <article class="service-card">
-            <h3>Wheel &amp; gear tuning</h3>
-            <p>Basic wheel straightening and gear indexing for smoother shifting.</p>
-          </article>
-          <article class="service-card">
-            <h3>Used cycle checks</h3>
-            <p>We inspect frame, wheels and drivetrain before you buy or sell a used cycle.</p>
-          </article>
-        </div>
-
-        <!-- SERVICE HIGHLIGHT BANNER: SIMPLE TEXT -->
-        <div class="service-highlight-banner simple">
-          <div class="highlight-content">
-            <h3>Kids Cycle Exchange Available 🚲</h3>
-            <p>Upgrade your child's cycle as they grow. Fair exchange prices guaranteed.</p>
-          </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul class="footer-links">
+            <li>+91 98446 29722</li>
+            <li>SS Puram, Tumkur</li>
+          </ul>
         </div>
       </div>
-    </section>
-
-    <!-- FEATURE BLOCK -->
-    <section class="section highlight" id="feature-block">
-      <div class="wrap highlight-grid">
-        <div>
-          <p class="eyebrow">Quality Service Guarantee</p>
-          <h2>Expert repairs with genuine parts.</h2>
-          <p>We've been serving Tumkur cyclists since the 1980s with fair pricing and reliable service you can trust.
-          </p>
+      <div class="footer-bottom">
+        <div>&copy; 2025 Raja Cycle Mart. All rights reserved.</div>
+        <div style="font-size: 0.85rem;">
+          <a href="privacy.html" style="margin-right: 1rem;">Privacy Policy</a>
+          <a href="cookie-policy.html" style="margin-right: 1rem;">Cookie Policy</a>
+          <a href="disclaimer.html">Disclaimer</a>
         </div>
-        <div>
-          <!-- PARTNER PROMOTION: SIMPLE TEXT -->
-          <div class="partner-card simple">
-            <h3>Need New Tyres?</h3>
-            <p>We stock genuine Ralco & Hartex tyres for Indian roads.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- TESTIMONIALS -->
-    <section class="section">
-      <div class="wrap">
-        <div class="section-heading">
-          <p class="eyebrow">Happy Cyclists</p>
-          <h2>Trusted by Tumkur riders.</h2>
-        </div>
-        <div class="testimonial-grid">
-          <div class="testimonial-card">
-            <p>"Excellent service! My MTB gear shifting was stuck, and they fixed it perfectly. Very reasonable price
-              too."</p>
-            <cite>— Rahul K.</cite>
-          </div>
-          <div class="testimonial-card">
-            <p>"Best place for puncture repairs in SS Puram. Quick and reliable. Nagabhushan sir is very knowledgeable."
-            </p>
-            <cite>— Priya S.</cite>
-          </div>
-          <div class="testimonial-card">
-            <p>"I bought new tyres for my son's cycle here. Good quality and they fitted it immediately. Highly
-              recommended."</p>
-            <cite>— Mohammed A.</cite>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- BLOG PREVIEW -->
-    <section class="section muted">
-      <div class="wrap">
-        <div class="section-header">
-          <h2>Latest from the blog</h2>
-          <a class="arrow-link" href="blog/index.html">View all →</a>
-        </div>
-
-        <div class="blog-preview">
-          <div class="blog-card">
-            <div class="blog-meta">Maintenance</div>
-            <h3>Chain Maintenance Guide</h3>
-            <p>Essential tips to keep your cycle chain smooth and rust-free in Tumkur weather.</p>
-            <a href="blog/chain-maintenance-guide-tumkur.html">Read guide →</a>
-          </div>
-          <div class="blog-card">
-            <div class="blog-meta">Buying Guide</div>
-            <h3>Best Budget Cycles</h3>
-            <p>Top picks for affordable cycles for all ages available in the local market.</p>
-            <a href="blog/best-budget-cycles-all-ages.html">Read guide →</a>
-          </div>
-          <div class="blog-card">
-            <div class="blog-meta">Safety</div>
-            <h3>Importance of Tools</h3>
-            <p>Why carrying a basic tool kit is crucial for every cyclist in Tumkur.</p>
-            <a href="blog/importance-of-cycling-tools-tumkur.html">Read guide →</a>
-          </div>
-        </div>
-
-        <!-- MOBILE APP PROMO: SIMPLE TEXT -->
-        <div class="app-promo-banner simple">
-          <div class="app-content">
-            <h3>Quick Service Booking 📱</h3>
-            <p>Use our WhatsApp bot to book repairs instantly.</p>
-          </div>
-          <a href="https://wa.me/919844629722" class="btn small white">WhatsApp Us</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- VISIT CTA -->
-    <section class="section" id="visit">
-      <div class="wrap final-card">
-        <div>
-          <p class="eyebrow">Visit the shop</p>
-          <h2>Raja Cycle Mart, SS Puram Main Road, Tumkur.</h2>
-          <p>
-            We've been serving the neighbourhood since the late 1980s.
-            We focus on fair pricing, real parts, and clear explanation.
-          </p>
-        </div>
-        <div class="map-container">
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3881.397656789012!2d77.1123456!3d13.3456789!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTPCsDIwJzQ0LjQiTiA3N8KwMDYnNDQuNCJF!5e0!3m2!1sen!2sin!4v1620000000000!5m2!1sen!2sin"
-            width="100%" height="300" style="border:0; border-radius: 12px;" allowfullscreen="" loading="lazy"></iframe>
-        </div>
-        <div class="final-ctas">
-          <a class="btn" href="tel:+919844629722">Call +91 98446 29722</a>
-          <a class="btn ghost" href="https://wa.me/919844629722" target="_blank">WhatsApp us</a>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <div class="wrap footer-grid">
-      <div>
-        <p class="logo">Raja Cycle Mart</p>
-        <p>SS Puram Main Road, near Sri Sitharama Temple<br>Tumkur · Karnataka · 572102</p>
-      </div>
-      <div>
-        <ul>
-          <li><a href="privacy.html">Privacy</a></li>
-          <li><a href="disclaimer.html">Disclaimer</a></li>
-          <li><a href="sitemap.xml">Sitemap</a></li>
-        </ul>
-      </div>
-      <div>
-        <p>© 2025 Raja Cycle Mart</p>
-        <p>Phone: <a href="tel:+919844629722">+91 98446 29722</a></p>
       </div>
     </div>
   </footer>
 
-  <!-- CHATBOT: CycleAssist -->
-  <div id="chatbot" class="chatbot-container">
-    <div class="chatbot-toggle" onclick="toggleChatbot()" aria-label="Open CycleAssist Chat">
-      <span class="chatbot-icon">🚲</span>
-      <span class="chatbot-badge">1</span>
+  <!-- Cookie Bar -->
+  <div class="cookie-bar" id="cookieBar" style="display: none;">
+    <div class="cookie-content">
+      <p>We use cookies to improve your experience.</p>
+      <a href="privacy.html" class="cookie-link">Learn more</a>
     </div>
-    <div class="chatbot-window" hidden>
-      <div class="chatbot-header">
-        <div class="header-info">
-          <h3>CycleAssist</h3>
-          <span class="status-dot"></span>
-        </div>
-        <button onclick="toggleChatbot()" aria-label="Close chat" class="close-chat">×</button>
-      </div>
-      <div class="chatbot-messages" id="chat-messages">
-        <div class="message bot">
-          <p>Namaskara! 🙏 I'm CycleAssist. How can I help?</p>
-          <div class="chat-options">
-            <button onclick="handleOption('pricing')">Pricing</button>
-            <button onclick="handleOption('hours')">Timings</button>
-            <button onclick="handleOption('location')">Location</button>
-          </div>
-        </div>
-      </div>
-      <div class="chatbot-input">
-        <input type="text" id="chat-input" placeholder="Ask a question..." onkeypress="handleEnter(event)">
-        <button onclick="sendMessage()" aria-label="Send message">➤</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- COOKIE BANNER -->
-  <div id="cookie-banner" class="cookie-banner" hidden>
-    <p>We use cookies to improve your experience. <a href="privacy.html">Learn more</a></p>
     <div class="cookie-actions">
-      <button class="btn ghost small" onclick="acceptCookies()">Accept</button>
+      <button class="btn btn-secondary btn-sm" onclick="rejectAllCookies()">Reject</button>
+      <button class="btn btn-primary btn-sm" onclick="acceptCookies()">Accept</button>
     </div>
   </div>
 
-  <script src="site.js" defer></script>
+  <!-- WhatsApp Chatbot -->
+  <div class="chatbot-container" id="chatbotContainer">
+    <div class="chatbot-window" id="chatbotWindow">
+      <div class="chat-header">
+        <div>
+          <strong>Raja Cycle Mart</strong>
+          <p style="font-size: 0.8rem; opacity: 0.9;">Usually replies instantly</p>
+        </div>
+        <button onclick="toggleChatbot()" style="background: none; color: white; font-size: 1.5rem;">&times;</button>
+      </div>
+      <div class="chat-body" id="chatBody">
+        <div class="message bot">
+          Hi! Need cycle service? We're here to help! 🚴‍♂️
+        </div>
+        <div class="chat-options">
+          <button class="chat-btn" onclick="sendChatMessage('Book a service')">Book a service</button>
+          <button class="chat-btn" onclick="sendChatMessage('Service price')">Service price</button>
+          <button class="chat-btn" onclick="sendChatMessage('Timing & location')">Timing & location</button>
+        </div>
+      </div>
+    </div>
+    <button class="chatbot-toggle" onclick="toggleChatbot()">
+      <i class="fas fa-comments"></i>
+    </button>
+  </div>
+
+  <!-- Mobile Sticky CTA -->
+  <div class="mobile-sticky-cta">
+    <button class="btn btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+      Book Service
+    </button>
+    <a href="https://wa.me/919844629722" class="icon-btn" aria-label="WhatsApp">
+      <i class="fab fa-whatsapp"></i>
+    </a>
+  </div>
+
+  <script src="site.js"></script>
 </body>
 
 </html>
