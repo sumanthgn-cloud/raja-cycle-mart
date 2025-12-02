@@ -2,6 +2,14 @@
 <html lang="en">
 
 <head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-DP7GDRXVQB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-DP7GDRXVQB');
+  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>About Us - Raja Cycle Mart</title>
@@ -10,28 +18,10 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-DP7GDRXVQB"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-
-    // Default consent mode - Denied
-    gtag('consent', 'default', {
-      'ad_storage': 'denied',
-      'ad_user_data': 'denied',
-      'ad_personalization': 'denied',
-      'analytics_storage': 'denied'
-    });
-
-    gtag('js', new Date());
-    gtag('config', 'G-DP7GDRXVQB');
-  </script>
 </head>
 
 <body>
@@ -235,17 +225,13 @@
     </button>
   </div>
 
-  <!-- Cookie Bar -->
-  <div class="cookie-bar" id="cookieBar" style="display: none;">
-    <div class="cookie-content">
-      <p>We use cookies to improve your experience.</p>
-      <a href="privacy.html" class="cookie-link">Learn more</a>
+  <div id="cookie-banner" class="cookie-banner">
+    <div class="cookie-text">
+      <p>We use cookies to improve your experience. By using our site, you agree to our <a href="privacy.html"
+          style="color:inherit; text-decoration:underline;">Privacy Policy</a>.</p>
     </div>
     <div class="cookie-actions">
-      <button class="btn btn-sm"
-        style="background:none; border:none; color:var(--text-muted); text-decoration:underline; cursor:pointer;"
-        onclick="openCookiePreferences()">Cookie settings</button>
-      <button class="btn btn-primary btn-sm" onclick="acceptAllCookies()">Accept</button>
+      <button class="btn-cookie-accept" onclick="acceptAllCookies()">Accept</button>
     </div>
   </div>
 

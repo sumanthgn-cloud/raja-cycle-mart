@@ -1,15 +1,13 @@
 // Raja Cycle Mart - Site JavaScript
 // Handles: Cookie Consent, Email Capture, Booking, Discount Popup, Chatbot
 
-// --------- BASIC COOKIE HELPERS ----------
+// --------- COOKIE BANNER (NEW) ----------
+// basic cookie helpers
 function setCookie(name, value, days) {
-  let expires = "";
-  if (days) {
-    const date = new Date();
-    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-    expires = "; expires=" + date.toUTCString();
-  }
-  document.cookie = name + "=" + encodeURIComponent(value) + expires + "; path=/; SameSite=Lax";
+  const date = new Date();
+  date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+  const expires = "expires=" + date.toUTCString();
+  document.cookie = name + "=" + encodeURIComponent(value) + ";" + expires + ";path=/;SameSite=Lax";
 }
 
 function getCookie(name) {
@@ -24,99 +22,21 @@ function getCookie(name) {
   return null;
 }
 
-// --------- CONSENT MODE V2 ----------
+function loadGA() {
+  console.log("GA4 Loaded");
+  gtag('consent', 'update', {
+    'ad_storage': 'granted',
+    'ad_user_data': 'granted',
+    'ad_personalization': 'granted',
+    'analytics_storage': 'granted'
+  });
+}
+
 function acceptAllCookies() {
   setCookie("cookie_consent", "accepted", 365);
-  localStorage.setItem("cookie_consent", "accepted");
-  hideCookieElements();
-  enableConsentedFeatures();
-}
-
-function rejectAllCookies() {
-  setCookie("cookie_consent", "rejected", 365);
-  localStorage.setItem("cookie_consent", "rejected");
-  hideCookieElements();
-}
-
-function savePreferences() {
-  // In a real app, check toggle states
-  // For now, assume if they clicked "Save", they accept selected (which are usually essential + analytics)
-  setCookie("cookie_consent", "custom", 365);
-  localStorage.setItem("cookie_consent", "custom");
-  hideCookieElements();
-}
-
-function hideCookieElements() {
-  const banner = document.getElementById('cookieBar');
-  if (banner) banner.style.display = 'none';
-  const panel = document.getElementById('cookiePreferencesPanel');
-  if (panel) panel.style.display = 'none';
-}
-
-function checkExistingConsent() {
-  const consent = localStorage.getItem("cookie_consent") || getCookie("cookie_consent");
-
-  if (!consent) {
-    // Show banner if no choice made yet
-    setTimeout(() => {
-      const banner = document.getElementById('cookieBar');
-      if (banner) {
-        banner.style.display = 'flex';
-        updateCookieBarUI(banner);
-      }
-    }, 1000);
-  } else {
-    if (consent === "accepted" || consent === "custom") {
-      enableConsentedFeatures();
-    }
-  }
-}
-
-function updateCookieBarUI(banner) {
-  // Dynamically update buttons to match new requirement without editing all HTML files
-  const actions = banner.querySelector('.cookie-actions');
-  if (actions) {
-    actions.innerHTML = `
-      <button class="btn btn-sm" style="background:none; border:none; color:var(--text-muted); text-decoration:underline; cursor:pointer;" onclick="openCookiePreferences()">Cookie settings</button>
-      <button class="btn btn-primary btn-sm" onclick="acceptAllCookies()">Accept</button>
-    `;
-  }
-
-  // Inject Panel if not exists
-  if (!document.getElementById('cookiePreferencesPanel')) {
-    const panel = document.createElement('div');
-    panel.id = 'cookiePreferencesPanel';
-    panel.className = 'cookie-preferences-panel';
-    panel.innerHTML = `
-      <h4>Cookie Preferences</h4>
-      <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:1rem;">Manage your cookie settings. Essential cookies are always on.</p>
-      
-      <div class="preference-item">
-        <span>Essential Cookies</span>
-        <input type="checkbox" checked disabled>
-      </div>
-      <div class="preference-item">
-        <span>Analytics & Performance</span>
-        <input type="checkbox" checked id="prefAnalytics">
-      </div>
-      
-      <div style="margin-top:1.5rem; display:flex; gap:10px; justify-content:flex-end;">
-        <button class="btn btn-secondary btn-sm" onclick="hideCookieElements()">Cancel</button>
-        <button class="btn btn-primary btn-sm" onclick="savePreferences()">Save Preferences</button>
-      </div>
-    `;
-    document.body.appendChild(panel);
-  }
-}
-
-function openCookiePreferences() {
-  const panel = document.getElementById('cookiePreferencesPanel');
-  if (panel) panel.style.display = 'block';
-}
-
-function enableConsentedFeatures() {
-  console.log("Consented features enabled");
-  // Initialize Analytics, Pixel, etc. here
+  const banner = document.getElementById("cookie-banner");
+  if (banner) banner.style.display = "none";
+  loadGA();
 }
 
 // --------- CHATBOT ----------
@@ -141,9 +61,6 @@ function toggleChatbot() {
 // Check chatbot state on load
 function checkChatbotState() {
   const state = localStorage.getItem('chatbotState');
-  // Only auto-open if explicitly set to 'open' or not set (first visit logic handled elsewhere)
-  // User requested: "When the user closes the chatbot, remember it... so it doesn't keep reopening"
-  // So if state is 'closed', do NOT open.
   if (state === 'open') {
     const window = document.getElementById('chatbotWindow');
     if (window) {
@@ -215,10 +132,8 @@ function toggleMobileMenu() {
 
 // --------- EMAIL POPUP ----------
 function showEmailPopup() {
-  // If called via scroll (no args), check session storage. If called via button, always show.
   if (arguments.length === 0 && sessionStorage.getItem('emailPopupShown')) return;
-
-  if (document.getElementById('emailPopup')) return; // Already open
+  if (document.getElementById('emailPopup')) return;
 
   const popup = document.createElement('div');
   popup.id = 'emailPopup';
@@ -275,30 +190,17 @@ function handleEmailSubmit(e) {
 
 // --------- INITIALIZATION ----------
 document.addEventListener('DOMContentLoaded', () => {
-  // Check cookies
-  checkExistingConsent();
-
-  // Discount Popup
-  // showDiscountPopup(); // User feedback: "unwanted" - disabled auto-show
-
-  // Email Popup (if discount not shown, to avoid overlap?)
-  // Let's prioritize Discount Popup first, then Email Popup later if needed.
-  // Or just show Email Popup if Discount is already closed.
-  /*
-  if (localStorage.getItem('discountShown')) {
-    showEmailPopup();
+  // Check for existing consent
+  if (getCookie("cookie_consent") === "accepted") {
+    loadGA();
+  } else {
+    // Show banner if not accepted
+    const banner = document.getElementById("cookie-banner");
+    if (banner) banner.style.display = "flex";
   }
-  */
 
   // Chatbot - Check state
   checkChatbotState();
-
-  // If first visit (no state set), auto-open after delay
-  if (!localStorage.getItem('chatbotState')) {
-    setTimeout(() => {
-      toggleChatbot();
-    }, 2000);
-  }
 
   // Close mobile menu on click outside
   document.addEventListener('click', (e) => {
@@ -306,7 +208,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const nav = document.querySelector('.primary-nav');
     const toggle = document.querySelector('.mobile-toggle');
 
-    if (header.classList.contains('mobile-open') && !nav.contains(e.target) && !toggle.contains(e.target)) {
+    if (header && header.classList.contains('mobile-open') && nav && !nav.contains(e.target) && toggle && !toggle.contains(e.target)) {
       header.classList.remove('mobile-open');
     }
   });
@@ -318,8 +220,8 @@ document.addEventListener('DOMContentLoaded', () => {
       const target = document.querySelector(this.getAttribute('href'));
       if (target) {
         target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        // Close mobile menu if open
-        document.querySelector('.site-header').classList.remove('mobile-open');
+        const header = document.querySelector('.site-header');
+        if (header) header.classList.remove('mobile-open');
       }
     });
   });

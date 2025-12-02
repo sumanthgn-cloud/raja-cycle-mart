@@ -2,6 +2,14 @@
 <html lang="en">
 
 <head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-DP7GDRXVQB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-DP7GDRXVQB');
+  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Raja Cycle Mart - Expert Cycle Repair & Sales in Tumkur</title>
@@ -62,7 +70,8 @@
 
         <div class="hero-btns">
           <a href="#contact" class="btn btn-primary">Book Service Now</a>
-          <a href="https://goo.gl/maps/XYZ" target="_blank" class="btn btn-secondary">Get Directions</a>
+          <a href="https://www.google.com/maps/search/?api=1&query=Raja+Cycle+Mart+Tumkur" target="_blank"
+            class="btn btn-secondary">Get Directions</a>
         </div>
 
         <ul style="margin: 0 0 1.25rem 1.25rem; font-size: 0.95rem; color: var(--text-muted);">
@@ -285,7 +294,8 @@
             <a href="tel:+919844629722" style="color: var(--primary); font-weight: 600;">+91 98446 29722</a>
           </div>
 
-          <a href="https://goo.gl/maps/XYZ" target="_blank" class="btn btn-secondary" style="width: 100%;">Get
+          <a href="https://www.google.com/maps/search/?api=1&query=Raja+Cycle+Mart+Tumkur" target="_blank"
+            class="btn btn-secondary" style="width: 100%;">Get
             Directions</a>
         </div>
 
@@ -337,6 +347,9 @@
         <div>&copy; 2025 Raja Cycle Mart. All rights reserved.</div>
         <div style="font-size: 0.85rem;">
           <a href="privacy.html" style="margin-right: 1rem;">Privacy Policy</a>
+          <button onclick="openCookiePreferences()"
+            style="background:none; border:none; color:#888; cursor:pointer; font-size:inherit; padding:0; margin-right: 1rem; text-decoration:underline;">Cookie
+            Settings</button>
           <a href="cookie-policy.html" style="margin-right: 1rem;">Cookie Policy</a>
           <a href="disclaimer.html">Disclaimer</a>
         </div>
@@ -344,17 +357,7 @@
     </div>
   </footer>
 
-  <!-- Cookie Bar -->
-  <div class="cookie-bar" id="cookieBar" style="display: none;">
-    <div class="cookie-content">
-      <p>We use cookies to improve your experience.</p>
-      <a href="privacy.html" class="cookie-link">Learn more</a>
-    </div>
-    <div class="cookie-actions">
-      <button class="btn btn-secondary btn-sm" onclick="rejectAllCookies()">Reject</button>
-      <button class="btn btn-primary btn-sm" onclick="acceptCookies()">Accept</button>
-    </div>
-  </div>
+
 
   <!-- WhatsApp Chatbot -->
   <div class="chatbot-container" id="chatbotContainer">
@@ -390,6 +393,16 @@
     <a href="https://wa.me/919844629722" class="icon-btn" aria-label="WhatsApp">
       <i class="fab fa-whatsapp"></i>
     </a>
+  </div>
+
+  <div id="cookie-banner" class="cookie-banner">
+    <div class="cookie-text">
+      <p>We use cookies to improve your experience. By using our site, you agree to our <a href="privacy.html"
+          style="color:inherit; text-decoration:underline;">Privacy Policy</a>.</p>
+    </div>
+    <div class="cookie-actions">
+      <button class="btn-cookie-accept" onclick="acceptAllCookies()">Accept</button>
+    </div>
   </div>
 
   <script src="site.js"></script>
