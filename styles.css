@@ -1222,6 +1222,7 @@ label {
   font-size: 1.3rem;
   cursor: pointer;
 }
+
 /* --------- CHATBOT (FIXED) ---------- */
 .chatbot-container {
   position: fixed;
@@ -1240,7 +1241,7 @@ label {
   color: white;
   border-radius: 50%;
   border: none;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   cursor: pointer;
   font-size: 1.5rem;
   display: flex;
@@ -1258,9 +1259,10 @@ label {
   height: 450px;
   background: white;
   border-radius: 12px;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
   margin-bottom: 1rem;
-  display: none; /* Hidden by default */
+  display: none;
+  /* Hidden by default */
   flex-direction: column;
   overflow: hidden;
   border: 1px solid #eee;
@@ -1350,10 +1352,11 @@ label {
   bottom: 0;
   width: 100%;
   background: #ffffff;
-  border-top: 1px solid rgba(0,0,0,0.08);
-  box-shadow: 0 -4px 16px rgba(0,0,0,0.06);
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.06);
   padding: 12px 20px;
-  display: none; /* hidden by default, JS will show if needed */
+  display: none;
+  /* hidden by default, JS will show if needed */
   z-index: 9999;
 
   display: flex;
@@ -1374,7 +1377,8 @@ label {
 }
 
 .btn-cookie-accept {
-  background: #2F7A44; /* your green */
+  background: #2F7A44;
+  /* your green */
   color: #fff;
   border: none;
   border-radius: 999px;
@@ -1433,3 +1437,8 @@ label {
   color: #2BB2FC;
 }
 
+/* Fix for Brevo form input being blocked by overlay */
+.sib-form {
+  position: relative;
+  z-index: 2;
+}
