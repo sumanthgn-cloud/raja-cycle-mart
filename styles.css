@@ -1442,3 +1442,9 @@ label {
   position: relative;
   z-index: 2;
 }
+
+/* Fix for Brevo form input text visibility */
+#sib-container input.input {
+  color: #333 !important;
+  background-color: white !important;
+}
