@@ -1266,6 +1266,8 @@ label {
   flex-direction: column;
   overflow: hidden;
   border: 1px solid #eee;
+  z-index: 10000;
+  /* Ensure it's above everything */
 }
 
 .chatbot-window.active {
@@ -1279,16 +1281,24 @@ label {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-shrink: 0;
+  /* Prevent header from shrinking */
+  z-index: 10001;
+  /* Ensure header is on top */
+  position: relative;
 }
 
 .chat-body {
   flex: 1;
   padding: 1rem;
   overflow-y: auto;
+  /* Enable vertical scrolling */
   background: #f9f9f9;
   display: flex;
   flex-direction: column;
   gap: 10px;
+  max-height: 100%;
+  /* Ensure it takes available space */
 }
 
 .message {

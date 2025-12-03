@@ -110,12 +110,6 @@
       <div class="chat-body" id="chatBody">
         <div class="message bot">
           Hi! Need cycle service? We're here to help! 🚴‍♂️
-        </div>
-        <div class="chat-options">
-          <button class="chat-btn" onclick="sendChatMessage('Book a service')">Book a service</button>
-          <button class="chat-btn" onclick="sendChatMessage('Service price')">Service price</button>
-          <button class="chat-btn" onclick="sendChatMessage('Timing & location')">Timing & location</button>
-        </div>
 <!doctype html>
 <html lang="en">
 
@@ -148,6 +142,39 @@
     "publisher":{"@type":"Organization","name":"Raja Cycle Mart","logo":{"@type":"ImageObject","url":"https://your-domain.com/images/shop.png"}},
     "datePublished":"2025-11-21",
     "image":"https://your-domain.com/images/shop.png"
+  }
+  </script>
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <div class="header-content">
+        <div class="site-logo">
+          <a href="../index.html">
+            <img src="../images/shop.png" alt="Raja Cycle Mart Logo" width="40" height="40">
+            <span>Raja Cycle Mart</span>
+          </a>
+        </div>
+        <nav class="site-nav">
+          <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../services.html">Services</a></li>
+            <li><a href="index.html">Blog</a></li>
+            <li><a href="../about.html">About</a></li>
+            <li><a href="../contact.html" class="btn">Contact Us</a></li>
+          </ul>
+        </nav>
+        <button class="menu-toggle" aria-label="Toggle navigation">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="site-main">
+    <article class="wrap article-content">
+      <header class="article-header">
         <h1>{{TITLE}}</h1>
         <p>{{INTRO}}</p>
       </header>
@@ -242,7 +269,8 @@
   </div>
   <div id="cookie-banner" class="cookie-banner">
     <div class="cookie-text">
-      <p>We use cookies to improve your experience. By using our site, you agree to our <a href="../privacy.html" style="color:inherit; text-decoration:underline;">Privacy Policy</a>.</p>
+      <p>We use cookies to improve your experience. By using our site, you agree to our <a href="../privacy.html"
+          style="color:inherit; text-decoration:underline;">Privacy Policy</a>.</p>
     </div>
     <div class="cookie-actions">
       <button class="btn-cookie-accept" onclick="acceptAllCookies()">Accept</button>
@@ -250,6 +278,6 @@
   </div>
 
   <script src="../site.js"></script>
-  </body>
+</body>
 
 </html>
