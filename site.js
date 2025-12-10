@@ -130,6 +130,23 @@ function toggleMobileMenu() {
   header.classList.toggle('mobile-open');
 }
 
+// Auto-active link highlighting
+(function () {
+  try {
+    var links = document.querySelectorAll('.nav-center .nav-link');
+    var path = window.location.pathname.split('/').pop() || 'index.html';
+    links.forEach(function (a) {
+      var href = a.getAttribute('href') || '';
+      // normalize: compare last part of the href
+      var hrefName = href.split('/').pop();
+      if (hrefName === path) {
+        a.classList.add('active');
+        a.setAttribute('aria-current', 'page');
+      }
+    });
+  } catch (e) { console.warn(e); }
+})();
+
 // --------- EMAIL POPUP ----------
 function showEmailPopup() {
   if (arguments.length === 0 && sessionStorage.getItem('emailPopupShown')) return;
