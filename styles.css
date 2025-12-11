@@ -358,9 +358,32 @@ p {
     height: 48px;
   }
 
-  /* Hide center nav on small screens if you use a hamburger later */
+  /* Make nav visible and scrollable */
   .nav-center {
-    display: none;
+    display: flex;
+    overflow-x: auto;
+    /* Allow horizontal scrolling */
+    width: 100%;
+    order: 3;
+    /* Move to bottom if wrapping */
+    padding-top: 10px;
+    justify-content: flex-start;
+    /* Align left for scrolling */
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 5px;
+    /* Space for scrollbar if any */
+  }
+
+  .nav-container {
+    flex-wrap: wrap;
+    /* Allow wrapping */
+    gap: 10px;
+  }
+
+  /* Hide scrollbar but keep functionality */
+  .nav-center::-webkit-scrollbar {
+    height: 0px;
+    background: transparent;
   }
 }
 

@@ -82,18 +82,50 @@
 /* Image Area */
 .mp-media {
     position: relative;
-    height: 220px;
-    background: #f1f2f6;
+    height: 240px;
+    /* Restored height */
+    background: #ffffff;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 20px;
+    padding: 0;
+    /* Zero padding to maximize width */
+    overflow: hidden;
 }
 
 .mp-media img {
-    max-height: 180px;
-    width: auto;
+    width: 100%;
+    height: 100%;
     object-fit: contain;
+    /* Full bike visible */
+    object-position: center;
+    transition: transform 0.4s ease;
+    transform: scale(1.03);
+    /* Slight default zoom to elaborate */
+}
+
+/* Zoom effect on hover */
+.mp-card:hover .mp-media img {
+    transform: scale(1.12);
+    /* Nice zoom on hover */
+}
+
+/* Specific enlargement for wide adult cycles */
+.mp-enlarge-extra img {
+    transform: scale(1.15);
+}
+
+.mp-card:hover .mp-media.mp-enlarge-extra img {
+    transform: scale(1.25);
+}
+
+/* Maximum enlargement for wide bikes with lots of whitespace */
+.mp-enlarge-max img {
+    transform: scale(1.35);
+}
+
+.mp-card:hover .mp-media.mp-enlarge-max img {
+    transform: scale(1.45);
 }
 
 .mp-badge-group {
@@ -103,6 +135,8 @@
     display: flex;
     gap: 6px;
     flex-wrap: wrap;
+    z-index: 10;
+    /* Ensure badges stay on top of transformed images */
 }
 
 .mp-badge {
@@ -176,6 +210,8 @@
     font-size: 12px;
     font-weight: 700;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+    /* Ensure badge stays on top */
 }
 
 .mp-specs {
@@ -459,6 +495,17 @@
 }
 
 @media (max-width: 768px) {
+    .mp-grid {
+        grid-template-columns: 1fr;
+        /* Stack earlier for better visibility */
+        gap: 20px;
+    }
+
+    .mp-media {
+        height: 220px;
+        /* Condensed height for mobile */
+    }
+
     .blog-grid {
         grid-template-columns: 1fr;
     }
@@ -467,13 +514,22 @@
         position: static;
         margin-top: 30px;
     }
+
+    .mp-actions {
+        flex-direction: column;
+        /* Stack buttons for easier tapping */
+    }
+
+    .mp-title {
+        font-size: 28px;
+    }
+
+    .marketplace-section {
+        padding: 40px 15px;
+    }
 }
 
 @media (max-width: 600px) {
-    .mp-grid {
-        grid-template-columns: 1fr;
-    }
-
     .mp-tabs {
         flex-direction: column;
         align-items: stretch;
@@ -481,13 +537,6 @@
 
     .mp-tab {
         text-align: center;
-    }
-
-    .mp-title {
-        font-size: 28px;
-    }
-
-    .mp-actions {
-        flex-direction: column;
+        width: 100%;
     }
 }
