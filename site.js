@@ -131,22 +131,7 @@ function toggleMobileMenu() {
   header.classList.toggle('mobile-open');
 }
 
-// Auto-active link highlighting
-(function () {
-  try {
-    var links = document.querySelectorAll('.nav-center .nav-link');
-    var path = window.location.pathname.split('/').pop() || 'index.html';
-    links.forEach(function (a) {
-      var href = a.getAttribute('href') || '';
-      // normalize: compare last part of the href
-      var hrefName = href.split('/').pop();
-      if (hrefName === path) {
-        a.classList.add('active');
-        a.setAttribute('aria-current', 'page');
-      }
-    });
-  } catch (e) { console.warn(e); }
-})();
+
 
 // --------- EMAIL POPUP ----------
 function showEmailPopup() {
@@ -295,28 +280,31 @@ document.addEventListener('DOMContentLoaded', () => {
   const currentLocation = window.location.href.toLowerCase();
 
   navLinks.forEach(link => {
+    // Reset active state first to ensure no duplicates
+    link.classList.remove('active');
+
     const linkPath = normalizePath(link.href);
     const linkFilename = linkPath.split('/').pop();
-    
+
     let isActive = false;
 
     // 1. Strict Path Match (Primary check)
     if (linkPath === currentPath) {
-        isActive = true;
+      isActive = true;
     }
     // 2. Fallback: Filename Match (Secondary check for non-index pages)
     // This catches cases like lucky-draw.html even if path resolution differs slightly
     // We explicitly exclude 'index.html' case (which becomes empty string after normalization)
     // to avoid the Home/Blog conflict.
     else if (linkFilename && linkFilename === currentFilename && linkFilename !== '') {
-        isActive = true;
+      isActive = true;
     }
-    
+
     // 3. EXPLICIT OVERRIDE for Lucky Draw (Nuclear Option)
     // If the browser URL contains 'lucky-draw.html' and the link href contains 'lucky-draw.html',
     // force it to be active. This bypasses all path normalization issues.
     if (!isActive && currentLocation.includes('lucky-draw.html') && link.href.toLowerCase().includes('lucky-draw.html')) {
-        isActive = true;
+      isActive = true;
     }
 
     if (isActive) {
