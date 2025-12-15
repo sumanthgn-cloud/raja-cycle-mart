@@ -24,12 +24,14 @@ function getCookie(name) {
 
 function loadGA() {
   console.log("GA4 Loaded");
-  gtag('consent', 'update', {
-    'ad_storage': 'granted',
-    'ad_user_data': 'granted',
-    'ad_personalization': 'granted',
-    'analytics_storage': 'granted'
-  });
+  if (typeof gtag === 'function') {
+    gtag('consent', 'update', {
+      'ad_storage': 'granted',
+      'ad_user_data': 'granted',
+      'ad_personalization': 'granted',
+      'analytics_storage': 'granted'
+    });
+  }
 }
 
 function acceptAllCookies() {

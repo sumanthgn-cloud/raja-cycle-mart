@@ -1568,8 +1568,8 @@ label {
   display: none;
   /* hidden by default, JS will show if needed */
   z-index: 9999;
+  /* display: flex; REMOVED to prevent always-on state */
 
-  display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 12px;

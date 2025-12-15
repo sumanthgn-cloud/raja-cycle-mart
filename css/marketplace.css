@@ -244,6 +244,8 @@
 /* Actions */
 .mp-actions {
     display: flex;
+    flex-direction: column;
+    /* Stack vertically for better text fit */
     gap: 10px;
     margin-top: auto;
 }
