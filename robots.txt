@@ -1,6 +1,6 @@
 User-agent: *
 Allow: /
-Sitemap: https://sumanthgn-cloud.github.io/raja-cycle-mart/sitemap.xml
+Sitemap: https://rajacyclemart.netlify.app/sitemap.xml
 
 User-agent: GPTBot
 Allow: /
