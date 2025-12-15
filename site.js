@@ -110,6 +110,7 @@ function initTopBarRotation() {
   const offers = [
     'Student Discount – 10% OFF on full tune-up',
     'Free brake check with every puncture repair',
+    '🎁 Win Prizes! Join our Monthly Lucky Draw',
     'Refer a friend and get ₹50 OFF'
   ];
   let idx = 0;
@@ -260,4 +261,80 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Top bar rotation
   initTopBarRotation();
+
+  // --- ACTIVE LINK & NAV SCROLL ---
+  // Improved Logic: Normalize paths to handle filenames and avoid conflicts
+  const normalizePath = (url) => {
+    try {
+      const a = document.createElement('a'); // use anchor to parse
+      a.href = url;
+      let path = a.pathname;
+
+      // Remove trailing slash
+      if (path.endsWith('/')) {
+        path = path.slice(0, -1);
+      }
+
+      // Remove 'index.html' from end
+      if (path.endsWith('/index.html')) {
+        path = path.slice(0, -11); // remove /index.html
+      } else if (path === 'index.html') {
+        path = '';
+      }
+
+      return decodeURIComponent(path).toLowerCase();
+    } catch (e) {
+      return url;
+    }
+  };
+
+  const currentPath = normalizePath(window.location.href);
+  const currentFilename = currentPath.split('/').pop();
+  const navLinks = document.querySelectorAll('.nav-link');
+  const navCenter = document.querySelector('.nav-center');
+  const currentLocation = window.location.href.toLowerCase();
+
+  navLinks.forEach(link => {
+    const linkPath = normalizePath(link.href);
+    const linkFilename = linkPath.split('/').pop();
+    
+    let isActive = false;
+
+    // 1. Strict Path Match (Primary check)
+    if (linkPath === currentPath) {
+        isActive = true;
+    }
+    // 2. Fallback: Filename Match (Secondary check for non-index pages)
+    // This catches cases like lucky-draw.html even if path resolution differs slightly
+    // We explicitly exclude 'index.html' case (which becomes empty string after normalization)
+    // to avoid the Home/Blog conflict.
+    else if (linkFilename && linkFilename === currentFilename && linkFilename !== '') {
+        isActive = true;
+    }
+    
+    // 3. EXPLICIT OVERRIDE for Lucky Draw (Nuclear Option)
+    // If the browser URL contains 'lucky-draw.html' and the link href contains 'lucky-draw.html',
+    // force it to be active. This bypasses all path normalization issues.
+    if (!isActive && currentLocation.includes('lucky-draw.html') && link.href.toLowerCase().includes('lucky-draw.html')) {
+        isActive = true;
+    }
+
+    if (isActive) {
+      link.classList.add('active');
+
+      // Scroll nav to center this link
+      if (navCenter) {
+        setTimeout(() => {
+          const linkRect = link.getBoundingClientRect();
+          const navRect = navCenter.getBoundingClientRect();
+          const scrollLeft = link.offsetLeft - (navCenter.offsetWidth / 2) + (link.offsetWidth / 2);
+
+          navCenter.scrollTo({
+            left: scrollLeft,
+            behavior: 'smooth'
+          });
+        }, 100);
+      }
+    }
+  });
 });
