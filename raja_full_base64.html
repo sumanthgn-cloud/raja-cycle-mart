@@ -1,10 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Raja Cycle Mart in SS Puram, Tumkur offers fast cycle repairs, tyre & tube replacement, cycle accessories and trusted service for 20+ years." />
+  <meta name="description"
+    content="Raja Cycle Mart in SS Puram, Tumkur offers fast cycle repairs, tyre & tube replacement, cycle accessories and trusted service for 20+ years." />
   <title>Raja Cycle Mart | Tumkur Cycle Repair & Sales</title>
+  <link rel="apple-touch-icon" sizes="180x180" href="images/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="images/favicon/favicon-16x16.png">
+  <link rel="manifest" href="images/favicon/site.webmanifest">
   <style>
     :root {
       --brand-green: #1f8a70;
@@ -17,16 +23,31 @@
       --shadow: 0 30px 80px rgba(15, 31, 47, 0.12);
       font-family: 'Inter', 'Poppins', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     }
-    * { box-sizing: border-box; }
+
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
       background: linear-gradient(160deg, #e7f1ff, #fefefe);
       color: var(--brand-dark);
       line-height: 1.65;
     }
-    img { max-width: 100%; display: block; }
-    a { text-decoration: none; }
-    main { padding-bottom: 80px; }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    main {
+      padding-bottom: 80px;
+    }
+
     header {
       padding: 32px clamp(20px, 5vw, 80px);
       display: flex;
@@ -35,17 +56,23 @@
       flex-wrap: wrap;
       gap: 16px;
     }
+
     header .logo {
       font-weight: 700;
       font-size: 1.35rem;
       letter-spacing: 0.04em;
     }
-    header .logo span { color: var(--brand-green); }
+
+    header .logo span {
+      color: var(--brand-green);
+    }
+
     header .cta-links {
       display: flex;
       gap: 12px;
       flex-wrap: wrap;
     }
+
     .btn {
       padding: 12px 22px;
       border-radius: 999px;
@@ -53,17 +80,23 @@
       transition: transform 0.25s ease, box-shadow 0.25s ease;
       box-shadow: 0 15px 35px rgba(31, 138, 112, 0.18);
     }
+
     .btn-primary {
       background: var(--brand-green);
       color: #fff;
     }
+
     .btn-outline {
       border: 2px solid var(--brand-green);
       color: var(--brand-green);
       background: transparent;
       box-shadow: none;
     }
-    .btn:hover { transform: translateY(-2px); }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
     .hero {
       margin: 0 auto;
       padding: clamp(32px, 7vw, 120px) clamp(24px, 6vw, 96px);
@@ -77,6 +110,7 @@
       position: relative;
       overflow: hidden;
     }
+
     .hero::after {
       content: '';
       position: absolute;
@@ -87,17 +121,24 @@
       filter: blur(10px);
       z-index: 0;
     }
-    .hero-content { position: relative; z-index: 1; }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+    }
+
     .hero h1 {
       font-size: clamp(2.2rem, 4vw, 3.4rem);
       margin: 0 0 16px;
       letter-spacing: -0.02em;
     }
+
     .hero p.lede {
       font-size: 1.1rem;
       color: var(--muted);
       margin-bottom: 28px;
     }
+
     .hero-benefits {
       list-style: none;
       padding: 0;
@@ -106,6 +147,7 @@
       grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
       gap: 14px;
     }
+
     .hero-benefits li {
       background: rgba(31, 138, 112, 0.08);
       border-radius: 18px;
@@ -113,6 +155,7 @@
       font-weight: 600;
       color: #1a3c32;
     }
+
     .hero-media {
       background: linear-gradient(160deg, rgba(31, 138, 112, 0.15), rgba(255, 255, 255, 0.9));
       border-radius: 28px;
@@ -121,12 +164,14 @@
       position: relative;
       z-index: 1;
     }
+
     .hero-media .shop-photo {
       border-radius: 24px;
       overflow: hidden;
       box-shadow: 0 25px 45px rgba(15, 31, 47, 0.18);
       margin-bottom: 18px;
     }
+
     .hero-media .qr-card {
       background: var(--brand-dark);
       color: #fff;
@@ -137,6 +182,7 @@
       justify-content: space-between;
       gap: 18px;
     }
+
     .qr-card img {
       width: 120px;
       height: 120px;
@@ -145,17 +191,27 @@
       background: #fff;
       padding: 8px;
     }
-    section { padding: clamp(40px, 6vw, 96px) clamp(24px, 6vw, 96px); }
+
+    section {
+      padding: clamp(40px, 6vw, 96px) clamp(24px, 6vw, 96px);
+    }
+
     .section-title {
       font-size: clamp(2rem, 3vw, 2.6rem);
       margin-bottom: 16px;
     }
-    .section-subtitle { color: var(--muted); margin-bottom: 36px; }
+
+    .section-subtitle {
+      color: var(--muted);
+      margin-bottom: 36px;
+    }
+
     .grid-3 {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
       gap: 24px;
     }
+
     .card {
       background: var(--card);
       border-radius: 24px;
@@ -164,8 +220,15 @@
       border: 1px solid rgba(15, 31, 47, 0.06);
       transition: transform 0.25s ease;
     }
-    .card:hover { transform: translateY(-6px); }
-    .card h3 { margin-top: 0; }
+
+    .card:hover {
+      transform: translateY(-6px);
+    }
+
+    .card h3 {
+      margin-top: 0;
+    }
+
     .why-list {
       display: flex;
       flex-wrap: wrap;
@@ -174,6 +237,7 @@
       padding: 0;
       margin: 32px 0 0;
     }
+
     .why-list li {
       flex: 1 1 220px;
       background: rgba(31, 138, 112, 0.09);
@@ -181,6 +245,7 @@
       border-radius: 20px;
       font-weight: 600;
     }
+
     .contact-section {
       background: var(--brand-dark);
       color: #eaf4ff;
@@ -189,6 +254,7 @@
       position: relative;
       overflow: hidden;
     }
+
     .contact-card {
       background: rgba(255, 255, 255, 0.08);
       border-radius: 24px;
@@ -198,18 +264,25 @@
       gap: 20px;
       margin-top: 24px;
     }
-    .contact-card strong { display: block; margin-bottom: 6px; }
+
+    .contact-card strong {
+      display: block;
+      margin-bottom: 6px;
+    }
+
     .cta-bar {
       margin-top: 32px;
       display: flex;
       gap: 16px;
       flex-wrap: wrap;
     }
+
     .gallery-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 18px;
     }
+
     .gallery-placeholder {
       border-radius: 18px;
       background: rgba(15, 31, 47, 0.06);
@@ -218,17 +291,20 @@
       border: 1px dashed rgba(15, 31, 47, 0.2);
       color: var(--muted);
     }
+
     footer {
       padding: 32px 24px 48px;
       text-align: center;
       color: #5a6573;
       background: #070d14;
     }
+
     footer .keywords {
       font-size: 0.95rem;
       color: #97a4b8;
       margin-top: 12px;
     }
+
     .whatsapp-floating {
       position: fixed;
       right: 24px;
@@ -243,15 +319,34 @@
       justify-content: center;
       z-index: 1000;
     }
-    .whatsapp-floating img { width: 34px; height: 34px; }
+
+    .whatsapp-floating img {
+      width: 34px;
+      height: 34px;
+    }
+
     @media (max-width: 640px) {
-      header { flex-direction: column; align-items: flex-start; }
-      .hero-benefits { grid-template-columns: 1fr; }
-      .hero-media .qr-card { flex-direction: column; text-align: center; }
-      .cta-bar { flex-direction: column; }
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .hero-benefits {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-media .qr-card {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .cta-bar {
+        flex-direction: column;
+      }
     }
   </style>
 </head>
+
 <body>
   <header>
     <div class="logo">RAJA <span>CYCLE MART</span></div>
@@ -264,9 +359,10 @@
   <main>
     <section class="hero" id="home">
       <div class="hero-content">
-        <p class="tagline">Tumkur  SS Puram Main Road  Since 2004</p>
+        <p class="tagline">Tumkur SS Puram Main Road Since 2004</p>
         <h1>Fast & Reliable Cycle Repair Shop in Tumkur</h1>
-        <p class="lede">Affordable repairs, genuine tyres & tubes, new and second-hand cycles, plus 20+ years of trusted service with transparent pricing.</p>
+        <p class="lede">Affordable repairs, genuine tyres & tubes, new and second-hand cycles, plus 20+ years of trusted
+          service with transparent pricing.</p>
         <ul class="hero-benefits">
           <li>Same-day repair service</li>
           <li>10-minute tyre & tube swaps</li>
@@ -294,7 +390,9 @@
 
     <section id="about">
       <h2 class="section-title">About Raja Cycle Mart</h2>
-      <p>Raja Cycle Mart is one of Tumkurs most trusted cycle specialists, proudly serving SS Puram and surrounding neighborhoods for over two decades. We deliver quick diagnostics, precise repairs, and quality accessories that keep every rider safe.</p>
+      <p>Raja Cycle Mart is one of Tumkurs most trusted cycle specialists, proudly serving SS Puram and surrounding
+        neighborhoods for over two decades. We deliver quick diagnostics, precise repairs, and quality accessories that
+        keep every rider safe.</p>
       <ul class="why-list">
         <li>Same-day repair service</li>
         <li>Genuine branded parts & tyres</li>
@@ -311,7 +409,8 @@
       <div class="grid-3">
         <article class="card">
           <h3>General Cycle Repair</h3>
-          <p>Quick diagnostics, brake fixing, chain oiling, wheel alignment, and precise gear adjustment to keep you rolling.</p>
+          <p>Quick diagnostics, brake fixing, chain oiling, wheel alignment, and precise gear adjustment to keep you
+            rolling.</p>
         </article>
         <article class="card">
           <h3>Tyre & Tube Replacement</h3>
@@ -319,7 +418,8 @@
         </article>
         <article class="card">
           <h3>Accessories & Spare Parts</h3>
-          <p>Tyres, tubes, spokes, saddles, pedals, reflectors, locks, bells, kid seats, lights, and more premium add-ons.</p>
+          <p>Tyres, tubes, spokes, saddles, pedals, reflectors, locks, bells, kid seats, lights, and more premium
+            add-ons.</p>
         </article>
         <article class="card">
           <h3>Full-Service Tune-Up</h3>
@@ -334,7 +434,8 @@
 
     <section id="gallery">
       <h2 class="section-title">Gallery Uploads</h2>
-      <p class="section-subtitle">Add your visuals directly in Google Sites: drag & drop images for the shop front, tyre wall, repair bench, cycle stand, and before/after repairs.</p>
+      <p class="section-subtitle">Add your visuals directly in Google Sites: drag & drop images for the shop front, tyre
+        wall, repair bench, cycle stand, and before/after repairs.</p>
       <div class="gallery-grid">
         <div class="gallery-placeholder">Shop front photo</div>
         <div class="gallery-placeholder">Tyre wall display</div>
@@ -354,11 +455,11 @@
         </div>
         <div>
           <strong>Hours</strong>
-          <p>Mon-Sat: 9:30 AM - 8:00 PM<br/>Sun: 10:00 AM - 5:00 PM</p>
+          <p>Mon-Sat: 9:30 AM - 8:00 PM<br />Sun: 10:00 AM - 5:00 PM</p>
         </div>
         <div>
           <strong>Map</strong>
-          <p>Open Google Maps  search Raja Cycle Mart Tumkur  Share  Embed map  paste into Sites.</p>
+          <p>Open Google Maps search Raja Cycle Mart Tumkur Share Embed map paste into Sites.</p>
         </div>
       </div>
       <div class="cta-bar">
@@ -369,11 +470,13 @@
   </main>
 
   <footer>
-    <p> <span id="year"></span> Raja Cycle Mart  SS Puram Main Road, Tumkur</p>
-    <p class="keywords">cycle repair tumkur, bicycle shop tumkur, cycle service ss puram, tyre tube repair, cycle mechanic, cycle puncture repair, cycle parts tumkur, raja cycle mart</p>
+    <p> <span id="year"></span> Raja Cycle Mart SS Puram Main Road, Tumkur</p>
+    <p class="keywords">cycle repair tumkur, bicycle shop tumkur, cycle service ss puram, tyre tube repair, cycle
+      mechanic, cycle puncture repair, cycle parts tumkur, raja cycle mart</p>
   </footer>
 
-  <a class="whatsapp-floating" href="https://wa.me/919844629722" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+  <a class="whatsapp-floating" href="https://wa.me/919844629722" target="_blank" rel="noopener"
+    aria-label="Chat on WhatsApp">
     <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp logo" />
   </a>
 
@@ -381,4 +484,5 @@
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 </body>
+
 </html>
