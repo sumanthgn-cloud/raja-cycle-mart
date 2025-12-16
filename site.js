@@ -127,7 +127,85 @@ function initTopBarRotation() {
   }, 5000);
 }
 
-// --------- MOBILE MENU ----------
+// --------- MOBILE MENU (UPDATED) ----------
+function initMobileMenu() {
+  const navContainer = document.querySelector('.nav-container');
+  const navLeft = document.querySelector('.nav-left');
+
+  if (!navContainer || document.querySelector('.mobile-toggle')) return;
+
+  // 1. Inject Hamburger Button
+  const toggleBtn = document.createElement('button');
+  toggleBtn.className = 'mobile-toggle';
+  toggleBtn.ariaLabel = 'Toggle Menu';
+  toggleBtn.innerHTML = '<span></span><span></span><span></span>';
+
+  // Insert after brand logo (nav-left)
+  if (navLeft) {
+    navLeft.insertAdjacentElement('afterend', toggleBtn);
+  } else {
+    navContainer.prepend(toggleBtn);
+  }
+
+  // 2. Inject Backdrop
+  const backdrop = document.createElement('div');
+  backdrop.className = 'mobile-backdrop';
+  document.body.appendChild(backdrop);
+
+  // 3. Clone CTA buttons into Nav Center (Drawer) for Mobile
+  const navCenter = document.querySelector('.nav-center');
+  const navRight = document.querySelector('.nav-right');
+
+  if (navCenter && navRight) {
+    const mobileCtaGroup = document.createElement('div');
+    mobileCtaGroup.className = 'mobile-cta-group';
+    mobileCtaGroup.innerHTML = navRight.innerHTML; // Clone buttons
+    navCenter.appendChild(mobileCtaGroup);
+  }
+
+  // 4. Formatting Links for Mobile Drawers
+  // (Optional: Could add icons here if needed via JS loop)
+
+  // 5. Event Listeners
+  const header = document.querySelector('.site-header');
+
+  function closeMenu() {
+    header.classList.remove('mobile-open');
+    document.body.style.overflow = ''; // Restore scroll
+  }
+
+  toggleBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const isOpen = header.classList.contains('mobile-open');
+    if (isOpen) {
+      closeMenu();
+    } else {
+      header.classList.add('mobile-open');
+      document.body.style.overflow = 'hidden'; // Lock scroll
+    }
+  });
+
+  backdrop.addEventListener('click', closeMenu);
+
+  // Close when clicking a link
+  const links = document.querySelectorAll('.nav-link');
+  links.forEach(link => {
+    link.addEventListener('click', closeMenu);
+  });
+
+  // Close buttons in mobile group
+  if (navCenter) {
+    const mobileBtns = navCenter.querySelectorAll('.btn');
+    mobileBtns.forEach(btn => btn.addEventListener('click', closeMenu));
+  }
+}
+
+// Ensure this runs
+document.addEventListener('DOMContentLoaded', () => {
+  initMobileMenu();
+});
+
+// Original simple toggle function (Deprecated but kept for safety if referenced elsewhere)
 function toggleMobileMenu() {
   const header = document.querySelector('.site-header');
   header.classList.toggle('mobile-open');

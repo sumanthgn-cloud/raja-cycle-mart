@@ -344,6 +344,59 @@ p {
   align-items: center;
 }
 
+/* Mobile Toggle Button (Hidden on Desktop) */
+.mobile-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  z-index: 1100;
+}
+
+.mobile-toggle span {
+  display: block;
+  width: 25px;
+  height: 3px;
+  background-color: #163F3A;
+  margin: 5px 0;
+  transition: all 0.3s ease;
+  border-radius: 3px;
+}
+
+/* Hamburger Animation */
+.site-header.mobile-open .mobile-toggle span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 6px);
+}
+
+.site-header.mobile-open .mobile-toggle span:nth-child(2) {
+  opacity: 0;
+}
+
+.site-header.mobile-open .mobile-toggle span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -6px);
+}
+
+/* Mobile Menu Backdrop */
+.mobile-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  z-index: 998;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.site-header.mobile-open .mobile-backdrop {
+  opacity: 1;
+  pointer-events: auto;
+}
+
 /* Reusing existing .btn classes but ensuring specific styles for nav */
 .btn-call {
   background: #2b8f67;
@@ -357,39 +410,83 @@ p {
 @media (max-width: 900px) {
   .nav-container {
     padding: 10px 14px;
-    min-height: 56px;
+    min-height: 70px;
+    /* Reduced height */
+    justify-content: space-between;
   }
 
   .brand-logo {
-    height: 48px;
+    height: 50px;
   }
 
-  /* Make nav visible and scrollable */
+  /* Show Toggle */
+  .mobile-toggle {
+    display: block;
+  }
+
+  /* Hide Original Right Buttons (Use Cloned Ones in Drawer) */
+  .nav-right {
+    display: none;
+  }
+
+  /* Mobile Drawer (Nav Center) */
   .nav-center {
-    display: flex;
-    overflow-x: auto;
-    /* Allow horizontal scrolling */
-    width: 100%;
-    order: 3;
-    /* Move to bottom if wrapping */
-    padding-top: 10px;
+    position: fixed;
+    top: 0;
+    right: -100%;
+    /* Hidden by default */
+    width: 280px;
+    height: 100vh;
+    background: #ffffff;
+    flex-direction: column;
+    align-items: flex-start;
     justify-content: flex-start;
-    /* Align left for scrolling */
-    -webkit-overflow-scrolling: touch;
-    padding-bottom: 5px;
-    /* Space for scrollbar if any */
+    padding: 80px 20px 20px;
+    box-shadow: -4px 0 16px rgba(0, 0, 0, 0.1);
+    transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 999;
+    overflow-y: auto;
   }
 
-  .nav-container {
-    flex-wrap: wrap;
-    /* Allow wrapping */
-    gap: 10px;
+  /* Active Drawer */
+  .site-header.mobile-open .nav-center {
+    right: 0;
   }
 
-  /* Hide scrollbar but keep functionality */
-  .nav-center::-webkit-scrollbar {
-    height: 0px;
-    background: transparent;
+  /* Links in Drawer */
+  .nav-link {
+    display: block;
+    width: 100%;
+    padding: 12px 0;
+    font-size: 1.1rem;
+    border-bottom: 1px solid #f0f0f0;
+  }
+
+  .nav-link.active::after {
+    display: none;
+    /* Remove underline styling */
+  }
+
+  .nav-link.active {
+    color: var(--primary);
+    background: none;
+    /* Remove background */
+    font-weight: 700;
+  }
+
+  /* Mobile CTA Buttons (Cloned) */
+  .mobile-cta-group {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 15px;
+    margin-top: 20px;
+    padding-top: 20px;
+  }
+
+  .mobile-cta-group .btn {
+    width: 100%;
+    justify-content: center;
   }
 }
 
