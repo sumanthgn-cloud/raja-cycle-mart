@@ -344,6 +344,11 @@ p {
   align-items: center;
 }
 
+/* Hide mobile CTA group on desktop */
+.mobile-cta-group {
+  display: none;
+}
+
 /* Mobile Toggle Button (Hidden on Desktop) */
 .mobile-toggle {
   display: none;

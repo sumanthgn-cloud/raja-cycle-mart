@@ -36,6 +36,7 @@ function loadGA() {
 
 function acceptAllCookies() {
   setCookie("cookie_consent", "accepted", 365);
+  localStorage.setItem("cookie_consent", "accepted"); // Support for local file opening
   const banner = document.getElementById("cookie-banner");
   if (banner) banner.style.display = "none";
   loadGA();
@@ -273,13 +274,19 @@ function handleEmailSubmit(e) {
 
 // --------- INITIALIZATION ----------
 document.addEventListener('DOMContentLoaded', () => {
-  // Check for existing consent
-  if (getCookie("cookie_consent") === "accepted") {
+  // Check for existing consent (Cookie OR LocalStorage)
+  if (getCookie("cookie_consent") === "accepted" || localStorage.getItem("cookie_consent") === "accepted") {
     loadGA();
+    const banner = document.getElementById("cookie-banner");
+    if (banner) banner.style.display = "none";
   } else {
     // Show banner if not accepted
     const banner = document.getElementById("cookie-banner");
-    if (banner) banner.style.display = "flex";
+    if (banner) {
+      banner.style.display = "flex";
+      // Force redraw to ensure visibility
+      setTimeout(() => banner.style.opacity = "1", 10);
+    }
   }
 
   // Chatbot - Check state
