@@ -1558,7 +1558,8 @@ label {
 
 .chatbot-window {
   width: 350px;
-  height: 450px;
+  height: 520px;
+  /* Fits 500px iframe + slight buffer */
   background: white;
   border-radius: 12px;
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
@@ -1569,7 +1570,8 @@ label {
   overflow: hidden;
   border: 1px solid #eee;
   z-index: 10000;
-  /* Ensure it's above everything */
+  padding: 0;
+  /* Remove padding for iframe */
 }
 
 .chatbot-window.active {

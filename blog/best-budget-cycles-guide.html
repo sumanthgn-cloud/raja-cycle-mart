@@ -672,10 +672,6 @@
 
 
 
-          <a href="../marketplace.html" class="btn-redirect"
-            style="display: flex; margin: 0 auto; width: 100%; max-width: 400px; justify-content: center;">
-            Get Accessories & Service Support
-          </a>
 
 
 
@@ -685,10 +681,17 @@
 
 
 
-          <p class="sb-note" style="margin-top: 15px; font-size: 0.9rem; color: #555;">
-            <strong>Exclusive:</strong> Visit our shop after your purchase for expert fitting, accessories, and service
-            support.
-          </p>
+
+          <div style="margin-top: 20px;">
+            <a href="https://www.google.com/maps/search/?api=1&query=Raja+Cycle+Mart+Tumkur" target="_blank"
+              class="btn-outline"
+              style="display: inline-block; width: 100%; border: 2px solid #2e8b57; color: #2e8b57; padding: 12px; border-radius: 50px; font-weight: 600; text-decoration: none; transition: all 0.3s;">
+              <i class="fas fa-map-marker-alt" style="margin-right: 8px;"></i> Visit our Shop
+            </a>
+            <p style="margin-top: 10px; font-size: 0.85rem; color: #666;">
+              Expert fitting & accessories
+            </p>
+          </div>
 
 
 
@@ -1317,241 +1320,166 @@
 
 
 
-        </div>
+          <!-- HuggingFace Chatbot -->
+          <div class="chatbot-container" id="chatbotContainer">
+            <div class="chatbot-window" id="chatbotWindow" style="display: none;">
+              <iframe src="https://gmnagabhushana-rajacyclemart-chatbot.hf.space" frameborder="0" width="100%"
+                height="100%" style="border-radius: 12px; border: none;"></iframe>
+            </div>
+            <button class="chatbot-toggle" id="chatbotToggle" onclick="toggleChatbot()">
+              <i class="fas fa-robot"></i>
+            </button>
+          </div>
 
 
 
 
-        <button onclick="toggleChatbot()" style="background: none; color: white; font-size: 1.5rem;">&times;</button>
 
 
 
 
-      </div>
 
+          <div id="cookie-banner" class="cookie-banner">
 
 
 
-      <div class="chat-body" id="chatBody">
 
+            <div class="cookie-text">
 
 
 
-        <div class="message bot">
+              <p>This website (https://rajacyclemart.netlify.app) uses cookies to improve user experience and analyze
+                traffic.
+              </p>
 
 
 
+            </div>
 
-          Hi! Need cycle service? We're here to help! 🚴‍♂️
 
 
 
+            <div class="cookie-actions">
 
-        </div>
 
 
 
+              <button class="btn-cookie-accept" onclick="acceptAllCookies()">Accept</button>
 
-        <div class="chat-options">
 
 
 
+            </div>
 
-          <button class="chat-btn" onclick="sendChatMessage('Book a service')">Book a service</button>
 
 
 
+          </div>
 
-          <button class="chat-btn" onclick="sendChatMessage('Service price')">Service price</button>
 
 
 
 
-          <button class="chat-btn" onclick="sendChatMessage('Timing & location')">Timing & location</button>
 
 
 
 
-        </div>
+          <script src="../site.js"></script>
 
 
 
 
-      </div>
 
 
 
 
-    </div>
 
+          <!-- Brevo Form JS -->
 
 
 
-    <button class="chatbot-toggle" onclick="toggleChatbot()">
 
+          <script>
 
 
 
-      <i class="fas fa-comments"></i>
 
+            window.REQUIRED_CODE_ERROR_MESSAGE = 'Please choose a country code';
 
 
 
-    </button>
 
+            window.LOCALE = 'en';
 
 
 
-  </div>
 
+            window.EMAIL_INVALID_MESSAGE = window.SMS_INVALID_MESSAGE = "The information provided is invalid. Please review the field format and try again.";
 
 
 
 
+            window.REQUIRED_ERROR_MESSAGE = "This field cannot be left blank. ";
 
 
 
 
-  <div id="cookie-banner" class="cookie-banner">
+            window.GENERIC_INVALID_MESSAGE = "The information provided is invalid. Please review the field format and try again.";
 
 
 
 
-    <div class="cookie-text">
+            window.translation = {
 
 
 
-      <p>This website (https://rajacyclemart.netlify.app) uses cookies to improve user experience and analyze traffic.
-      </p>
 
+              common: {
 
 
-    </div>
 
 
+                selectedList: '{quantity} list selected',
 
 
-    <div class="cookie-actions">
 
 
+                selectedLists: '{quantity} lists selected',
 
 
-      <button class="btn-cookie-accept" onclick="acceptAllCookies()">Accept</button>
 
 
+                selectedOption: '{quantity} selected',
 
 
-    </div>
 
 
+                selectedOptions: '{quantity} selected',
 
 
-  </div>
 
 
+              }
 
 
 
 
+            };
 
 
 
-  <script src="../site.js"></script>
 
+            var AUTOHIDE = Boolean(0);
 
 
 
 
+          </script>
 
 
 
 
-  <!-- Brevo Form JS -->
-
-
-
-
-  <script>
-
-
-
-
-    window.REQUIRED_CODE_ERROR_MESSAGE = 'Please choose a country code';
-
-
-
-
-    window.LOCALE = 'en';
-
-
-
-
-    window.EMAIL_INVALID_MESSAGE = window.SMS_INVALID_MESSAGE = "The information provided is invalid. Please review the field format and try again.";
-
-
-
-
-    window.REQUIRED_ERROR_MESSAGE = "This field cannot be left blank. ";
-
-
-
-
-    window.GENERIC_INVALID_MESSAGE = "The information provided is invalid. Please review the field format and try again.";
-
-
-
-
-    window.translation = {
-
-
-
-
-      common: {
-
-
-
-
-        selectedList: '{quantity} list selected',
-
-
-
-
-        selectedLists: '{quantity} lists selected',
-
-
-
-
-        selectedOption: '{quantity} selected',
-
-
-
-
-        selectedOptions: '{quantity} selected',
-
-
-
-
-      }
-
-
-
-
-    };
-
-
-
-
-    var AUTOHIDE = Boolean(0);
-
-
-
-
-  </script>
-
-
-
-
-  <script defer src="https://sibforms.com/forms/end-form/build/main.js"></script>
+          <script defer src="https://sibforms.com/forms/end-form/build/main.js"></script>
 
 
 

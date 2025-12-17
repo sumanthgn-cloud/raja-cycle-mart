@@ -42,68 +42,19 @@ function acceptAllCookies() {
   loadGA();
 }
 
-// --------- CHATBOT ----------
-let chatbotOpen = false;
-
+// --------- CHATBOT (IFRAME) ----------
 function toggleChatbot() {
   const window = document.getElementById('chatbotWindow');
+  const toggleBtn = document.getElementById('chatbotToggle');
 
-  if (!chatbotOpen) {
-    window.classList.add('active');
+  if (window.style.display === 'none' || window.style.display === '') {
     window.style.display = 'block';
-    chatbotOpen = true;
-    localStorage.setItem('chatbotState', 'open');
+    // Optional: Add open animation class
+    toggleBtn.innerHTML = '<i class="fas fa-times"></i>'; // Change icon to close
   } else {
-    window.classList.remove('active');
     window.style.display = 'none';
-    chatbotOpen = false;
-    localStorage.setItem('chatbotState', 'closed');
+    toggleBtn.innerHTML = '<i class="fas fa-robot"></i>'; // Change icon back
   }
-}
-
-// Check chatbot state on load
-function checkChatbotState() {
-  const state = localStorage.getItem('chatbotState');
-  if (state === 'open') {
-    const window = document.getElementById('chatbotWindow');
-    if (window) {
-      window.classList.add('active');
-      window.style.display = 'block';
-      chatbotOpen = true;
-    }
-  }
-}
-
-function sendChatMessage(message) {
-  const chatBody = document.getElementById('chatBody');
-
-  // User message
-  const userMsg = document.createElement('div');
-  userMsg.className = 'message user';
-  userMsg.textContent = message;
-  chatBody.appendChild(userMsg);
-  chatBody.scrollTop = chatBody.scrollHeight;
-
-  // Bot response
-  setTimeout(() => {
-    const botMsg = document.createElement('div');
-    botMsg.className = 'message bot';
-
-    if (message === 'Book a service') {
-      botMsg.innerHTML = 'Great choice. Most riders book in under 1 minute. You can <a href="#book-service" onclick="toggleChatbot()" style="color: #2F7A44; font-weight: bold;">book your slot here</a> or WhatsApp / call us on <strong>+91 98446 29722</strong>. We’ll just ask for your cycle model and service type.';
-    } else if (message === 'Service price') {
-      botMsg.innerHTML = 'To keep things transparent, common services are:<br>• Basic safety check from <strong>₹300</strong><br>• Puncture repair around <strong>₹50</strong><br><br>Prices may vary by cycle model. Share your model on WhatsApp for an exact quote – no obligation.';
-    } else if (message === 'Timing & location') {
-      botMsg.innerHTML = 'We are at SS Puram Main Road, near Sri Sitharama Temple, Tumkur. <br><strong>Mon-Sat:</strong> 9:30 AM - 8:00 PM<br><strong>Sun:</strong> 10:00 AM - 5:00 PM';
-    } else if (message === 'Buying a new cycle') {
-      botMsg.innerHTML = 'Thinking of a new cycle? Visit our shop and we’ll help you choose based on height, purpose, and budget. You can also read our <a href="blog/best-budget-cycles-guide.html" style="color:#2F7A44; font-weight:bold;">budget cycle guide</a> before you visit.';
-    } else {
-      botMsg.innerHTML = 'Thanks for your message. For quick help, you can call or WhatsApp us on <strong>+91 98446 29722</strong>, or visit the shop during working hours. We’ll give clear, honest suggestions – no pressure to buy.';
-    }
-
-    chatBody.appendChild(botMsg);
-    chatBody.scrollTop = chatBody.scrollHeight;
-  }, 600);
 }
 
 // Rotate top bar offers
@@ -290,7 +241,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Chatbot - Check state
-  checkChatbotState();
+  // Chatbot - Check state (Removed - default closed)
+  // checkChatbotState();
 
   // Close mobile menu on click outside
   document.addEventListener('click', (e) => {
