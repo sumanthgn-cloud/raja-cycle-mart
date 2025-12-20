@@ -6,10 +6,15 @@ export default async function handler(req, res) {
     try {
         const { name, phone, problem } = req.body;
 
-        if (!name || !problem) {
+        if (!name || !phone || !problem) {
             return res.status(400).json({
-                error: "Name and problem are required",
+                error: "Name, Phone, and Problem are required",
             });
+        }
+
+        // Backend Validation: 10-digit mobile number starting with 6-9
+        if (!/^[6-9]\d{9}$/.test(phone)) {
+            return res.status(400).json({ error: "Invalid phone number" });
         }
 
         const BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
@@ -22,13 +27,15 @@ export default async function handler(req, res) {
         });
 
         const message = `
-🚲 NEW BOOKING – Raja Cycle Mart
+🛎️ NEW SERVICE REQUEST – Raja Cycle Mart
 
 👤 Name: ${name}
-📞 Phone: ${phone || "Not provided"}
+📞 Phone: ${phone}
 🔧 Problem: ${problem}
 ⏰ Time: ${now}
 📍 SS Puram, Tumkur
+
+(Pending Confirmation: Call customer to set time)
     `;
 
         const telegramURL = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
@@ -48,7 +55,7 @@ export default async function handler(req, res) {
 
         return res.status(200).json({
             success: true,
-            message: "Booking sent successfully",
+            message: "Request received",
         });
     } catch (error) {
         return res.status(500).json({

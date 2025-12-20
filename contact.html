@@ -222,26 +222,31 @@
 
             <div style="margin-bottom: 1rem;">
               <label style="display: block; font-size: 0.9rem; font-weight: 600; margin-bottom: 0.5rem;">Phone</label>
-              <input type="tel" id="phone" required
+              <input type="tel" id="phone" required pattern="[6-9][0-9]{9}" placeholder="e.g. 9844629722"
                 style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-family: inherit;">
             </div>
 
             <div style="margin-bottom: 1rem;">
-              <label style="display: block; font-size: 0.9rem; font-weight: 600; margin-bottom: 0.5rem;">Email</label>
-              <input type="email" id="email" required
+              <label style="display: block; font-size: 0.9rem; font-weight: 600; margin-bottom: 0.5rem;">Email
+                (Optional)</label>
+              <input type="email" id="email"
                 style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-family: inherit;">
             </div>
 
             <div style="margin-bottom: 1.5rem;">
               <label style="display: block; font-size: 0.9rem; font-weight: 600; margin-bottom: 0.5rem;">Message /
                 Problem</label>
-              <textarea id="message" name="message" rows="4" required
+              <textarea id="message" name="message" rows="4" required placeholder="Describe your cycle issue..."
                 style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-family: inherit;"></textarea>
             </div>
 
             <button type="submit" class="btn btn-primary" style="width: 100%;">
               Send Booking Request
             </button>
+            <p style="text-align: center; color: #777; font-size: 0.85rem; margin-top: 1rem; line-height: 1.4;">
+              <strong>Note:</strong> We will call you to confirm the service time. Urgent repairs (punctures) are
+              prioritized.
+            </p>
           </form>
         </div>
       </div>
@@ -396,12 +401,23 @@
         e.preventDefault();
 
         const btn = this.querySelector('button[type="submit"]');
-        const originalText = btn.textContent;
+        const phoneInput = document.getElementById('phone');
+        const nameInput = document.getElementById('name');
+
+        // 1. Frontend Validation (Phone)
+        const phone = phoneInput.value.trim();
+        // Regex: 10 digits starting with 6, 7, 8, or 9
+        if (!/^[6-9]\d{9}$/.test(phone)) {
+          alert("Please enter a valid 10-digit mobile number (e.g., 9844629722).");
+          phoneInput.focus();
+          return;
+        }
+
+        const originalText = "Send Booking Request"; // Hardcoded or read from btn
         btn.textContent = 'Sending...';
         btn.disabled = true;
 
-        const nameValue = document.getElementById('name').value;
-        const phoneValue = document.getElementById('phone').value;
+        const nameValue = nameInput.value;
         const problemValue = document.getElementById('message').value;
 
         fetch("/api/book-service", {
@@ -409,24 +425,35 @@
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             name: nameValue,
-            phone: phoneValue,
+            phone: phone,
             problem: problemValue,
           }),
         })
           .then(res => res.json())
           .then(data => {
             if (data.success) {
-              alert("✅ Booking sent! We will contact you shortly.");
+              // Success Case
+              alert("✅ Booking request received! We will call you shortly to confirm the service time.");
               bookingForm.reset();
+
+              // 2. Anti-Spam: Keep button disabled for 15 seconds
+              btn.textContent = "Request Sent ✅";
+
+              setTimeout(() => {
+                btn.textContent = originalText;
+                btn.disabled = false;
+              }, 15000);
             } else {
-              alert("❌ Something went wrong. Please WhatsApp us.");
+              // API Error Case
+              alert(data.error || "❌ Something went wrong. Please WhatsApp us.");
+              btn.textContent = originalText;
+              btn.disabled = false;
             }
           })
           .catch(err => {
+            // Network Error Case
             console.error(err);
-            alert("❌ Network error. Please try again.");
-          })
-          .finally(() => {
+            alert("❌ Network error. Please check your connection and try again.");
             btn.textContent = originalText;
             btn.disabled = false;
           });
