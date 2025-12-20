@@ -115,6 +115,8 @@
           <div class="service-icon"><i class="fas fa-tools"></i></div>
           <h3>Express Puncture Repair</h3>
           <p>Walk-in service. We fix flats in 45 minutes or less using high-quality patches or new tubes.</p>
+          <p style="font-size: 0.85rem; color: var(--secondary); font-weight: 600; margin-top: 0.5rem;">✨ Free brake
+            check with every puncture repair</p>
           <div style="margin-top: auto; padding-top: 1rem; font-weight: 600; color: var(--primary);">From ₹50</div>
         </div>
 
@@ -168,7 +170,7 @@
       <div class="card">
         <h3>Available Accessories</h3>
         <ul
-          style="list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin-top: 1.5rem;">
+          style="list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px; margin-top: 1.5rem;">
           <li>✅ Certified helmets & high-security locks</li>
           <li>✅ Bells, handle grips, pedals & saddle covers</li>
           <li>✅ Manual & foot pumps, puncture kits & inflators</li>
@@ -177,9 +179,15 @@
           <li>✅ Chains, freewheels, brake shoes, cables & gear components</li>
         </ul>
         <div style="margin-top: 2rem; border-top: 1px solid #eee; padding-top: 1rem;">
-          <p style="margin-bottom: 1rem;"><strong>📍 Available at our SS Puram, Tumkur shop</strong></p>
-          <a href="https://wa.me/919844629722" class="btn btn-primary"><i class="fab fa-whatsapp"></i> Check
-            Availability on WhatsApp</a>
+          <p style="margin-bottom: 1rem; color: var(--primary); font-weight: 600;">📍 Available at our SS Puram, Tumkur
+            shop</p>
+          <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+            <button onclick="toggleChatbot()" class="btn btn-primary">
+              📅 Check Availability
+            </button>
+            <a href="https://wa.me/919844629722" class="btn btn-outline"
+              style="border-color: var(--primary); color: var(--primary);"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+          </div>
           <p style="margin-top: 1rem; font-style: italic; font-size: 0.9rem;">We don’t just sell accessories — we help
             riders choose the right product, install it correctly, and ride safely.</p>
         </div>
@@ -194,9 +202,9 @@
         <h2>Ready to book a service?</h2>
         <p style="margin-bottom: 2rem;">Call us or drop a message on WhatsApp to schedule your repair.</p>
         <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
-          <a href="https://wa.me/919844629722" class="btn btn-primary">
-            <i class="fab fa-whatsapp"></i> WhatsApp Us
-          </a>
+          <button onclick="toggleChatbot()" class="btn btn-primary">
+            📅 Book Service
+          </button>
           <a href="tel:+919844629722" class="btn btn-secondary">
             <i class="fas fa-phone"></i> Call Now
           </a>
