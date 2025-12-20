@@ -17,8 +17,8 @@ export default async function handler(req, res) {
             return res.status(400).json({ error: "Invalid phone number" });
         }
 
-        const BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
-        const CHAT_ID = process.env.CHAT_ID;
+        const BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN?.trim();
+        const CHAT_ID = process.env.CHAT_ID?.trim();
 
         const now = new Date().toLocaleString("en-IN", {
             timeZone: "Asia/Kolkata",
