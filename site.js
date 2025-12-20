@@ -43,17 +43,140 @@ function acceptAllCookies() {
 }
 
 // --------- CHATBOT (IFRAME) ----------
+// --------- CHATBOT (NATIVE) ----------
+function initChatbot() {
+  const chatWindow = document.getElementById('chatbotWindow');
+  if (!chatWindow) return;
+
+  // Replace iframe with native booking form
+  chatWindow.innerHTML = `
+    <div style="background: white; height: 100%; display: flex; flex-direction: column; font-family: 'Inter', sans-serif;">
+      <div style="padding: 15px; background: #2E8B57; color: white; display: flex; align-items: center; gap: 10px;">
+        <i class="fas fa-robot" style="font-size: 1.2rem;"></i>
+        <div>
+          <div style="font-weight: 600; font-size: 1rem;">Raja Cycle Assistant</div>
+          <div style="font-size: 0.75rem; opacity: 0.9;">Online • Replies instantly</div>
+        </div>
+      </div>
+      
+      <div style="flex: 1; padding: 15px; overflow-y: auto; background: #f8f9fa;">
+        <div style="background: white; padding: 12px; border-radius: 12px 12px 12px 2px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); margin-bottom: 15px; font-size: 0.9rem; line-height: 1.4; color: #333;">
+          👋 Hi! I can help you book a cycle service quickly. Please fill the details below.
+        </div>
+
+        <form id="chatBookingForm" onsubmit="handleChatBooking(event)">
+          <div style="margin-bottom: 10px;">
+            <input type="text" id="chatName" placeholder="Your Name" required 
+              style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 8px; font-size: 0.9rem;">
+          </div>
+          
+          <div style="margin-bottom: 10px;">
+            <input type="tel" id="chatPhone" placeholder="Mobile Number (10 digits)" required pattern="[6-9][0-9]{9}"
+              style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 8px; font-size: 0.9rem;">
+          </div>
+          
+          <div style="margin-bottom: 10px;">
+            <textarea id="chatProblem" placeholder="What's the issue? (e.g. Puncture)" required rows="2"
+              style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 8px; font-size: 0.9rem; font-family: inherit; resize: none;"></textarea>
+          </div>
+          
+          <button type="submit" id="chatSubmitBtn" 
+            style="width: 100%; background: #2E8B57; color: white; border: none; padding: 10px; border-radius: 8px; font-weight: 600; cursor: pointer; transition: background 0.2s;">
+            Book Service
+          </button>
+          
+          <p style="font-size: 0.7rem; color: #888; text-align: center; margin-top: 8px;">
+            We will call you to confirm.
+          </p>
+        </form>
+        
+        <div id="chatResponse" style="display: none; margin-top: 15px;">
+             <!-- Success message injected here -->
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function handleChatBooking(e) {
+  e.preventDefault();
+
+  const btn = document.getElementById('chatSubmitBtn');
+  const name = document.getElementById('chatName').value;
+  const phone = document.getElementById('chatPhone').value.trim();
+  const problem = document.getElementById('chatProblem').value;
+  const form = document.getElementById('chatBookingForm');
+  const responseDiv = document.getElementById('chatResponse');
+
+  if (!/^[6-9]\d{9}$/.test(phone)) {
+    alert("Please enter a valid 10-digit mobile number.");
+    return;
+  }
+
+  const originalText = btn.textContent;
+  btn.textContent = "Sending...";
+  btn.disabled = true;
+
+  fetch("/api/book-service", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ name, phone, problem }),
+  })
+    .then(res => res.json())
+    .then(data => {
+      if (data.success) {
+        form.style.display = 'none';
+        responseDiv.style.display = 'block';
+        responseDiv.innerHTML = `
+        <div style="background: #e8f5e9; padding: 12px; border-radius: 12px; color: #1b5e20; font-size: 0.9rem; text-align: center;">
+          <i class="fas fa-check-circle" style="font-size: 1.5rem; margin-bottom: 8px; display: block;"></i>
+          <strong>Request Received!</strong><br>
+          We will call you shortly on<br><b>${phone}</b>.
+        </div>
+        <button onclick="resetChatForm()" style="width:100%; margin-top:10px; padding:8px; border:1px solid #ddd; background:white; border-radius:6px; cursor:pointer; color:#666; font-size:0.8rem;">Book Another</button>
+      `;
+      } else {
+        alert("Error: " + data.error);
+        btn.textContent = originalText;
+        btn.disabled = false;
+      }
+    })
+    .catch(err => {
+      alert("Network Error. Please try again.");
+      btn.textContent = originalText;
+      btn.disabled = false;
+    });
+}
+
+function resetChatForm() {
+  document.getElementById('chatBookingForm').reset();
+  document.getElementById('chatBookingForm').style.display = 'block';
+  document.getElementById('chatResponse').style.display = 'none';
+  const btn = document.getElementById('chatSubmitBtn');
+  btn.textContent = "Book Service";
+  btn.disabled = false;
+}
+
 function toggleChatbot() {
   const window = document.getElementById('chatbotWindow');
   const toggleBtn = document.getElementById('chatbotToggle');
 
+  // Initialize content on first open if empty or iframe
+  if (window.innerHTML.includes('<iframe')) {
+    initChatbot();
+  }
+
   if (window.style.display === 'none' || window.style.display === '') {
     window.style.display = 'block';
-    // Optional: Add open animation class
-    toggleBtn.innerHTML = '<i class="fas fa-times"></i>'; // Change icon to close
+    toggleBtn.innerHTML = '<i class="fas fa-times"></i>';
+
+    // Auto initialization if content is missing (fallback)
+    if (!window.querySelector('#chatBookingForm')) {
+      initChatbot();
+    }
   } else {
     window.style.display = 'none';
-    toggleBtn.innerHTML = '<i class="fas fa-robot"></i>'; // Change icon back
+    toggleBtn.innerHTML = '<i class="fas fa-robot"></i>';
   }
 }
 
