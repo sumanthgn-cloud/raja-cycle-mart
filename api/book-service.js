@@ -50,7 +50,8 @@ export default async function handler(req, res) {
         });
 
         if (!tgRes.ok) {
-            throw new Error("Telegram API failed");
+            const errorData = await tgRes.json();
+            throw new Error(`Telegram Error: ${errorData.description}`);
         }
 
         return res.status(200).json({
