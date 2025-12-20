@@ -17,8 +17,20 @@ export default async function handler(req, res) {
             return res.status(400).json({ error: "Invalid phone number" });
         }
 
-        const BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN?.trim();
+        const BOT_TOKEN = (process.env.TELEGRAM_BOT_TOKEN || process.env.TELEGRAM_TOKEN || process.env.TELEGRAM_)?.trim();
         const CHAT_ID = process.env.CHAT_ID?.trim();
+
+        if (!BOT_TOKEN) {
+            return res.status(500).json({
+                error: "Internal Error: Telegram Bot Token is missing in Vercel settings. Ensure key is 'TELEGRAM_BOT_TOKEN'.",
+            });
+        }
+
+        if (!CHAT_ID) {
+            return res.status(500).json({
+                error: "Internal Error: Chat ID is missing in Vercel settings.",
+            });
+        }
 
         const now = new Date().toLocaleString("en-IN", {
             timeZone: "Asia/Kolkata",
