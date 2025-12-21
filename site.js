@@ -48,51 +48,230 @@ function initChatbot() {
   const chatWindow = document.getElementById('chatbotWindow');
   if (!chatWindow) return;
 
-  // Replace iframe with native booking form
+  // Luxury Concierge CSS
+  const styleTag = document.getElementById('chatbot-premium-styles') || document.createElement('style');
+  styleTag.id = 'chatbot-premium-styles';
+  styleTag.innerHTML = `
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Outfit:wght@500;700;900&display=swap');
+    
+    @keyframes luxeReveal { from { transform: scale(0.98) translateY(10px); opacity: 0; } to { transform: scale(1) translateY(0); opacity: 1; } }
+    @keyframes glowPulse { 0% { box-shadow: 0 0 5px rgba(0, 255, 163, 0.2); } 50% { box-shadow: 0 0 20px rgba(0, 255, 163, 0.5); } 100% { box-shadow: 0 0 5px rgba(0, 255, 163, 0.2); } }
+    
+    .luxe-card {
+      background: rgba(15, 15, 15, 0.95);
+      backdrop-filter: blur(25px);
+      -webkit-backdrop-filter: blur(25px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 24px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
+      font-family: 'Inter', sans-serif;
+      animation: luxeReveal 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      color: #fff;
+    }
+    .luxe-header {
+      background: linear-gradient(145deg, #1a1a1a 0%, #0a0a0a 100%);
+      padding: 20px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      position: relative;
+    }
+    .luxe-title {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+      font-size: 1.4rem;
+      background: linear-gradient(135deg, #fff 0%, #00ffa3 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 4px;
+      letter-spacing: -0.02em;
+    }
+    .luxe-input {
+      width: 100%;
+      padding: 14px 18px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      font-size: 0.95rem;
+      color: #fff;
+      transition: all 0.3s;
+      outline: none;
+      margin-bottom: 15px;
+    }
+    .luxe-input:focus {
+      border-color: #00ffa3;
+      background: rgba(0, 255, 163, 0.02);
+      box-shadow: 0 0 15px rgba(0, 255, 163, 0.1);
+    }
+    .luxe-chip-input { 
+      appearance: none;
+      -webkit-appearance: none;
+      width: 20px; 
+      height: 20px;
+      border: 2px solid #555;
+      border-radius: 6px;
+      background: rgba(0,0,0,0.3);
+      display: inline-block;
+      position: relative;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: all 0.2s;
+    }
+    .luxe-chip-input:checked {
+      background: #00ffa3;
+      border-color: #00ffa3;
+    }
+    .luxe-chip-input:checked::after {
+      content: '✔';
+      font-size: 14px;
+      color: #000;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-weight: 800;
+    }
+    .luxe-chip-label {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      padding: 12px 16px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      font-size: 0.92rem;
+      color: #ccc;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      margin-bottom: 8px;
+    }
+    .luxe-chip-label:hover {
+      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+    .luxe-chip-wrapper {
+      display: flex;
+      align-items: center;
+      width: 100%;
+    }
+    /* When label is clicked, it triggers input inside */
+    
+    .luxe-btn {
+      width: 100%;
+      padding: 16px;
+      background: #00ffa3;
+      color: #000;
+      border: none;
+      border-radius: 16px;
+      font-weight: 800;
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.1rem;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.4s;
+      box-shadow: 0 10px 30px -5px rgba(0, 255, 163, 0.4);
+    }
+    .luxe-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 15px 40px -5px rgba(0, 255, 163, 0.6);
+    }
+    .scroll-hint {
+      font-size: 0.75rem;
+      color: #888;
+      text-align: center;
+      margin-top: 5px;
+      animation: glowPulse 3s infinite;
+    }
+  `;
+  if (!document.getElementById('chatbot-premium-styles')) document.head.appendChild(styleTag);
+
   chatWindow.innerHTML = `
-    <div style="background: white; height: 100%; display: flex; flex-direction: column; font-family: 'Inter', sans-serif;">
-      <div style="padding: 15px; background: #2E8B57; color: white; display: flex; align-items: center; gap: 10px;">
-        <i class="fas fa-robot" style="font-size: 1.2rem;"></i>
-        <div>
-          <div style="font-weight: 600; font-size: 1rem;">Raja Cycle Assistant</div>
-          <div style="font-size: 0.75rem; opacity: 0.9;">Online • Replies instantly</div>
+    <div class="luxe-card">
+      <div class="luxe-header">
+        <div style="display: flex; align-items: center; gap: 15px;">
+            <div style="width: 42px; height: 42px; background: rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.4rem;">📅</div>
+            <div>
+                <div class="luxe-title">Raja Service Booking</div>
+                <div style="font-size: 0.8rem; color: #aaa;">Book Your Cycle Repair Slot</div>
+            </div>
         </div>
       </div>
       
-      <div style="flex: 1; padding: 15px; overflow-y: auto; background: #f8f9fa;">
-        <div style="background: white; padding: 12px; border-radius: 12px 12px 12px 2px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); margin-bottom: 15px; font-size: 0.9rem; line-height: 1.4; color: #333;">
-          👋 Hi! I can help you book a cycle service quickly. Please fill the details below.
-        </div>
-
+      <div style="flex: 1; padding: 20px; overflow-y: auto;">
         <form id="chatBookingForm" onsubmit="handleChatBooking(event)">
-          <div style="margin-bottom: 10px;">
-            <input type="text" id="chatName" placeholder="Your Name" required 
-              style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 8px; font-size: 0.9rem;">
+          
+          <!-- 1. Name & Email -->
+          <div style="margin-bottom: 25px;">
+            <label style="color: #00ffa3; font-size: 0.8rem; font-weight: 700; display: block; margin-bottom: 8px;">1. YOUR DETAILS</label>
+            <input type="text" id="chatName" placeholder="Your Name" required class="luxe-input">
+            <input type="email" id="chatEmail" placeholder="Email Address (Optional)" class="luxe-input" style="margin-bottom: 5px;">
+            <div style="font-size: 0.7rem; color: #666;">* We will verify details via email if provided</div>
           </div>
           
-          <div style="margin-bottom: 10px;">
-            <input type="tel" id="chatPhone" placeholder="Mobile Number (10 digits)" required pattern="[6-9][0-9]{9}"
-              style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 8px; font-size: 0.9rem;">
+          <!-- 2. Common Problems -->
+          <div style="margin-bottom: 25px;">
+            <label style="color: #00ffa3; font-size: 0.8rem; font-weight: 700; display: block; margin-bottom: 8px;">2. SELECT PROBLEM</label>
+            <div class="scroll-hint">↓ Scroll down for more options</div>
+            
+            <div style="display: grid; grid-template-columns: 1fr; gap: 8px; margin-top: 10px;">
+                <label class="luxe-chip-label">
+                    <input type="checkbox" name="chatProblemOption" value="Gear Problem" class="luxe-chip-input">
+                    <span>⚙️ Gear / Shifting Issue</span>
+                </label>
+
+                <label class="luxe-chip-label">
+                    <input type="checkbox" name="chatProblemOption" value="Brake Problem" class="luxe-chip-input">
+                    <span>🛑 Brakes / Safety Check</span>
+                </label>
+
+                <label class="luxe-chip-label">
+                    <input type="checkbox" name="chatProblemOption" value="Chain Issue" class="luxe-chip-input">
+                    <span>⛓️ Chain / Noise</span>
+                </label>
+
+                <label class="luxe-chip-label">
+                    <input type="checkbox" name="chatProblemOption" value="Wheel Issue" class="luxe-chip-input">
+                    <span>🎡 Wheel / Alignment</span>
+                </label>
+
+                <label class="luxe-chip-label">
+                    <input type="checkbox" name="chatProblemOption" value="General Service" class="luxe-chip-input">
+                    <span>🛠️ General Service</span>
+                </label>
+                
+                <label class="luxe-chip-label">
+                    <input type="checkbox" name="chatProblemOption" value="Accessories" class="luxe-chip-input">
+                    <span>🔔 Fitting Accessories</span>
+                </label>
+            </div>
+            <div style="margin-top: 10px; font-size: 0.8rem; color: #d4af37;">💰 Charges start from ₹50 (after check)</div>
+          </div>
+
+          <!-- 3. Other/Details -->
+          <div style="margin-bottom: 25px;">
+            <label style="color: #00ffa3; font-size: 0.8rem; font-weight: 700; display: block; margin-bottom: 8px;">3. OTHER DETAILS</label>
+            <textarea id="chatProblemOther" placeholder="Any specific brand or sound? (Optional)" rows="2" class="luxe-input" style="resize: none; font-family: inherit;"></textarea>
           </div>
           
-          <div style="margin-bottom: 10px;">
-            <textarea id="chatProblem" placeholder="What's the issue? (e.g. Puncture)" required rows="2"
-              style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 8px; font-size: 0.9rem; font-family: inherit; resize: none;"></textarea>
+          <!-- 4. Phone -->
+          <div style="margin-bottom: 30px;">
+            <label style="color: #00ffa3; font-size: 0.8rem; font-weight: 700; display: block; margin-bottom: 8px;">4. PHONE NUMBER</label>
+            <input type="tel" id="chatPhone" placeholder="WhatsApp Number" class="luxe-input">
           </div>
           
-          <button type="submit" id="chatSubmitBtn" 
-            style="width: 100%; background: #2E8B57; color: white; border: none; padding: 10px; border-radius: 8px; font-weight: 600; cursor: pointer; transition: background 0.2s;">
-            Book Service
+          <button type="submit" id="chatSubmitBtn" class="luxe-btn">
+             Click to Book Service
           </button>
           
-          <p style="font-size: 0.7rem; color: #888; text-align: center; margin-top: 8px;">
-            We will call you to confirm.
-          </p>
+          <div class="luxe-footer-info">
+            <p style="margin-bottom: 5px;">📍 SS Puram, Near Sitharama Temple</p>
+            <p style="font-size: 0.75rem; opacity: 0.6;">Walk-ins Welcome | Fast Reply</p>
+          </div>
         </form>
         
-        <div id="chatResponse" style="display: none; margin-top: 15px;">
-             <!-- Success message injected here -->
-        </div>
+        <div id="chatResponse" style="display: none; height: 100%;"></div>
       </div>
     </div>
   `;
@@ -103,48 +282,77 @@ function handleChatBooking(e) {
 
   const btn = document.getElementById('chatSubmitBtn');
   const name = document.getElementById('chatName').value;
+  const email = document.getElementById('chatEmail').value.trim();
   const phone = document.getElementById('chatPhone').value.trim();
-  const problem = document.getElementById('chatProblem').value;
+  const otherProblem = document.getElementById('chatProblemOther').value;
   const form = document.getElementById('chatBookingForm');
   const responseDiv = document.getElementById('chatResponse');
 
-  if (!/^[6-9]\d{9}$/.test(phone)) {
-    alert("Please enter a valid 10-digit mobile number.");
-    return;
+  const checkboxes = document.querySelectorAll('input[name="chatProblemOption"]:checked');
+  let selectedProblems = [];
+  checkboxes.forEach((checkbox) => { selectedProblems.push(checkbox.value); });
+
+  let problem = selectedProblems.join(", ");
+  if (otherProblem.trim()) {
+    if (problem) problem += " | Details: " + otherProblem.trim();
+    else problem = otherProblem.trim();
   }
 
-  const originalText = btn.textContent;
-  btn.textContent = "Sending...";
+  if (!problem) { alert("Please select a problem."); return; }
+  if (phone && !/^[6-9]\d{9}$/.test(phone)) { alert("Please enter valid mobile number."); return; }
+
+  const originalContent = btn.innerHTML;
+  btn.style.opacity = '0.6';
+  btn.innerHTML = `Sending...`;
   btn.disabled = true;
 
   fetch("/api/book-service", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ name, phone, problem }),
+    body: JSON.stringify({ name, email, phone, problem }),
   })
     .then(res => res.json())
     .then(data => {
       if (data.success) {
         form.style.display = 'none';
-        responseDiv.style.display = 'block';
+        responseDiv.style.display = 'flex';
+        responseDiv.style.flexDirection = 'column';
+        responseDiv.style.alignItems = 'center';
+        responseDiv.style.justifyContent = 'center';
+
+        let mailMsg = "";
+        if (email) {
+          mailMsg = `<div style="margin-top:15px; padding:10px; background:rgba(0,255,163,0.1); border-radius:8px; color:#00ffa3; font-size:0.9rem;">📧 Confirmation sent to: ${email}</div>`;
+        }
+
         responseDiv.innerHTML = `
-        <div style="background: #e8f5e9; padding: 12px; border-radius: 12px; color: #1b5e20; font-size: 0.9rem; text-align: center;">
-          <i class="fas fa-check-circle" style="font-size: 1.5rem; margin-bottom: 8px; display: block;"></i>
-          <strong>Request Received!</strong><br>
-          We will call you shortly on<br><b>${phone}</b>.
+        <div style="text-align: center; animation: luxeReveal 0.8s ease-out;">
+          <div style="font-size: 3rem; color: #00ffa3; margin-bottom: 20px;">✅</div>
+          <h2 style="color: #fff; margin-bottom: 15px;">Booking Confirmed</h2>
+          <p style="color: #aaa; margin-bottom: 20px;">We will contact you shortly.</p>
+          
+          <div style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 12px; margin-bottom: 20px;">
+            <div style="color: #888; font-size: 0.8rem;">Booking ID</div>
+            <div style="color: #d4af37; font-size: 1.2rem; font-family: monospace;">${data.bookingId || 'RCM-OK'}</div>
+          </div>
+          
+          ${mailMsg}
+
+          <button onclick="resetChatForm()" style="background:none; border:1px solid #555; color:#888; padding:10px 20px; border-radius:20px; margin-top:30px; cursor:pointer;">New Booking</button>
         </div>
-        <button onclick="resetChatForm()" style="width:100%; margin-top:10px; padding:8px; border:1px solid #ddd; background:white; border-radius:6px; cursor:pointer; color:#666; font-size:0.8rem;">Book Another</button>
       `;
       } else {
         alert("Error: " + data.error);
-        btn.textContent = originalText;
+        btn.innerHTML = originalContent;
         btn.disabled = false;
+        btn.style.opacity = '1';
       }
     })
     .catch(err => {
-      alert("Network Error. Please try again.");
-      btn.textContent = originalText;
+      alert("Error. Please try again.");
+      btn.innerHTML = originalContent;
       btn.disabled = false;
+      btn.style.opacity = '1';
     });
 }
 
@@ -153,8 +361,9 @@ function resetChatForm() {
   document.getElementById('chatBookingForm').style.display = 'block';
   document.getElementById('chatResponse').style.display = 'none';
   const btn = document.getElementById('chatSubmitBtn');
-  btn.textContent = "Book Service";
+  btn.innerHTML = "Complete Service Request";
   btn.disabled = false;
+  btn.style.opacity = '1';
 }
 
 function toggleChatbot() {

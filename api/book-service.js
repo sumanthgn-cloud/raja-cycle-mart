@@ -4,51 +4,56 @@ export default async function handler(req, res) {
     }
 
     try {
-        const { name, phone, problem } = req.body;
+        const { name, email, phone, problem } = req.body;
 
-        if (!name || !phone || !problem) {
+        if (!problem) {
             return res.status(400).json({
-                error: "Name, Phone, and Problem are required",
+                error: "Problem description is required",
             });
         }
 
-        // Backend Validation: 10-digit mobile number starting with 6-9
-        if (!/^[6-9]\d{9}$/.test(phone)) {
-            return res.status(400).json({ error: "Invalid phone number" });
+        // Generate Booking ID (RCM-YYYYMMDD-HHMMSS)
+        const now = new Date();
+        const datePart = now.toISOString().split('T')[0].replace(/-/g, '');
+        const timePart = now.toTimeString().split(' ')[0].replace(/:/g, '');
+        const bookingId = `RCM-${datePart}-${timePart}`;
+
+        // Suggested Internal Time Window logic
+        const hour = now.getHours();
+        let suggestedTime;
+        if (hour < 12) {
+            suggestedTime = "11:00 AM – 1:00 PM";
+        } else if (hour < 17) {
+            suggestedTime = "4:00 PM – 6:00 PM";
+        } else {
+            suggestedTime = "Next day morning";
         }
 
-        const BOT_TOKEN = (process.env.TELEGRAM_BOT_TOKEN || process.env.TELEGRAM_TOKEN || process.env.TELEGRAM_)?.trim();
+        const BOT_TOKEN = (process.env.TELEGRAM_BOT_TOKEN || process.env.TELEGRAM_TOKEN || process.env.TELEGRAM_).trim();
         const CHAT_ID = process.env.CHAT_ID?.trim();
 
-        if (!BOT_TOKEN) {
+        if (!BOT_TOKEN || !CHAT_ID) {
+            console.error("Missing Telegram configuration");
             return res.status(500).json({
-                error: "Internal Error: Telegram Bot Token is missing in Vercel settings. Ensure key is 'TELEGRAM_BOT_TOKEN'.",
+                error: "Internal Error: Server configuration issue.",
             });
         }
 
-        if (!CHAT_ID) {
-            return res.status(500).json({
-                error: "Internal Error: Chat ID is missing in Vercel settings.",
-            });
-        }
-
-        const now = new Date().toLocaleString("en-IN", {
-            timeZone: "Asia/Kolkata",
-            dateStyle: "medium",
-            timeStyle: "short",
-        });
+        const formattedName = name?.trim() || "Not shared";
+        const formattedEmail = email?.trim() || "Not shared";
+        const formattedPhone = phone?.trim() || "Will WhatsApp";
 
         const message = `
-🛎️ NEW SERVICE REQUEST – Raja Cycle Mart
+🚲 *New Service Request*
 
-👤 Name: ${name}
-📞 Phone: ${phone}
+🆔 ID: ${bookingId}
+👤 Name: ${formattedName}
+📧 Email: ${formattedEmail}
 🔧 Problem: ${problem}
-⏰ Time: ${now}
+📞 Phone: ${formattedPhone}
+⏰ Suggested Time: ${suggestedTime}
 📍 SS Puram, Tumkur
-
-(Pending Confirmation: Call customer to set time)
-    `;
+        `;
 
         const telegramURL = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
 
@@ -58,6 +63,7 @@ export default async function handler(req, res) {
             body: JSON.stringify({
                 chat_id: CHAT_ID,
                 text: message,
+                parse_mode: "Markdown"
             }),
         });
 
@@ -68,6 +74,7 @@ export default async function handler(req, res) {
 
         return res.status(200).json({
             success: true,
+            bookingId: bookingId,
             message: "Request received",
         });
     } catch (error) {
