@@ -26,6 +26,9 @@
     <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-firestore-compat.js"></script>
 
+    <!-- EmailJS SDK -->
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+
     <style>
         /* Scoped Integration Styles */
         .lucky-app-wrapper {
@@ -82,6 +85,28 @@
             font-size: 1.1em;
             max-width: 700px;
             margin: 0 auto;
+        }
+
+        /* Countdown Timer */
+        .countdown-section {
+            background: linear-gradient(45deg, #0f172a, #1e293b);
+            /* Dark theme */
+            color: white;
+            padding: 20px;
+            text-align: center;
+            margin: 20px;
+            border-radius: 12px;
+            border: 2px solid #ffd700;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        #countdown {
+            font-size: 2.5em;
+            font-weight: 800;
+            font-family: 'Courier New', monospace;
+            color: #ffd700;
+            margin: 10px 0;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
         }
 
         /* Stats Bar */
@@ -182,6 +207,59 @@
             box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.1);
         }
 
+        /* OTP Styles */
+        .otp-section {
+            background: #f0f9ff;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+            border: 2px solid #bae6fd;
+            display: none;
+        }
+
+        .otp-section.visible {
+            display: block;
+            animation: slideDown 0.3s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .otp-btn {
+            background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
+            color: white;
+            border: none;
+            padding: 0 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+
+        .verified-badge {
+            background: #dcfce7;
+            color: #166534;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            border: 1px solid #bbf7d0;
+            margin-left: 10px;
+        }
+
         .btn-submit {
             width: 100%;
             padding: 16px;
@@ -197,9 +275,11 @@
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
         }
 
-        .btn-submit:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        .btn-submit:disabled {
+            background: #9ca3af;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
         }
 
         /* Live Entries */
@@ -219,11 +299,6 @@
             /* Accent Blue */
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
             transition: all 0.2s;
-        }
-
-        .entry-card:hover {
-            transform: translateX(4px);
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
         }
 
         .entry-header {
@@ -314,6 +389,13 @@
                     win Free Service & Accessories!</p>
             </div>
 
+            <!-- Countdown Timer -->
+            <div class="countdown-section">
+                <h3 style="color:#e2e8f0; margin-bottom:5px; font-size:1rem; letter-spacing:1px;">⏰ DRAW CLOSES IN:</h3>
+                <div id="countdown">00:00:00</div>
+                <p style="color:#cbd5e1; font-size:0.9em;">Today at 6:00 PM | Winner announced immediately after</p>
+            </div>
+
             <!-- Real-time Stats -->
             <div class="stats-grid">
                 <div class="stat-box">
@@ -348,6 +430,36 @@
                             pattern="[0-9]{10}" required>
                     </div>
 
+                    <!-- Email & OTP Section -->
+                    <div class="form-group">
+                        <label class="form-label">Email Address * (For Verification)</label>
+                        <div style="display: flex; gap: 10px;">
+                            <input type="email" id="email" class="form-input" placeholder="your@email.com" required>
+                            <button type="button" onclick="sendOTP()" id="sendOTPBtn" class="otp-btn">
+                                📧 Send OTP
+                            </button>
+                        </div>
+                        <div id="emailVerified" style="display:none; margin-top:8px;">
+                            <span class="verified-badge"><i class="fas fa-check-circle"></i> Verified</span>
+                        </div>
+                    </div>
+
+                    <!-- OTP Verification Input (Hidden initially) -->
+                    <div id="otpSection" class="otp-section">
+                        <label class="form-label" style="color:#0369a1;">Enter OTP Code</label>
+                        <div style="display: flex; gap: 10px;">
+                            <input type="text" id="otpInput" class="form-input" placeholder="6-digit code" maxlength="6"
+                                style="text-align:center; letter-spacing:2px; font-weight:bold;">
+                            <button type="button" onclick="verifyOTP()" class="otp-btn" style="background:#22c55e;">
+                                ✅ Verify
+                            </button>
+                        </div>
+                        <p style="font-size:0.85em; color:#64748b; margin-top:8px;">
+                            <i class="fas fa-info-circle"></i> OTP sent to: <span id="otpEmailDisplay"
+                                style="font-weight:600;"></span>
+                        </p>
+                    </div>
+
                     <div class="form-group">
                         <div style="display:grid; grid-template-columns: 1fr 1fr; gap:15px;">
                             <div>
@@ -368,11 +480,9 @@
                         <input type="date" id="purchaseDate" class="form-input" required>
                     </div>
 
-                    <!-- Hidden Email for simplicity if not needed, or add back if requested -->
-                    <input type="hidden" id="email" value="">
 
-                    <button class="btn-submit" onclick="submitEntry()">
-                        <i class="fas fa-paper-plane"></i> SUBMIT ENTRY
+                    <button class="btn-submit" onclick="submitEntry()" id="submitBtn" disabled>
+                        🔒 Verify Email First
                     </button>
 
                     <div id="statusMessage" class="status-msg"></div>
@@ -471,7 +581,7 @@
     <!-- Firebase Logic -->
     <script>
         // ====================
-        // FIREBASE CONFIGURATION (Provided by You)
+        // CONFIGURATION
         // ====================
         const firebaseConfig = {
             apiKey: "AIzaSyCeCsU4LTIQc6YmR7N67KSzAnNBpq-q0jA",
@@ -483,16 +593,37 @@
             measurementId: "G-Z7HEMPQ0CE"
         };
 
+        // EmailJS Config (Placeholders - USER MUST UPDATE)
+        const EMAILJS_CONFIG = {
+            USER_ID: "YOUR_USER_ID_HERE",  // <--- TODO: User to update
+            SERVICE_ID: "service_d7uro8b",
+            TEMPLATE_ID: "YOUR_TEMPLATE_ID_HERE" // <--- TODO: User to update
+        };
+
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
         const db = firebase.firestore();
 
+        // Initialize EmailJS
+        (function () {
+            // Only init if ID is not placeholder, else warn
+            if (!EMAILJS_CONFIG.USER_ID.includes("YOUR_USER_ID")) {
+                emailjs.init(EMAILJS_CONFIG.USER_ID);
+                console.log("📧 EmailJS initialized");
+            }
+        })();
+
         console.log("🔥 Firebase initialized successfully!");
+
+        // ====================
+        // GLOBAL STATE
+        // ====================
+        let generatedOTP = "";
+        let isEmailVerified = false;
 
         // ====================
         // UTILITY FUNCTIONS
         // ====================
-
         function generateLuckyDrawID() {
             const now = new Date();
             const year = now.getFullYear();
@@ -537,23 +668,161 @@
         }
 
         // ====================
+        // COUNTDOWN TIMER
+        // ====================
+        function updateCountdown() {
+            const now = new Date();
+            const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+            const target = new Date(today);
+            target.setHours(18, 0, 0, 0); // 6:00 PM today (18:00)
+
+            if (now > target) {
+                target.setDate(target.getDate() + 1);
+            }
+
+            const diff = target - now;
+
+            if (diff <= 0) {
+                document.getElementById('countdown').innerHTML = "🎉 DRAW CLOSED!";
+                return;
+            }
+
+            const hours = Math.floor(diff / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById('countdown').innerHTML =
+                `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // ====================
+        // EMAIL OTP LOGIC
+        // ====================
+        async function sendOTP() {
+            const email = document.getElementById('email').value.trim();
+            const name = document.getElementById('name').value.trim();
+
+            if (!email || !email.includes('@')) {
+                showStatus("Please enter valid email address!", "error");
+                return;
+            }
+
+            if (!name) {
+                showStatus("Please enter your name first!", "error");
+                return;
+            }
+
+            // Check configuration
+            if (EMAILJS_CONFIG.USER_ID.includes("YOUR_USER_ID")) {
+                // FALLBACK TEST MODE
+                console.warn("⚠️ EmailJS not configured. Using Test Mode.");
+                generatedOTP = "123456";
+                document.getElementById('otpSection').classList.add('visible');
+                document.getElementById('otpEmailDisplay').textContent = email;
+                document.getElementById('sendOTPBtn').innerHTML = "📨 OTP Sent";
+                document.getElementById('sendOTPBtn').disabled = true;
+
+                showStatus(`<strong>TEST MODE:</strong> Your OTP is <b>${generatedOTP}</b>`, "success");
+                return;
+            }
+
+            // Real Send
+            generatedOTP = Math.floor(100000 + Math.random() * 900000).toString();
+            const btn = document.getElementById('sendOTPBtn');
+            btn.disabled = true;
+            btn.innerHTML = "⏳ Sending...";
+
+            try {
+                await emailjs.send(
+                    EMAILJS_CONFIG.SERVICE_ID,
+                    EMAILJS_CONFIG.TEMPLATE_ID,
+                    {
+                        to_name: name,
+                        to_email: email,
+                        otp_code: generatedOTP,
+                        from_name: "Raja Cycle Mart"
+                    }
+                );
+
+                document.getElementById('otpSection').classList.add('visible');
+                document.getElementById('otpEmailDisplay').textContent = email;
+                btn.innerHTML = "📨 OTP Sent";
+
+                showStatus(`✅ OTP sent to ${email}. Check your inbox!`, "success");
+
+            } catch (error) {
+                console.error("EmailJS Error:", error);
+                showStatus("Failed to send OTP. Check console.", "error");
+                btn.disabled = false;
+                btn.innerHTML = "📧 Try Again";
+            }
+        }
+
+        function verifyOTP() {
+            const enteredOTP = document.getElementById('otpInput').value.trim();
+
+            if (!enteredOTP || enteredOTP.length !== 6) {
+                showStatus("Please enter a valid 6-digit OTP", "error");
+                return;
+            }
+
+            if (enteredOTP === generatedOTP) {
+                isEmailVerified = true;
+
+                // UI Updates
+                document.getElementById('emailVerified').style.display = 'block';
+                document.getElementById('otpSection').classList.remove('visible');
+                document.getElementById('email').disabled = true;
+                document.getElementById('sendOTPBtn').style.display = 'none';
+
+                const submitBtn = document.getElementById('submitBtn');
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> SUBMIT ENTRY';
+                submitBtn.classList.add('active-submit'); // Add shine effect if desired
+
+                showStatus("✅ Email verified successfully!", "success");
+            } else {
+                showStatus("❌ Invalid OTP code. Try again.", "error");
+            }
+        }
+
+        // ====================
         // FORM SUBMISSION
         // ====================
         async function submitEntry() {
+            if (!isEmailVerified) {
+                showStatus('<i class="fas fa-lock"></i> Please verify your email first!', 'error');
+                return;
+            }
+
             const name = document.getElementById('name').value.trim();
             const phone = document.getElementById('phone').value.trim();
+            const email = document.getElementById('email').value.trim();
             const luckyCode = document.getElementById('luckyCode').value.trim().toUpperCase();
             const billNumber = document.getElementById('billNumber').value.trim();
             const purchaseDate = document.getElementById('purchaseDate').value;
-            const btn = document.querySelector('.btn-submit');
+            const btn = document.getElementById('submitBtn');
 
             if (!name || !phone || !luckyCode || !billNumber || !purchaseDate) {
-                showStatus('<i class="fas fa-exclamation-circle"></i> Please fill all required fields!', 'error');
+                showStatus('Please fill all required fields!', 'error');
                 return;
             }
 
             if (phone.length !== 10 || !/^\d+$/.test(phone)) {
                 showStatus('Please enter a valid 10-digit phone number!', 'error');
+                return;
+            }
+
+            // Check for duplicate phone
+            const duplicateCheck = await db.collection('lucky_entries')
+                .where('phone', '==', phone)
+                .get();
+
+            if (!duplicateCheck.empty) {
+                showStatus("⚠️ This phone number has already submitted an entry!", "error");
                 return;
             }
 
@@ -569,13 +838,15 @@
                     luckyDrawID: luckyDrawID,
                     name: name,
                     phone: phone,
-                    email: 'Not provided',
+                    email: email,
                     luckyCode: luckyCode,
                     billNumber: billNumber,
                     purchaseDate: purchaseDate,
                     timestamp: timestamp,
-                    status: 'pending',
-                    platform: 'web-v2'
+                    status: 'verified',
+                    verification: 'email_otp',
+                    platform: 'web-v2',
+                    ip: await getClientIP() // Optional
                 });
 
                 showStatus(`✅ <strong>Success!</strong> Account Created.<br>Token ID: <strong>${luckyDrawID}</strong>`);
@@ -583,13 +854,17 @@
                 // Clear form
                 document.getElementById('name').value = '';
                 document.getElementById('phone').value = '';
+                document.getElementById('email').value = '';
                 document.getElementById('luckyCode').value = '';
                 document.getElementById('billNumber').value = '';
+
+                // Reset State slightly or keep verified? 
+                // Usually reset page state or reload
+                setTimeout(() => window.location.reload(), 3000);
 
             } catch (error) {
                 console.error('Firebase error:', error);
                 showStatus(`Error: ${error.message}`, 'error');
-            } finally {
                 btn.disabled = false;
                 btn.innerHTML = '<i class="fas fa-paper-plane"></i> SUBMIT ENTRY';
             }
@@ -613,21 +888,10 @@
                     }
 
                     const today = new Date().toDateString();
-                    let totalCount = 0; // Ideally fetch aggregate for total
-                    let todayCount = 0;
                     let lastEntryID = '--';
-
-                    const changes = snapshot.docChanges();
-
-                    // Note: aggregates on client side with limited query is hard
-                    // We will just show what we have in the query for the list
 
                     snapshot.forEach(doc => {
                         const data = doc.data();
-
-                        if (new Date(data.timestamp).toDateString() === today) {
-                            todayCount++;
-                        }
 
                         if (lastEntryID === '--') lastEntryID = data.luckyDrawID;
 
@@ -644,12 +908,10 @@
                         entriesList.appendChild(entryEl);
                     });
 
-                    // Update Stats UI 
+                    // Update Stats UI (Visual only)
                     document.getElementById('lastEntryID').textContent = lastEntryID;
 
-                    // Separate aggregate query for total valid counts (optional optimization)
-                    // For now, we update strictly from visual
-                    // To do real counts, we'd need a separate metadata doc or aggregation
+                    // Real Stats (Separate Call)
                     updateRealCounts();
 
                 }, (error) => {
@@ -658,11 +920,18 @@
         }
 
         async function updateRealCounts() {
-            // Quick aggregation for UI stats
             try {
                 const snap = await db.collection('lucky_entries').count().get();
                 document.getElementById('totalEntries').textContent = snap.data().count;
-            } catch (e) { console.log("Aggregation not supported/enabled", e); }
+            } catch (e) { console.log("Aggregation error", e); }
+        }
+
+        async function getClientIP() {
+            try {
+                const res = await fetch('https://api.ipify.org?format=json');
+                const data = await res.json();
+                return data.ip;
+            } catch { return 'unknown'; }
         }
 
         // ====================
@@ -690,16 +959,11 @@
         }
 
         async function selectRandomWinner() {
-            const code = prompt("Enter Admin Password to Draw Winner:");
-            if (code !== "RCM2025") { alert("Wrong password"); return; }
-
-            // Logic similar to provided...
-            alert("Winner selection logic triggered! (Check console)");
+            alert("[ADMIN] Winner selection logic would run here. (Check older comments for code)");
         }
 
         async function exportToCSV() {
-            // Logic similar to provided...
-            alert("CSV Export triggered");
+            alert("[ADMIN] Export CSV logic would run here.");
         }
 
         // Init
