@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+    <h2>🎯 Direct EmailJS Test</h2>
+
+    <input type="email" id="email" value="rajacyclemart.tumkur@gmail.com" style="width: 300px; padding: 10px;">
+    <br><br>
+    <button onclick="sendTest()"
+        style="padding: 10px 20px; background: #ff6b6b; color: white; border: none; border-radius: 5px;">
+        🔥 Send Test OTP to YOUR Gmail
+    </button>
+
+    <div id="result" style="margin-top: 20px; padding: 10px; background: #f0f0f0;"></div>
+
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script>
+        // Your actual IDs
+        const USER_ID = "OsE88-Hsi7dIUcDaX";
+        const SERVICE_ID = "service_d7uro8b";
+        const TEMPLATE_ID = "template_6bakgu6";
+
+        // Initialize
+        emailjs.init(USER_ID);
+
+        async function sendTest() {
+            const email = document.getElementById('email').value;
+            const otp = Math.floor(100000 + Math.random() * 900000);
+
+            document.getElementById('result').innerHTML = "⏳ Sending...";
+
+            try {
+                // Sending with multiple variable name variations to catch whichever one the template is expecting
+                const response = await emailjs.send(SERVICE_ID, TEMPLATE_ID, {
+                    code: otp.toString(),            // Common variation 1
+                    otp_code: otp.toString(),        // Common variation 2
+                    message: otp.toString(),         // Common variation 3 (often default message var)
+                    email: email,
+                    to_email: email,
+                    to_name: "Shop Owner"
+                });
+
+                document.getElementById('result').innerHTML =
+                    `✅ SUCCESS! OTP ${otp} sent to ${email}<br>
+                     Status: ${response.status}<br>
+                     Text: ${response.text}<br>
+                     Check your INBOX (and SPAM folder)`;
+
+                console.log("✅ EmailJS Response:", response);
+
+            } catch (error) {
+                document.getElementById('result').innerHTML =
+                    `❌ FAILED!<br>
+                     Error: ${error.text || error.message}<br>
+                     Status: ${error.status}`;
+
+                console.error("❌ EmailJS Error:", error);
+            }
+        }
+    </script>
+</body>
+
+</html>

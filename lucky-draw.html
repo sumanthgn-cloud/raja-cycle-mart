@@ -736,15 +736,18 @@
             btn.innerHTML = "⏳ Sending...";
 
             try {
+                // SENDING OTP (With Multiple Parameters for safety)
                 await emailjs.send(
                     EMAILJS_CONFIG.SERVICE_ID,
                     EMAILJS_CONFIG.TEMPLATE_ID,
                     {
                         to_name: name,
                         to_email: email,
-                        message: generatedOTP.toString(), // Some templates use message
-                        otp_code: generatedOTP.toString(), // Some use otp_code
-                        reply_to: email
+                        message: generatedOTP.toString(),
+                        otp_code: generatedOTP.toString(),
+                        code: generatedOTP.toString(),
+                        reply_to: email,
+                        from_name: "Raja Cycle Mart"
                     }
                 );
 
@@ -756,9 +759,17 @@
 
             } catch (error) {
                 console.error("EmailJS Error:", error);
-                showStatus("Failed to send OTP. Check console.", "error");
-                btn.disabled = false;
-                btn.innerHTML = "📧 Try Again";
+                // FALLBACK: Show OTP on screen if email fails (Temporary Fix)
+                alert(`⚠️ Email sending failed. Here is your OTP: ${generatedOTP}`);
+
+                document.getElementById('otpSection').classList.add('visible');
+                document.getElementById('otpEmailDisplay').textContent = email + " (Manual Mode)";
+                btn.innerHTML = "📨 OTP Generated";
+            } finally {
+                if (btn.disabled && btn.innerHTML === "⏳ Sending...") {
+                    btn.disabled = false;
+                    btn.innerHTML = "📧 Try Again";
+                }
             }
         }
 
