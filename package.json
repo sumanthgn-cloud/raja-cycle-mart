@@ -2,8 +2,7 @@
     "name": "raja-cycle-mart",
     "version": "1.0.0",
     "scripts": {
-        "start": "node api/drawWinner.js",
-        "build": "echo 'No build step, serving static files'"
+        "start": "node api/drawWinner.js"
     },
     "dependencies": {
         "firebase-admin": "^12.0.0"
