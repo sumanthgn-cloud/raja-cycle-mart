@@ -32,20 +32,22 @@ export default async function handler(req, res) {
     }
 
     try {
-        await emailjs.send(
+        // Initialize with Private Key (Required for NodeJS)
+        const emailClient = new emailjs.EmailJS({
+            publicKey: PUBLIC_KEY,
+            privateKey: PRIVATE_KEY
+        });
+
+        await emailClient.send(
             SERVICE_ID,
             TEMPLATE_ID,
             {
                 to_email: to_email,
                 to_name: to_name || 'Customer',
-                message: otp,    // Standard msg var
-                otp_code: otp,   // Specific var
-                code: otp,       // Fallback var
+                message: otp,
+                otp_code: otp,
+                code: otp,
                 reply_to: to_email
-            },
-            {
-                publicKey: PUBLIC_KEY,
-                privateKey: PRIVATE_KEY,
             }
         );
 
