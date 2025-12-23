@@ -668,6 +668,27 @@
         // ====================
         // ADMIN Logic
         // ====================
+        const ADMIN_PASSWORD = "RajaCycle2025";
+
+        function toggleAdminPanel(e) {
+            if (e) e.preventDefault();
+
+            const panel = document.getElementById('adminPanel');
+            if (panel.style.display === 'block') {
+                panel.style.display = 'none';
+                return;
+            }
+
+            const code = prompt("🔐 Enter Admin Password:");
+            if (code === ADMIN_PASSWORD) {
+                panel.style.display = 'block';
+                showStatus('✅ Admin Mode Activated', 'success');
+                panel.scrollIntoView({ behavior: "smooth" });
+            } else {
+                alert("❌ Access Denied");
+            }
+        }
+
         async function selectRandomWinner() {
             const code = prompt("Enter Admin Password to Draw Winner:");
             if (code !== "RCM2025") { alert("Wrong password"); return; }
