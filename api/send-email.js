@@ -1,5 +1,3 @@
-const emailjs = require('@emailjs/nodejs');
-
 export default async function handler(req, res) {
     // CORS Headers
     res.setHeader('Access-Control-Allow-Credentials', true);
@@ -19,42 +17,49 @@ export default async function handler(req, res) {
     const { to_email, to_name, otp } = req.body;
 
     // Configuration
-    const PUBLIC_KEY = 'OsE88-Hsi7dIUcDaX';
-    const PRIVATE_KEY = process.env.EMAILJS_PRIVATE_KEY || '_zRkccABwVv-5MaKlW6S';
+    const USER_ID = 'OsE88-Hsi7dIUcDaX';
     const SERVICE_ID = 'service_d7uro8b';
     const TEMPLATE_ID = 'template_6bakgu6';
+    const ACCESS_TOKEN = process.env.EMAILJS_PRIVATE_KEY || '_zRkccABwVv-5MaKlW6S';
 
     try {
-        // Use the explicit Options object in the 4th argument
-        // This is the most reliable way to pass keys in Node.js strict mode
-        const response = await emailjs.send(
-            SERVICE_ID,
-            TEMPLATE_ID,
-            {
-                to_email: to_email,
-                to_name: to_name || 'Customer',
-                message: otp.toString(),
-                otp_code: otp.toString(),
-                code: otp.toString(),
-                reply_to: to_email
-            },
-            {
-                publicKey: PUBLIC_KEY.trim(),
-                privateKey: PRIVATE_KEY.trim()
-            }
-        );
+        // BYPASSING SDK: Calling EmailJS REST API directly for maximum reliability
+        // In "Strict Mode", the REST API expects "accessToken" which is your Private Key
+        const response = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                service_id: SERVICE_ID,
+                template_id: TEMPLATE_ID,
+                user_id: USER_ID,
+                accessToken: ACCESS_TOKEN.trim(),
+                template_params: {
+                    to_email: to_email,
+                    to_name: to_name || 'Customer',
+                    otp_code: otp.toString(),
+                    code: otp.toString(),
+                    email: to_email,
+                    message: otp.toString()
+                }
+            })
+        });
 
-        console.log("EmailJS Success:", response);
-        return res.status(200).json({ success: true, message: 'OTP sent successfully!' });
+        const statusText = await response.text();
+
+        if (response.ok) {
+            console.log("EmailJS Success:", statusText);
+            return res.status(200).json({ success: true, message: 'OTP sent successfully!' });
+        } else {
+            console.error("EmailJS API Error:", statusText);
+            throw new Error(`EmailJS API Error: ${statusText}`);
+        }
 
     } catch (error) {
-        console.error('EmailJS Server Error:', error);
-
-        // Return a clear error message
+        console.error('REST API Error:', error);
         return res.status(500).json({
             success: false,
-            error: error.text || error.message || 'Email delivery failed',
-            debug: "Strict mode failure. Check Private Key."
+            error: error.message || 'Email delivery failed',
+            debug: "Check your Private Key (AccessToken) and Template ID in EmailJS."
         });
     }
 }
