@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
     "crons": [
         {
             "path": "/api/drawWinner",
@@ -6,3 +7,12 @@
         }
     ]
 }
+=======
+  "crons": [
+    {
+      "path": "/api/drawWinner",
+      "schedule": "0 19 28-31 * *"
+    }
+  ]
+}
+>>>>>>> 0ba7d03 (feat: Initial commit with lucky draw backend)

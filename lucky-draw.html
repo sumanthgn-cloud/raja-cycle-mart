@@ -121,12 +121,11 @@
 
 
 
-                <div style="margin-top: 2rem;">
-
-                    <span class="chip"><i class="fas fa-gift"></i> Next Draw: Month End</span>
-
-                    <span class="chip"><i class="fas fa-trophy"></i> 3 Winners</span>
-
+                <div id="countdown-container" style="margin-top: 2rem; display: flex; gap: 15px; flex-wrap: wrap;">
+                    <!-- Loading state -->
+                    <span class="chip" style="background: rgba(46, 139, 87, 0.2); color: #006400;">
+                        <i class="fas fa-clock fa-spin"></i> Loading Timer...
+                    </span>
                 </div>
 
             </div>
@@ -321,10 +320,11 @@
 
                 <h2 style="color: white; margin-bottom: 0.5rem;">Latest Winner</h2>
 
-                <div style="font-size: 2rem; font-weight: 700; color: #FFD700; margin: 1rem 0;">
-
-                    Coming Soon...
-
+                <div id="winner-name" style="font-size: 2.5rem; font-weight: 800; color: #FFD700; margin: 1rem 0; text-shadow: 0 2px 10px rgba(0,0,0,0.3);">
+                    Waiting for results...
+                </div>
+                <div id="winner-details" style="font-size: 1.2rem; color: rgba(255,255,255,0.9); background: rgba(0,0,0,0.2); padding: 5px 15px; border-radius: 20px; display: inline-block;">
+                    Check back soon!
                 </div>
 
                 <p style="color: rgba(255,255,255,0.8);">Winner will be announced here at the end of the month.</p>
@@ -478,6 +478,122 @@
         </div>
     </div>
     <script src="site.js"></script>
+
+    <style>
+        .timer-box {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 10px 15px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            min-width: 70px;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        .timer-val {
+            display: block;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            line-height: 1.1;
+        }
+        .timer-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            color: #666;
+            font-weight: 600;
+        }
+    </style>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            initCountdown();
+            fetchLastWinner();
+        });
+
+        // --- 1. COUNTDOWN LOGIC ---
+        function initCountdown() {
+            const container = document.getElementById('countdown-container');
+            
+            function updateTimer() {
+                const now = new Date();
+                const currentMonth = now.getMonth();
+                const currentYear = now.getFullYear();
+                
+                // Target: 28th of current month at 19:00 (7 PM)
+                let targetDate = new Date(currentYear, currentMonth, 28, 19, 0, 0);
+
+                // If passed, move to next month
+                if (now > targetDate) {
+                    targetDate = new Date(currentYear, currentMonth + 1, 28, 19, 0, 0);
+                }
+
+                const diff = targetDate - now;
+
+                if (diff <= 0) {
+                    container.innerHTML = `<span class="chip" style="background:#FFD700; color:#000; font-weight:bold;">🎉 DRAWING NOW!</span>`;
+                    return;
+                }
+
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+                container.innerHTML = `
+                    <div class="timer-box">
+                        <span class="timer-val">${days}</span>
+                        <span class="timer-label">Days</span>
+                    </div>
+                    <div class="timer-box">
+                        <span class="timer-val">${hours}</span>
+                        <span class="timer-label">Hrs</span>
+                    </div>
+                    <div class="timer-box">
+                        <span class="timer-val">${minutes}</span>
+                        <span class="timer-label">Mins</span>
+                    </div>
+                    <div class="timer-box" style="color:red;">
+                        <span class="timer-val" style="color: var(--accent);">${seconds}</span>
+                        <span class="timer-label">Secs</span>
+                    </div>
+                    <div style="display:flex; align-items:center; margin-left:10px;">
+                        <span style="font-weight:bold; color: var(--text-muted); font-size: 0.9rem;">
+                            until next draw 🎁
+                        </span>
+                    </div>
+                `;
+            }
+
+            setInterval(updateTimer, 1000);
+            updateTimer(); // Initial call
+        }
+
+        // --- 2. FETCH WINNER LOGIC ---
+        async function fetchLastWinner() {
+            const nameEl = document.getElementById('winner-name');
+            const detailsEl = document.getElementById('winner-details');
+
+            try {
+                const res = await fetch('/api/getLastWinner');
+                const data = await res.json();
+
+                if (data.success && data.winner) {
+                    nameEl.textContent = data.winner.name;
+                    detailsEl.textContent = `Phone: ${data.winner.phoneMasked} • Won: ${new Date(data.winner.drawnAt).toLocaleDateString('en-IN', { month: 'short', year: 'numeric' })}`;
+                    
+                    // Add celebration effect
+                    nameEl.innerHTML += ' <i class="fas fa-check-circle" style="font-size:0.6em; vertical-align:middle;"></i>';
+                } else {
+                    nameEl.textContent = "No Winner Yet";
+                    detailsEl.textContent = "Be the first to win this month!";
+                }
+            } catch (err) {
+                console.error("Error fetching winner:", err);
+                nameEl.textContent = "Participate to Win!";
+                detailsEl.textContent = "Winner announced monthly.";
+            }
+        }
+    </script>
 
 </body>
 
