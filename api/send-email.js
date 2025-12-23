@@ -19,54 +19,44 @@ export default async function handler(req, res) {
 
     const { to_email, to_name, otp } = req.body;
 
-    // Use Private Key from Environment Variables for security
-    // The User ID (Public Key) is safe to be hardcoded, but Private Key must be secret
-    // Use Private Key from Environment Variables for security
+    // Configuration with Fallback
     const PUBLIC_KEY = 'OsE88-Hsi7dIUcDaX'.trim();
     const PRIVATE_KEY = (process.env.EMAILJS_PRIVATE_KEY || '_zRkccABwVv-5MaKlW6S').trim();
     const SERVICE_ID = 'service_d7uro8b';
     const TEMPLATE_ID = 'template_6bakgu6';
 
+    console.log(`EmailJS Server Sync: Attempting send to ${to_email} (Private Key Fallback: ${!process.env.EMAILJS_PRIVATE_KEY})`);
+
     try {
-        // According to Step 467, the constructor might take (Public Key, Private Key)
-        // We'll try the static send first but with more explicit options
-        await emailjs.send(
+        // Step 1: Initialize with Private Key (Standard procedure for Node.js / Strict Mode)
+        emailjs.init({
+            publicKey: PUBLIC_KEY,
+            privateKey: PRIVATE_KEY
+        });
+
+        // Step 2: Send
+        const response = await emailjs.send(
             SERVICE_ID,
             TEMPLATE_ID,
             {
                 to_email: to_email,
                 to_name: to_name || 'Customer',
-                message: otp,
-                otp_code: otp,
-                code: otp,
+                message: otp.toString(),
+                otp_code: otp.toString(),
+                code: otp.toString(),
                 reply_to: to_email
-            },
-            {
-                publicKey: PUBLIC_KEY,
-                privateKey: PRIVATE_KEY
             }
         );
 
-        return res.status(200).json({ success: true, message: 'Email sent successfully!' });
-    } catch (error) {
-        console.error('Email send failed:', error);
+        console.log("EmailJS Server Success:", response);
+        return res.status(200).json({ success: true, message: 'Email sent!' });
 
-        // If it still fails with "no private key", try the instance method as a last resort
-        try {
-            const { EmailJS } = require('@emailjs/nodejs');
-            const client = new EmailJS(PUBLIC_KEY, PRIVATE_KEY);
-            await client.send(SERVICE_ID, TEMPLATE_ID, {
-                to_email: to_email,
-                otp_code: otp,
-                code: otp
-            });
-            return res.status(200).json({ success: true, message: 'Email sent via fallback client!' });
-        } catch (innerError) {
-            return res.status(500).json({
-                success: false,
-                error: error.message || 'Failed to send email',
-                debug: "Strict mode private key error persisted"
-            });
-        }
+    } catch (error) {
+        console.error('EmailJS Server Fatal Error:', error);
+        return res.status(500).json({
+            success: false,
+            error: error.text || error.message || 'Email delivery failed',
+            debug: "Check EmailJS 'Strict Mode' settings in your dashboard."
+        });
     }
 }
