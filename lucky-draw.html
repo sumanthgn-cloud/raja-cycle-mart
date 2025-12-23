@@ -736,35 +736,37 @@
             btn.innerHTML = "⏳ Sending...";
 
             try {
-                // SENDING OTP (With Multiple Parameters for safety)
-                await emailjs.send(
-                    EMAILJS_CONFIG.SERVICE_ID,
-                    EMAILJS_CONFIG.TEMPLATE_ID,
-                    {
-                        to_name: name,
+                // NEW: Send via Secure Backend API
+                const response = await fetch('/api/send-email', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
                         to_email: email,
-                        message: generatedOTP.toString(),
-                        otp_code: generatedOTP.toString(),
-                        code: generatedOTP.toString(),
-                        reply_to: email,
-                        from_name: "Raja Cycle Mart"
-                    }
-                );
+                        to_name: name,
+                        otp: generatedOTP
+                    })
+                });
 
-                document.getElementById('otpSection').classList.add('visible');
-                document.getElementById('otpEmailDisplay').textContent = email;
-                btn.innerHTML = "📨 OTP Sent";
+                const data = await response.json();
 
-                showStatus(`✅ OTP sent to ${email}. Check your inbox!`, "success");
+                if (data.success) {
+                    document.getElementById('otpSection').classList.add('visible');
+                    document.getElementById('otpEmailDisplay').textContent = email;
+                    btn.innerHTML = "📨 OTP Sent";
+                    showStatus(`✅ OTP sent to ${email}. Check your inbox!`, "success");
+                } else {
+                    throw new Error(data.error || 'Server rejected email request');
+                }
 
             } catch (error) {
-                console.error("EmailJS Error:", error);
-                // FALLBACK: Show OTP on screen if email fails (Temporary Fix)
-                alert(`⚠️ Email sending failed. Here is your OTP: ${generatedOTP}`);
+                console.error("Email Backend Error:", error);
+
+                // FALLBACK: Show OTP on screen if email fails
+                alert(`⚠️ Email sending failed. Here is your OTP for now: ${generatedOTP}`);
 
                 document.getElementById('otpSection').classList.add('visible');
                 document.getElementById('otpEmailDisplay').textContent = email + " (Manual Mode)";
-                btn.innerHTML = "📨 OTP Generated";
+                btn.innerHTML = "📨 OTP Generated (Manual)";
             } finally {
                 if (btn.disabled && btn.innerHTML === "⏳ Sending...") {
                     btn.disabled = false;
