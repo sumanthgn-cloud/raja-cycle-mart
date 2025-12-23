@@ -1,13 +1,5 @@
 {
-<<<<<<< HEAD
-    "crons": [
-        {
-            "path": "/api/drawWinner",
-            "schedule": "0 19 28-31 * *"
-        }
-    ]
-}
-=======
+  "version": 2,
   "crons": [
     {
       "path": "/api/drawWinner",
@@ -15,4 +7,3 @@
     }
   ]
 }
->>>>>>> 0ba7d03 (feat: Initial commit with lucky draw backend)
