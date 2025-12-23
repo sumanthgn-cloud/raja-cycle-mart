@@ -21,7 +21,7 @@ export default async function handler(req, res) {
     const SERVICE_ID = 'service_d7uro8b';
     const TEMPLATE_ID = 'template_6bakgu6';
     // Prioritize fallback key if env is not found to ensure it works
-    const ACCESS_TOKEN = '_zRkccABwVv-5MaKlW6S';
+    const ACCESS_TOKEN = '_zRkccABwVv-5MaKlW6S_';
 
     console.log(`EmailJS Request: to=${to_email}, service=${SERVICE_ID}, template=${TEMPLATE_ID}`);
 
