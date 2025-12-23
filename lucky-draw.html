@@ -740,9 +740,11 @@
                     EMAILJS_CONFIG.SERVICE_ID,
                     EMAILJS_CONFIG.TEMPLATE_ID,
                     {
-                        code: generatedOTP.toString(),
-                        email: email,
-                        to_name: name
+                        to_name: name,
+                        to_email: email,
+                        message: generatedOTP.toString(), // Some templates use message
+                        otp_code: generatedOTP.toString(), // Some use otp_code
+                        reply_to: email
                     }
                 );
 
