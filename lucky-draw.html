@@ -396,8 +396,15 @@
 
             </div>
 
-            <!-- Admin Area (Collapsible or just at bottom) -->
-            <div class="admin-box">
+            <!-- Admin Area (Hidden by Default) -->
+            <div style="text-align: center; margin-top: 20px;">
+                <a href="#" onclick="toggleAdminPanel(event)"
+                    style="color: #9ca3af; font-size: 0.8em; text-decoration: none; border-bottom: 1px dotted #ccc;">
+                    <i class="fas fa-wrench"></i> Staff Panel
+                </a>
+            </div>
+
+            <div class="admin-box" id="adminPanel">
                 <h3 style="color: #ef4444; margin-bottom:15px; font-size:1.1rem;"><i class="fas fa-user-shield"></i>
                     Admin Controls</h3>
                 <div style="display:flex; gap:10px; flex-wrap:wrap;">
@@ -406,12 +413,9 @@
                         🎁 Draw Winner
                     </button>
                     <button class="btn" onclick="exportToCSV()"
-                        style="background: #374151; color: white; border:none; padding:10px 20px; border-radius:8px; cursor:pointer;">
+                        style="background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%); color: white; border:none; padding:10px 20px; border-radius:8px; cursor:pointer;">
                         📥 Export CSV
                     </button>
-                    <!-- Hidden Clean up to prevent accidents
-                    <button class="btn" onclick="clearAllEntries()">🗑️ Clear</button>
-                    -->
                 </div>
             </div>
 
