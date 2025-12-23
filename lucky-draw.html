@@ -595,9 +595,9 @@
 
         // EmailJS Config (Placeholders - USER MUST UPDATE)
         const EMAILJS_CONFIG = {
-            USER_ID: "REPLACE_WITH_YOUR_USER_ID",
+            USER_ID: "OsE88-Hsi7dIUcDaX",
             SERVICE_ID: "service_d7uro8b",
-            TEMPLATE_ID: "REPLACE_WITH_YOUR_TEMPLATE_ID"
+            TEMPLATE_ID: "template_6bakgu6"
         };
 
         // Initialize Firebase
@@ -740,10 +740,9 @@
                     EMAILJS_CONFIG.SERVICE_ID,
                     EMAILJS_CONFIG.TEMPLATE_ID,
                     {
-                        to_name: name,
-                        to_email: email,
-                        otp_code: generatedOTP,
-                        from_name: "Raja Cycle Mart"
+                        code: generatedOTP.toString(),
+                        email: email,
+                        to_name: name
                     }
                 );
 
