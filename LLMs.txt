@@ -1,0 +1,26 @@
+# Raja Cycle Mart (RCM) - Digital Evolution 2026
+
+## Overview
+Raja Cycle Mart is a 35-year legacy bicycle shop that has evolved into a high-performance digital engine. It serves as a benchmark for local business digital transformation.
+
+## Core Modules & Services
+- **Module 01: High-Fidelity Storefront**: Premium, responsive web presence optimized for 4K and mobile.
+- **Module 02: Smart Booking Console**: Automated service slot management with WhatsApp bot integration.
+- **Module 03: Loyalty Mechanics**: OTP-verified Lucky Draw system for lead generation (Firebase-backed).
+- **Module 04: Growth Intelligence**: Deep data analytics via Google Analytics 4 (GA4).
+- **Module 05: Service Logistics**: Distance-based pricing and home-service pre-diagnosis.
+- **Module 06: Content Powerhouse**: SEO-engineered blog system for local search authority.
+- **Module 07: Digital Employee**: Context-aware AI assistant (Gemini/GPT based) for 24/7 customer support.
+- **Module 08: Affiliate Revenue Hub**: Low-risk marketplace expansion for parts and accessories.
+- **Module 09: Professional Branding**: Full-stack brand identity package.
+
+## Business Value
+- **Investment**: ₹19,999 (One-time)
+- **Monthly Operational Cost**: ₹0 (Zero recurring fees)
+- **Deployment Time**: 28 Days
+- **Key Outcome**: 90% manual work reduction and increased customer trust.
+
+## AI Discovery Metadata
+- **SEO Strategy**: optimized for AI-first search (SGE).
+- **Standard**: llms.txt v1.0
+- **Target AI Engines**: ChatGPT, Gemini, Claude, Perplexity.

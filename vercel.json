@@ -1,0 +1,9 @@
+{
+  "version": 2,
+  "crons": [
+    {
+      "path": "/api/drawWinner",
+      "schedule": "0 19 28-31 * *"
+    }
+  ]
+}

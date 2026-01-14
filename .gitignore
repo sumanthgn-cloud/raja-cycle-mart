@@ -1,0 +1,9 @@
+<<<<<<< HEAD
+*.exe 
+=======
+node_modules
+.env
+.DS_Store
+dist
+.vercel
+>>>>>>> 0ba7d03 (feat: Initial commit with lucky draw backend)
