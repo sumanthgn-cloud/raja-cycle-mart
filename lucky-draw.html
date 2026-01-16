@@ -761,7 +761,7 @@
                     document.getElementById('otpSection').classList.add('visible');
                     document.getElementById('otpEmailDisplay').textContent = email;
                     btn.innerHTML = "🎟️ OTP Sent";
-                    showStatus(`? OTP sent to ${email}. Check your inbox!`, "success");
+                    showStatus(`✓ OTP sent to ${email}. Check your inbox!`, "success");
                 } else {
                     throw new Error(data.error || 'Server rejected email request');
                 }
@@ -805,9 +805,9 @@
                 submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> SUBMIT ENTRY';
                 submitBtn.classList.add('active-submit'); // Add shine effect if desired
 
-                showStatus("? Email verified successfully!", "success");
+                showStatus("✓ Email verified successfully!", "success");
             } else {
-                showStatus("? Invalid OTP code. Try again.", "error");
+                showStatus("✗ Invalid OTP code. Try again.", "error");
             }
         }
 
@@ -871,7 +871,7 @@
                     ip: await getClientIP() // Optional
                 });
 
-                showStatus(`? <strong>Success!</strong> Account Created.<br>Token ID: <strong>${luckyDrawID}</strong>`);
+                showStatus(`✓ <strong>Success!</strong> Account Created.<br>Token ID: <strong>${luckyDrawID}</strong>`);
 
                 // Clear form
                 document.getElementById('name').value = '';
@@ -973,7 +973,7 @@
             const code = prompt("🎟️ Enter Admin Password:");
             if (code === ADMIN_PASSWORD) {
                 panel.style.display = 'block';
-                showStatus('? Admin Mode Activated', 'success');
+                showStatus('✓ Admin Mode Activated', 'success');
                 panel.scrollIntoView({ behavior: "smooth" });
             } else {
                 alert("? Access Denied");
