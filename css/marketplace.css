@@ -1,0 +1,548 @@
+/* Cycle Marketplace Styles */
+
+.marketplace-section {
+    padding: 60px 0;
+    background-color: #f8f9fa;
+}
+
+.mp-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.mp-title {
+    font-size: 36px;
+    color: #2c3e50;
+    margin-bottom: 10px;
+    font-weight: 800;
+    letter-spacing: -1px;
+    background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.mp-subtitle {
+    color: #7f8c8d;
+    font-size: 16px;
+}
+
+/* Tabs */
+.mp-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+}
+
+.mp-tab {
+    padding: 12px 24px;
+    border: 2px solid #e0e0e0;
+    border-radius: 50px;
+    background: white;
+    color: #555;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 15px;
+}
+
+.mp-tab:hover {
+    border-color: #ff9f43;
+    color: #ff9f43;
+}
+
+.mp-tab.active {
+    background: #ff9f43;
+    color: white;
+    border-color: #ff9f43;
+    box-shadow: 0 4px 12px rgba(255, 159, 67, 0.3);
+}
+
+/* Grid */
+.mp-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.mp-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.06);
+    transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.mp-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+}
+
+/* Image Area */
+.mp-media {
+    position: relative;
+    height: 240px;
+    /* Restored height */
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    /* Zero padding to maximize width */
+    overflow: hidden;
+}
+
+.mp-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    /* Full bike visible */
+    object-position: center;
+    transition: transform 0.4s ease;
+    transform: scale(1.03);
+    /* Slight default zoom to elaborate */
+}
+
+/* Zoom effect on hover */
+.mp-card:hover .mp-media img {
+    transform: scale(1.12);
+    /* Nice zoom on hover */
+}
+
+/* Specific enlargement for wide adult cycles */
+.mp-enlarge-extra img {
+    transform: scale(1.15);
+}
+
+.mp-card:hover .mp-media.mp-enlarge-extra img {
+    transform: scale(1.25);
+}
+
+/* Maximum enlargement for wide bikes with lots of whitespace */
+.mp-enlarge-max img {
+    transform: scale(1.35);
+}
+
+.mp-card:hover .mp-media.mp-enlarge-max img {
+    transform: scale(1.45);
+}
+
+.mp-badge-group {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    z-index: 10;
+    /* Ensure badges stay on top of transformed images */
+}
+
+.mp-badge {
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: white;
+}
+
+.badge-age {
+    background: #3498db;
+}
+
+.badge-wheel {
+    background: #9b59b6;
+}
+
+/* Content */
+.mp-body {
+    padding: 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.mp-name {
+    font-size: 18px;
+    font-weight: 700;
+    color: #2c3e50;
+    margin-bottom: 10px;
+    line-height: 1.4;
+}
+
+.mp-price-box {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.mp-price {
+    font-size: 24px;
+    color: #ff6b00;
+    /* Updated orange */
+    font-weight: 800;
+}
+
+.mp-price-original {
+    text-decoration: line-through;
+    color: #95a5a6;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.mp-price-sub {
+    font-size: 12px;
+    color: #95a5a6;
+}
+
+.mp-discount-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: #e74c3c;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 700;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+    /* Ensure badge stays on top */
+}
+
+.mp-specs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 15px;
+}
+
+.mp-spec {
+    background: #f1f2f6;
+    color: #57606f;
+    font-size: 12px;
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+.mp-features {
+    margin: 0 0 20px 0;
+    padding-left: 20px;
+    color: #2f3542;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.mp-features li {
+    margin-bottom: 4px;
+}
+
+/* Actions */
+.mp-actions {
+    display: flex;
+    flex-direction: column;
+    /* Stack vertically for better text fit */
+    gap: 10px;
+    margin-top: auto;
+}
+
+.btn-mp {
+    flex: 1;
+    text-align: center;
+    padding: 10px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 14px;
+    text-decoration: none;
+    transition: opacity 0.2s;
+}
+
+.btn-mp:hover {
+    opacity: 0.9;
+}
+
+.btn-amz {
+    background: #ff9f43;
+    color: white;
+}
+
+.btn-wa-deal {
+    background: #2ed573;
+    color: white;
+}
+
+.mp-note {
+    font-size: 11px;
+    color: #7f8c8d;
+    margin-top: 12px;
+    text-align: center;
+    font-style: italic;
+}
+
+/* Placeholders */
+.mp-coming-soon {
+    text-align: center;
+    padding: 60px 20px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.mp-placeholder-icon {
+    font-size: 48px;
+    color: #dfe4ea;
+    margin-bottom: 20px;
+}
+
+.mp-input-group {
+    display: flex;
+    max-width: 400px;
+    margin: 20px auto 0;
+    gap: 10px;
+}
+
+.mp-input {
+    flex: 1;
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+}
+
+.btn-notify {
+    background: #2c3e50;
+    color: white;
+    border: none;
+    padding: 0 20px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+/* Blog Section */
+.mp-blog-section {
+    padding: 60px 0;
+    background: white;
+    border-top: 1px solid #eee;
+}
+
+.blog-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 40px;
+    align-items: start;
+}
+
+.blog-card {
+    background: #fff;
+    border-radius: 12px;
+}
+
+.blog-thumb {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    background: #f1f2f6;
+}
+
+.blog-meta-tag {
+    display: inline-block;
+    background: #e1f5fe;
+    color: #0288d1;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.blog-title {
+    font-size: 28px;
+    color: #2c3e50;
+    margin-bottom: 15px;
+    line-height: 1.3;
+}
+
+.blog-excerpt {
+    color: #57606f;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    font-size: 16px;
+}
+
+.blog-content {
+    display: none;
+    color: #2f3542;
+    line-height: 1.8;
+    margin-bottom: 20px;
+}
+
+.blog-content h4 {
+    color: #2c3e50;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.blog-content ul {
+    list-style-type: disc;
+    padding-left: 20px;
+    margin-bottom: 20px;
+}
+
+.btn-read-more {
+    color: #ff6b00;
+    font-weight: 600;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+    font-size: 15px;
+    text-decoration: underline;
+}
+
+/* Sidebar Box */
+.mp-sidebar-box {
+    background: #f8f9fa;
+    padding: 30px;
+    border-radius: 12px;
+    border: 1px solid #ececec;
+    position: sticky;
+    top: 20px;
+}
+
+.sb-title {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #2c3e50;
+    border-bottom: 2px solid #ff9f43;
+    padding-bottom: 10px;
+    display: inline-block;
+}
+
+.sb-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 25px 0;
+}
+
+.sb-list li {
+    margin-bottom: 12px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    color: #555;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 8px;
+}
+
+.sb-list li span {
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.sb-perks {
+    margin-bottom: 25px;
+}
+
+.sb-perk {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    color: #27ae60;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.btn-redirect {
+    display: block;
+    width: 100%;
+    background: #ff6b00;
+    color: white;
+    text-align: center;
+    padding: 12px;
+    border-radius: 8px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: background 0.2s;
+    border: none;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.btn-redirect:hover {
+    background: #e65e00;
+}
+
+.sb-note {
+    font-size: 12px;
+    color: #7f8c8d;
+    margin-top: 15px;
+    text-align: center;
+    line-height: 1.4;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .mp-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .mp-grid {
+        grid-template-columns: 1fr;
+        /* Stack earlier for better visibility */
+        gap: 20px;
+    }
+
+    .mp-media {
+        height: 220px;
+        /* Condensed height for mobile */
+    }
+
+    .blog-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .mp-sidebar-box {
+        position: static;
+        margin-top: 30px;
+    }
+
+    .mp-actions {
+        flex-direction: column;
+        /* Stack buttons for easier tapping */
+    }
+
+    .mp-title {
+        font-size: 28px;
+    }
+
+    .marketplace-section {
+        padding: 40px 15px;
+    }
+}
+
+@media (max-width: 600px) {
+    .mp-tabs {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .mp-tab {
+        text-align: center;
+        width: 100%;
+    }
+}

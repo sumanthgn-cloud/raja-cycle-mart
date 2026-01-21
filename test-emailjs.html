@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="canonical" href="https://raja-cycle-mart.vercel.app/test-emailjs.html" />
+    <title>EmailJS Diagnostic Test</title>
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <style>
+        body {
+            font-family: Arial;
+            padding: 20px;
+        }
+
+        .test {
+            margin: 20px 0;
+            padding: 15px;
+            border-radius: 5px;
+        }
+
+        .success {
+            background: #d4edda;
+            border: 2px solid #c3e6cb;
+        }
+
+        .error {
+            background: #f8d7da;
+            border: 2px solid #f5c6cb;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>🔧 EmailJS Diagnostic Test</h2>
+
+    <div id="test1" class="test">
+        <h3>Test 1: Initialize EmailJS</h3>
+        <button onclick="testInit()">Test Initialization</button>
+        <div id="result1"></div>
+    </div>
+
+    <div id="test2" class="test">
+        <h3>Test 2: Send Test Email</h3>
+        <button onclick="testSend()">Send Test Email to Yourself</button>
+        <div id="result2"></div>
+    </div>
+
+    <div id="test3" class="test">
+        <h3>Test 3: Check Template</h3>
+        <button onclick="checkTemplate()">Check Template Variables</button>
+        <div id="result3"></div>
+    </div>
+
+    <script>
+        // Your configuration
+        const USER_ID = "OsE88-Hsi7dIUcDaX";
+        const SERVICE_ID = "service_d7uro8b";
+        const TEMPLATE_ID = "template_6bakgu6";
+
+        // Test 1: Initialization
+        function testInit() {
+            try {
+                emailjs.init(USER_ID);
+                document.getElementById('result1').innerHTML =
+                    '<span style="color: green">✅ INITIALIZED SUCCESSFULLY</span><br>' +
+                    'User ID: ' + USER_ID;
+                console.log("✅ EmailJS initialized");
+                return true;
+            } catch (error) {
+                document.getElementById('result1').innerHTML =
+                    '<span style="color: red">❌ INITIALIZATION FAILED</span><br>' +
+                    'Error: ' + error.message;
+                console.error("❌ EmailJS init error:", error);
+                return false;
+            }
+        }
+
+        // Test 2: Send Email
+        async function testSend() {
+            const resultDiv = document.getElementById('result2');
+            resultDiv.innerHTML = '⏳ Sending test email...';
+
+            // Try different parameter combinations
+            const testParams = [
+                { code: "123456", email: "rajacyclemart.tumkur@gmail.com" },
+                { code: "654321", to_email: "rajacyclemart.tumkur@gmail.com" },
+                { message: "Test OTP: 999999", reply_to: "rajacyclemart.tumkur@gmail.com" }
+            ];
+
+            for (let i = 0; i < testParams.length; i++) {
+                try {
+                    const response = await emailjs.send(
+                        SERVICE_ID,
+                        TEMPLATE_ID,
+                        testParams[i]
+                    );
+
+                    resultDiv.innerHTML =
+                        `<span style="color: green">✅ EMAIL SENT SUCCESSFULLY!</span><br>
+                         Test ${i + 1} succeeded with parameters:<br>
+                         ${JSON.stringify(testParams[i])}<br>
+                         Status: ${response.status}<br>
+                         Check your inbox (and spam folder)!`;
+                    console.log("✅ Email sent successfully:", response);
+                    return;
+
+                } catch (error) {
+                    console.log(`Test ${i + 1} failed:`, error.text || error.message);
+                }
+            }
+
+            resultDiv.innerHTML =
+                '<span style="color: red">❌ ALL TESTS FAILED</span><br>' +
+                'Check Console for detailed errors (F12 → Console)';
+        }
+
+        // Test 3: Check template
+        function checkTemplate() {
+            document.getElementById('result3').innerHTML =
+                '📧 <strong>Your Configuration:</strong><br>' +
+                'User ID: ' + USER_ID + '<br>' +
+                'Service ID: ' + SERVICE_ID + ' ✅<br>' +
+                'Template ID: ' + TEMPLATE_ID + ' ✅<br><br>' +
+                '🔍 <strong>Possible Issues:</strong><br>' +
+                '1. Check if template uses variable <code>{{code}}</code><br>' +
+                '2. Check EmailJS → Email History for failed sends<br>' +
+                '3. Try reconnecting Gmail service<br>' +
+                '4. Check browser Console (F12) for CORS errors';
+        }
+
+        // Auto-run first test
+        setTimeout(testInit, 1000);
+    </script>
+</body>
+
+</html>
