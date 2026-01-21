@@ -1218,7 +1218,9 @@
                         .comparison-slider {
                             height: auto;
                             display: flex;
-                            flex-direction: column;
+                            flex-direction: column-reverse;
+                            /* Put Manual Past on TOP */
+                            gap: 1rem;
                             border: none;
                             box-shadow: none;
                             background: transparent;
@@ -1229,27 +1231,56 @@
                         .slider-before {
                             position: relative;
                             width: 100%;
-                            height: 250px;
+                            height: auto;
+                            /* Let image dictate height */
+                            aspect-ratio: 16/9;
+                            /* Maintain Cinematic Ratio */
                             border: none;
-                            overflow: visible;
+                            overflow: hidden;
                             border-radius: 12px;
-                            margin-bottom: 1rem;
                             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
                         }
 
-                        /* Ensure images fill their containers */
+                        /* Force images to behave */
                         .slider-after img,
                         .slider-before img,
                         .slider-before .comparison-item {
+                            width: 100% !important;
+                            height: 100% !important;
+                            object-fit: cover;
                             position: relative;
-                            width: 100%;
-                            height: 100%;
+                            left: 0 !important;
+                            /* Override any JS positioning */
                             max-width: 100%;
+                            filter: none !important;
+                            /* Remove grayscale on mobile if user prefers, or keep? Keeping grayscale for distinction */
+                        }
+
+                        /* Keep grayscale for 'Manual Past' to emphasize the contrast */
+                        .slider-before img {
+                            filter: grayscale(100%) !important;
                         }
 
                         /* Hide handle */
                         .slider-handle {
                             display: none;
+                        }
+
+                        /* Better Labels for Mobile */
+                        .slider-label {
+                            font-size: 0.7rem;
+                            padding: 6px 10px;
+                            bottom: 10px;
+                        }
+
+                        .label-future {
+                            right: 10px;
+                            bottom: 10px;
+                        }
+
+                        .label-past {
+                            left: 10px;
+                            bottom: 10px;
                         }
                     }
                 </style>
@@ -2476,98 +2507,58 @@ service cloud.firestore {
                         winner selection algorithm works? (Hint: It's NOT truly random—there's a weighted system.) Reply
                         "ALGORITHM" and I'll send you the code.</p>
                 </div>
-                <li>✅ Automated Bookings</li>
-                <li>✅ Zero Monthly Cost</li>
-                <li>✅ Google Ranking</li>
-                </ul>
-                <a href="#" class="cta-button" style="display: inline-block; width: 100%; text-align: center;">Book Free
-                    Strategy Call
-                    →</a>
-                <p style="font-size: 0.875rem; color: var(--text-secondary); margin-top: 0.5rem; text-align: center;">
-                    (No sales pitch. Just honest advice.)</p>
-    </div>
 
-    <!-- Newsletter CTA -->
-    <div class="cta-card" style="background: #eff6ff; padding: 2rem; border-radius: 12px; border: 1px solid #dbeafe;">
-        <h3>Learn It Yourself</h3>
-        <p>I'm publishing <strong>step-by-step tutorials</strong> next week:</p>
-        <p><strong>Next Mon:</strong> "Build a Serverless OTP System"</p>
-        <p><strong>Next Fri:</strong> "Telegram Bot Integration Guide"</p>
-        <form style="display: flex; gap: 0.5rem; margin-top: 1rem;">
-            <input type="email" placeholder="Email address"
-                style="flex: 1; padding: 0.75rem; border-radius: 6px; border: 1px solid #ccc;">
-            <button class="cta-button" style="margin: 0;">Get It</button>
-        </form>
-    </div>
 
-    </div>
+                <p style="margin-top: 3rem; color: var(--text-secondary); font-size: 0.9375rem;">
+                    Published on January 20, 2026 • 12 min read • Last updated: January 20, 2026
+                </p>
+            </article>
+        </main>
 
-    <div class="divider"></div>
+        <!-- TOC Sidebar -->
+        <aside class="toc-sidebar">
+            <div class="toc-title">📑 TABLE OF CONTENTS</div>
+            <ul class="toc-list">
+                <li><a href="#intro">Introduction</a></li>
+                <li><a href="#challenge">The Challenge</a></li>
+                <li><a href="#solution">The Solution</a></li>
+                <li><a href="#lucky-draw">Lucky Draw Feature</a></li>
+                <li><a href="#affiliate">Affiliate Marketplace</a></li>
+                <li><a href="#ai-booking">AI Booking System</a></li>
+                <li><a href="#seo">SEO Strategy</a></li>
+                <li><a href="#tech-stack">Tech Stack</a></li>
+                <li><a href="#results">The Results</a></li>
+                <li><a href="#lessons">Lessons Learned</a></li>
+                <li><a href="#next">What's Next</a></li>
+            </ul>
 
-    <p style="text-align: center; font-size: 1.1rem;">
-        If this case study helped you, <strong>share it with one person</strong> who's struggling to
-        digitize their business.
-    </p>
-
-    <div style="display: flex; justify-content: center; gap: 1rem; margin-top: 1rem;">
-        <a href="#"
-            style="background: #1DA1F2; color: white; padding: 0.5rem 1rem; border-radius: 4px; text-decoration: none;">Tweet
-            this</a>
-        <a href="#"
-            style="background: #0077b5; color: white; padding: 0.5rem 1rem; border-radius: 4px; text-decoration: none;">Share
-            on LinkedIn</a>
-    </div>
-
-    <p style="margin-top: 3rem; color: var(--text-secondary); font-size: 0.9375rem;">
-        Published on January 20, 2026 • 12 min read • Last updated: January 20, 2026
-    </p>
-    </article>
-    </main>
-
-    <!-- TOC Sidebar -->
-    <aside class="toc-sidebar">
-        <div class="toc-title">📑 TABLE OF CONTENTS</div>
-        <ul class="toc-list">
-            <li><a href="#intro">Introduction</a></li>
-            <li><a href="#challenge">The Challenge</a></li>
-            <li><a href="#solution">The Solution</a></li>
-            <li><a href="#lucky-draw">Lucky Draw Feature</a></li>
-            <li><a href="#affiliate">Affiliate Marketplace</a></li>
-            <li><a href="#ai-booking">AI Booking System</a></li>
-            <li><a href="#seo">SEO Strategy</a></li>
-            <li><a href="#tech-stack">Tech Stack</a></li>
-            <li><a href="#results">The Results</a></li>
-            <li><a href="#lessons">Lessons Learned</a></li>
-            <li><a href="#next">What's Next</a></li>
-        </ul>
-
-        <!-- Tools Featured -->
-        <div class="tool-stack">
-            <div class="tool-stack-title">🛠️ Tools Featured</div>
-            <div class="tool-logos">
-                <div class="tool-item">
-                    <div class="tool-icon">🔥</div>
-                    <div class="tool-name">Firebase</div>
-                </div>
-                <div class="tool-item">
-                    <div class="tool-icon">▲</div>
-                    <div class="tool-name">Vercel</div>
-                </div>
-                <div class="tool-item">
-                    <div class="tool-icon">📧</div>
-                    <div class="tool-name">EmailJS</div>
-                </div>
-                <div class="tool-item">
-                    <div class="tool-icon">✈️</div>
-                    <div class="tool-name">Telegram Bot</div>
-                </div>
-                <div class="tool-item">
-                    <div class="tool-icon">⚡</div>
-                    <div class="tool-name">Vanilla JS</div>
+            <!-- Tools Featured -->
+            <div class="tool-stack">
+                <div class="tool-stack-title">🛠️ Tools Featured</div>
+                <div class="tool-logos">
+                    <div class="tool-item">
+                        <div class="tool-icon">🔥</div>
+                        <div class="tool-name">Firebase</div>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon">▲</div>
+                        <div class="tool-name">Vercel</div>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon">📧</div>
+                        <div class="tool-name">EmailJS</div>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon">✈️</div>
+                        <div class="tool-name">Telegram Bot</div>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon">⚡</div>
+                        <div class="tool-name">Vanilla JS</div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </aside>
+        </aside>
     </div>
 
     <script>
