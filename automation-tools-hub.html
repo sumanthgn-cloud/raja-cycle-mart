@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Interactive AI automation tools comparison hub. Compare Zapier, n8n, Make.com, and more with live pricing calculator and feature matrix.">
+    <meta name="keywords" content="AI automation tools, workflow automation, Zapier alternative, n8n, Make.com, automation comparison">
+    <meta property="og:title" content="AI Automation Tools Hub - Interactive Comparison">
+    <meta property="og:description" content="Find your perfect automation tool with our interactive comparison dashboard">
+    <meta property="og:type" content="website">
+    <title>AI Automation Hub - Find Your Perfect Tool</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #ec4899;
+            --accent: #14b8a6;
+            --bg-dark: #0f172a;
+            --bg-card: #1e293b;
+            --text-primary: #f8fafc;
+            --text-secondary: #cbd5e1;
+            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --gradient-4: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        /* Animated Background */
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+        
+        .gradient-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.3;
+            animation: float 20s infinite ease-in-out;
+        }
+        
+        .orb-1 {
+            width: 500px;
+            height: 500px;
+            background: var(--gradient-1);
+            top: -200px;
+            left: -200px;
+            animation-delay: 0s;
+        }
+        
+        .orb-2 {
+            width: 400px;
+            height: 400px;
+            background: var(--gradient-2);
+            top: 50%;
+            right: -150px;
+            animation-delay: 7s;
+        }
+        
+        .orb-3 {
+            width: 600px;
+            height: 600px;
+            background: var(--gradient-3);
+            bottom: -300px;
+            left: 30%;
+            animation-delay: 14s;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(50px, -50px) scale(1.1); }
+            66% { transform: translate(-50px, 50px) scale(0.9); }
+        }
+        
+        /* Header */
+        header {
+            padding: 2rem 5%;
+            backdrop-filter: blur(20px);
+            background: rgba(15, 23, 42, 0.8);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+        
+        /* Hero Section */
+        .hero {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 6rem 5% 4rem;
+            text-align: center;
+        }
+        
+        h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #667eea 0%, #ec4899 50%, #14b8a6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradient-shift 5s ease infinite;
+            background-size: 200% auto;
+        }
+        
+        @keyframes gradient-shift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto 3rem;
+        }
+        
+        /* Filter Pills */
+        .filter-pills {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 4rem;
+        }
+        
+        .pill {
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            background: rgba(30, 41, 59, 0.5);
+            backdrop-filter: blur(10px);
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+        
+        .pill:hover, .pill.active {
+            border-color: var(--primary);
+            background: rgba(99, 102, 241, 0.2);
+            color: var(--text-primary);
+            transform: translateY(-2px);
+        }
+        
+        /* Tool Cards Grid */
+        .tools-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 5% 4rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        
+        .tool-card {
+            background: rgba(30, 41, 59, 0.5);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 2rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .tool-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-1);
+            opacity: 0;
+            transition: opacity 0.4s;
+            z-index: -1;
+        }
+        
+        .tool-card:hover::before {
+            opacity: 0.1;
+        }
+        
+        .tool-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 20px 60px rgba(99, 102, 241, 0.3);
+        }
+        
+        .tool-card.zapier::before { background: var(--gradient-1); }
+        .tool-card.n8n::before { background: var(--gradient-2); }
+        .tool-card.make::before { background: var(--gradient-3); }
+        .tool-card.activepieces::before { background: var(--gradient-4); }
+        
+        .tool-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 1.5rem;
+        }
+        
+        .tool-name {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        
+        .tool-badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .badge-free { background: rgba(67, 233, 123, 0.2); color: #43e97b; }
+        .badge-paid { background: rgba(99, 102, 241, 0.2); color: #a5b4fc; }
+        .badge-popular { background: rgba(236, 72, 153, 0.2); color: #f9a8d4; }
+        
+        .tool-desc {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+        
+        .tool-features {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+        
+        .tool-features li {
+            padding: 0.5rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        .tool-features li::before {
+            content: '✓';
+            color: var(--accent);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .tool-price {
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .price-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: var(--gradient-3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .price-period {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        .cta-button {
+            width: 100%;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            border: none;
+            background: var(--gradient-1);
+            color: white;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+        
+        .cta-button:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+        
+        .cta-button:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.4);
+        }
+        
+        /* Comparison Table */
+        .comparison-section {
+            max-width: 1400px;
+            margin: 4rem auto;
+            padding: 0 5%;
+        }
+        
+        .section-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .comparison-table {
+            background: rgba(30, 41, 59, 0.5);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            overflow: hidden;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        thead {
+            background: rgba(99, 102, 241, 0.1);
+        }
+        
+        th, td {
+            padding: 1.5rem;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        th {
+            font-weight: 600;
+            color: var(--text-primary);
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        td {
+            color: var(--text-secondary);
+        }
+        
+        tbody tr {
+            transition: background 0.3s;
+        }
+        
+        tbody tr:hover {
+            background: rgba(99, 102, 241, 0.05);
+        }
+        
+        .check { color: #43e97b; font-weight: bold; font-size: 1.2rem; }
+        .cross { color: #f87171; font-weight: bold; font-size: 1.2rem; }
+        
+        /* Pricing Calculator */
+        .calculator {
+            max-width: 800px;
+            margin: 4rem auto;
+            padding: 3rem;
+            background: rgba(30, 41, 59, 0.5);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+        }
+        
+        .calculator h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .slider-group {
+            margin-bottom: 2rem;
+        }
+        
+        .slider-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+        
+        .slider-value {
+            color: var(--primary);
+            font-weight: 700;
+        }
+        
+        input[type="range"] {
+            width: 100%;
+            height: 8px;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.1);
+            outline: none;
+            -webkit-appearance: none;
+        }
+        
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--gradient-1);
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.5);
+        }
+        
+        input[type="range"]::-moz-range-thumb {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--gradient-1);
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.5);
+            border: none;
+        }
+        
+        .calc-results {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+        
+        .calc-result {
+            text-align: center;
+            padding: 1.5rem;
+            background: rgba(15, 23, 42, 0.5);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .calc-tool-name {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .calc-price {
+            font-size: 2rem;
+            font-weight: 700;
+            background: var(--gradient-3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        /* Footer */
+        footer {
+            margin-top: 6rem;
+            padding: 3rem 5%;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            color: var(--text-secondary);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .tools-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .hero {
+                padding: 3rem 5% 2rem;
+            }
+            
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .comparison-table {
+                overflow-x: auto;
+            }
+            
+            .calculator {
+                padding: 2rem 1.5rem;
+            }
+        }
+        
+        /* Scroll Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeIn 0.6s forwards;
+        }
+        
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .tool-card:nth-child(1) { animation-delay: 0.1s; }
+        .tool-card:nth-child(2) { animation-delay: 0.2s; }
+        .tool-card:nth-child(3) { animation-delay: 0.3s; }
+        .tool-card:nth-child(4) { animation-delay: 0.4s; }
+        .tool-card:nth-child(5) { animation-delay: 0.5s; }
+        .tool-card:nth-child(6) { animation-delay: 0.6s; }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="animated-bg">
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+        <div class="gradient-orb orb-3"></div>
+    </div>
+    
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">⚡ AutomationHub</div>
+            <ul class="nav-links">
+                <li><a href="#tools">Tools</a></li>
+                <li><a href="#compare">Compare</a></li>
+                <li><a href="#calculator">Calculator</a></li>
+                <li><a href="#guides">Guides</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Find Your Perfect <span class="gradient-text">AI Automation Tool</span></h1>
+        <p>Compare features, pricing, and capabilities of the top workflow automation platforms. Make data-driven decisions with our interactive comparison dashboard.</p>
+        
+        <div class="filter-pills">
+            <div class="pill active" data-filter="all">All Tools</div>
+            <div class="pill" data-filter="beginner">Beginner Friendly</div>
+            <div class="pill" data-filter="advanced">Advanced</div>
+            <div class="pill" data-filter="free">Free Plan</div>
+            <div class="pill" data-filter="self-hosted">Self-Hosted</div>
+        </div>
+    </section>
+    
+    <!-- Tools Grid -->
+    <section class="tools-grid" id="tools">
+        <div class="tool-card zapier fade-in" data-tags="beginner paid popular">
+            <div class="tool-header">
+                <div>
+                    <h3 class="tool-name">Zapier</h3>
+                    <span class="tool-badge badge-popular">Most Popular</span>
+                </div>
+            </div>
+            <p class="tool-desc">The industry standard for no-code automation. Perfect for beginners who need results fast.</p>
+            <ul class="tool-features">
+                <li>6,000+ app integrations</li>
+                <li>Beginner-friendly interface</li>
+                <li>Automatic error handling</li>
+                <li>24/7 customer support</li>
+            </ul>
+            <div class="tool-price">
+                <span class="price-value">$20</span>
+                <span class="price-period">/month</span>
+            </div>
+            <button class="cta-button">Start Free Trial →</button>
+        </div>
+        
+        <div class="tool-card make fade-in" data-tags="intermediate paid advanced">
+            <div class="tool-header">
+                <div>
+                    <h3 class="tool-name">Make.com</h3>
+                    <span class="tool-badge badge-paid">Best Value</span>
+                </div>
+            </div>
+            <p class="tool-desc">Visual automation powerhouse with advanced logic at affordable pricing.</p>
+            <ul class="tool-features">
+                <li>1,500+ integrations</li>
+                <li>Visual workflow designer</li>
+                <li>Advanced branching logic</li>
+                <li>Built-in data transformation</li>
+            </ul>
+            <div class="tool-price">
+                <span class="price-value">$9</span>
+                <span class="price-period">/month</span>
+            </div>
+            <button class="cta-button">Start Free Trial →</button>
+        </div>
+        
+        <div class="tool-card n8n fade-in" data-tags="advanced free self-hosted">
+            <div class="tool-header">
+                <div>
+                    <h3 class="tool-name">n8n</h3>
+                    <span class="tool-badge badge-free">Open Source</span>
+                </div>
+            </div>
+            <p class="tool-desc">Self-hosted automation with complete data control. Unlimited workflows, zero monthly fees.</p>
+            <ul class="tool-features">
+                <li>400+ nodes (growing)</li>
+                <li>Full data ownership</li>
+                <li>Custom node creation</li>
+                <li>Unlimited executions</li>
+            </ul>
+            <div class="tool-price">
+                <span class="price-value">Free</span>
+                <span class="price-period">self-hosted</span>
+            </div>
+            <button class="cta-button">Get Started →</button>
+        </div>
+        
+        <div class="tool-card activepieces fade-in" data-tags="intermediate free self-hosted">
+            <div class="tool-header">
+                <div>
+                    <h3 class="tool-name">ActivePieces</h3>
+                    <span class="tool-badge badge-free">Modern UI</span>
+                </div>
+            </div>
+            <p class="tool-desc">Open-source alternative with a polished interface. Easier than n8n, powerful as Make.</p>
+            <ul class="tool-features">
+                <li>Growing integration library</li>
+                <li>Beautiful modern interface</li>
+                <li>Self-hosted or cloud</li>
+                <li>Team collaboration</li>
+            </ul>
+            <div class="tool-price">
+                <span class="price-value">Free</span>
+                <span class="price-period">self-hosted</span>
+            </div>
+            <button class="cta-button">Get Started →</button>
+        </div>
+        
+        <div class="tool-card fade-in" data-tags="advanced paid">
+            <div class="tool-header">
+                <div>
+                    <h3 class="tool-name">ChatGPT API</h3>
+                    <span class="tool-badge badge-paid">AI-Powered</span>
+                </div>
+            </div>
+            <p class="tool-desc">Add AI intelligence to any automation workflow. Perfect for content and support.</p>
+            <ul class="tool-features">
+                <li>Natural language processing</li>
+                <li>Content generation</li>
+                <li>Intelligent decision-making</li>
+                <li>Integrate with any platform</li>
+            </ul>
+            <div class="tool-price">
+                <span class="price-value">$20</span>
+                <span class="price-period">/month + usage</span>
+            </div>
+            <button class="cta-button">Learn More →</button>
+        </div>
+        
+        <div class="tool-card fade-in" data-tags="beginner paid">
+            <div class="tool-header">
+                <div>
+                    <h3 class="tool-name">Notion AI</h3>
+                    <span class="tool-badge badge-paid">Workspace</span>
+                </div>
+            </div>
+            <p class="tool-desc">Automate documentation and knowledge work inside your Notion workspace.</p>
+            <ul class="tool-features">
+                <li>Built into Notion</li>
+                <li>Document automation</li>
+                <li>Task extraction</li>
+                <li>Team collaboration</li>
+            </ul>
+            <div class="tool-price">
+                <span class="price-value">$10</span>
+                <span class="price-period">/user/month</span>
+            </div>
+            <button class="cta-button">Try Notion AI →</button>
+        </div>
+    </section>
+    
+    <!-- Comparison Table -->
+    <section class="comparison-section" id="compare">
+        <h2 class="section-title">Feature Comparison</h2>
+        <div class="comparison-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>Zapier</th>
+                        <th>Make.com</th>
+                        <th>n8n</th>
+                        <th>ActivePieces</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Free Plan</strong></td>
+                        <td>100 tasks/mo</td>
+                        <td>1,000 ops/mo</td>
+                        <td>Unlimited</td>
+                        <td>Unlimited</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Starting Price</strong></td>
+                        <td>$19.99/mo</td>
+                        <td>$9/mo</td>
+                        <td>Free</td>
+                        <td>Free</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Integrations</strong></td>
+                        <td>6,000+</td>
+                        <td>1,500+</td>
+                        <td>400+</td>
+                        <td>200+</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Visual Workflow</strong></td>
+                        <td><span class="cross">✗</span></td>
+                        <td><span class="check">✓</span></td>
+                        <td><span class="check">✓</span></td>
+                        <td><span class="check">✓</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Branching Logic</strong></td>
+                        <td>Premium only</td>
+                        <td><span class="check">✓</span></td>
+                        <td><span class="check">✓</span></td>
+                        <td><span class="check">✓</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Self-Hosted</strong></td>
+                        <td><span class="cross">✗</span></td>
+                        <td><span class="cross">✗</span></td>
+                        <td><span class="check">✓</span></td>
+                        <td><span class="check">✓</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Data Control</strong></td>
+                        <td>Cloud only</td>
+                        <td>Cloud only</td>
+                        <td>Full control</td>
+                        <td>Full control</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Learning Curve</strong></td>
+                        <td>Easy</td>
+                        <td>Moderate</td>
+                        <td>Advanced</td>
+                        <td>Moderate</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+    
+    <!-- Pricing Calculator -->
+    <section class="comparison-section" id="calculator">
+        <div class="calculator">
+            <h3>💰 Cost Calculator</h3>
+            <p style="text-align: center; color: var(--text-secondary); margin-bottom: 2rem;">
+                See how much you'll pay based on your workflow volume
+            </p>
+            
+            <div class="slider-group">
+                <div class="slider-label">
+                    <span>Monthly Executions</span>
+                    <span class="slider-value" id="exec-value">5,000</span>
+                </div>
+                <input type="range" id="executions" min="100" max="50000" value="5000" step="100">
+            </div>
+            
+            <div class="slider-group">
+                <div class="slider-label">
+                    <span>Steps per Workflow</span>
+                    <span class="slider-value" id="steps-value">4</span>
+                </div>
+                <input type="range" id="steps" min="1" max="10" value="4" step="1">
+            </div>
+            
+            <div class="calc-results">
+                <div class="calc-result">
+                    <div class="calc-tool-name">Zapier</div>
+                    <div class="calc-price" id="zapier-price">$103</div>
+                    <div style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 0.5rem;">per month</div>
+                </div>
+                <div class="calc-result">
+                    <div class="calc-tool-name">Make.com</div>
+                    <div class="calc-price" id="make-price">$16</div>
+                    <div style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 0.5rem;">per month</div>
+                </div>
+                <div class="calc-result">
+                    <div class="calc-tool-name">n8n</div>
+                    <div class="calc-price" id="n8n-price">$15</div>
+                    <div style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 0.5rem;">per month</div>
+                </div>
+                <div class="calc-result">
+                    <div class="calc-tool-name">Savings</div>
+                    <div class="calc-price" id="savings">$1,044</div>
+                    <div style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 0.5rem;">per year</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 AI Automation Hub. Built for businesses serious about automation.</p>
+        <p style="margin-top: 1rem; font-size: 0.9rem;">Data updated January 2026 • All prices in USD</p>
+    </footer>
+    
+    <script>
+        // Filter functionality
+        const pills = document.querySelectorAll('.pill');
+        const cards = document.querySelectorAll('.tool-card');
+        
+        pills.forEach(pill => {
+            pill.addEventListener('click', () => {
+                pills.forEach(p => p.classList.remove('active'));
+                pill.classList.add('active');
+                
+                const filter = pill.dataset.filter;
+                
+                cards.forEach(card => {
+                    if (filter === 'all') {
+                        card.style.display = 'block';
+                    } else {
+                        const tags = card.dataset.tags;
+                        if (tags && tags.includes(filter)) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    }
+                });
+            });
+        });
+        
+        // Pricing calculator
+        const execSlider = document.getElementById('executions');
+        const stepsSlider = document.getElementById('steps');
+        const execValue = document.getElementById('exec-value');
+        const stepsValue = document.getElementById('steps-value');
+        const zapierPrice = document.getElementById('zapier-price');
+        const makePrice = document.getElementById('make-price');
+        const n8nPrice = document.getElementById('n8n-price');
+        const savings = document.getElementById('savings');
+        
+        function calculatePrices() {
+            const executions = parseInt(execSlider.value);
+            const steps = parseInt(stepsSlider.value);
+            const totalTasks = executions * steps;
+            
+            // Update display values
+            execValue.textContent = executions.toLocaleString();
+            stepsValue.textContent = steps;
+            
+            // Zapier pricing (task-based)
+            let zapierCost;
+            if (totalTasks <= 100) zapierCost = 0;
+            else if (totalTasks <= 750) zapierCost = 19.99;
+            else if (totalTasks <= 2000) zapierCost = 49;
+            else if (totalTasks <= 10000) zapierCost = 103;
+            else if (totalTasks <= 25000) zapierCost = 248;
+            else if (totalTasks <= 50000) zapierCost = 399;
+            else zapierCost = 799;
+            
+            // Make.com pricing (operation-based)
+            let makeCost;
+            if (totalTasks <= 1000) makeCost = 0;
+            else if (totalTasks <= 10000) makeCost = 9;
+            else if (totalTasks <= 20000) makeCost = 16;
+            else if (totalTasks <= 50000) makeCost = 29;
+            else makeCost = Math.ceil(totalTasks / 10000) * 16;
+            
+            // n8n pricing (self-hosted = server costs)
+            const n8nCost = totalTasks > 10000 ? 30 : 15;
+            
+            // Update prices
+            zapierPrice.textContent = `$${zapierCost}`;
+            makePrice.textContent = `$${makeCost}`;
+            n8nPrice.textContent = `$${n8nCost}`;
+            
+            // Calculate annual savings (vs Zapier)
+            const annualSavings = ((zapierCost - Math.min(makeCost, n8nCost)) * 12);
+            savings.textContent = `$${annualSavings.toLocaleString()}`;
+        }
+        
+        execSlider.addEventListener('input', calculatePrices);
+        stepsSlider.addEventListener('input', calculatePrices);
+        
+        // Initialize
+        calculatePrices();
+        
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

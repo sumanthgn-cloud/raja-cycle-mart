@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO Meta Tags -->
+    <meta name="description"
+        content="How I transformed a 37-year-old cycle shop into a 2026 digital powerhouse using Firebase, Serverless APIs, and AI chatbots - for $0/month. Complete technical case study with code examples.">
+
+    <title>Raja Cycle Mart Case Study | SUMANTHWORKS</title>
+
+    <!-- Google Fonts: Inter & JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* ========================================
+           DARK MINIMALIST DESIGN SYSTEM (2026)
+           ======================================== */
+
+        :root {
+            /* Backgrounds - Obsidian & Deep Gray */
+            --bg-page: #0A0E14;
+            /* Deepest Black/Blue */
+            --bg-subtle: #161b22;
+            /* Slightly lighter panel bg */
+            --bg-element: #1c2128;
+            /* Card/Element bg */
+
+            /* Text - High Contrast */
+            --text-main: #f0f6fc;
+            /* Near white */
+            --text-muted: #8b949e;
+            /* Muted gray */
+
+            /* Borders */
+            --border-color: #30363d;
+            /* Subtle dark border */
+
+            /* Brand Accents - Electric Blue & Warm Amber */
+            --accent-primary: #00E5FF;
+            /* Electric Blue */
+            --accent-secondary: #FFA726;
+            /* Warm Amber */
+            --accent-glow: rgba(0, 229, 255, 0.15);
+            /* Subtle glow */
+
+            /* Spacing */
+            --container-width: 800px;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: var(--text-main);
+            background: var(--bg-page);
+            margin: 0;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Essential Reset */
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        a {
+            color: var(--accent-primary);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        a:hover {
+            color: #5ceeff;
+        }
+
+        /* Typography */
+        h1,
+        h2,
+        h3 {
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: var(--text-main);
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #fff 0%, #b0b0b0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        h2 {
+            font-size: 1.75rem;
+            margin-top: 3rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border-color);
+            color: var(--text-main);
+        }
+
+        h3 {
+            font-size: 1.25rem;
+            margin-top: 2rem;
+            color: var(--text-main);
+        }
+
+        p {
+            font-size: 1.125rem;
+            margin-bottom: 1.5rem;
+            color: #c9d1d9;
+            /* Lighter than muted for readability */
+        }
+
+        /* Layout */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .container-narrow {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Header - Glassmorphism Minimal */
+        .header {
+            border-bottom: 1px solid var(--border-color);
+            padding: 1.25rem 0;
+            background: rgba(10, 14, 20, 0.8);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-wrapper {
+            background: #0A0E14;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            display: inline-flex;
+            align-items: center;
+            transition: transform 0.2s ease;
+        }
+
+        .logo-wrapper:hover {
+            transform: scale(1.05);
+        }
+
+        .logo-img {
+            height: 60px;
+            width: auto;
+            border: none !important;
+            border-radius: 0 !important;
+        }
+
+        .nav {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav a {
+            color: var(--text-muted);
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        .nav a:hover {
+            color: var(--text-main);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 6rem 0 4rem;
+            text-align: left;
+            position: relative;
+        }
+
+        /* Subtle Background Gradient Mesh */
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: -100px;
+            right: -100px;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+            opacity: 0.4;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(48, 54, 61, 0.5);
+            color: var(--accent-primary);
+            border: 1px solid rgba(0, 229, 255, 0.2);
+            padding: 4px 12px;
+            border-radius: 99px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: var(--text-muted);
+            font-weight: 400;
+            line-height: 1.5;
+            max-width: 42ch;
+        }
+
+        .project-meta {
+            margin-top: 3rem;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            border-top: 1px solid var(--border-color);
+            padding-top: 1.5rem;
+        }
+
+        .meta-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.05em;
+        }
+
+        .meta-value {
+            font-weight: 600;
+            font-size: 1rem;
+            color: var(--text-main);
+        }
+
+        /* Framework Cards - Dark Minimal */
+        .framework-section {
+            margin: 4rem 0;
+        }
+
+        .framework-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .framework-card {
+            background: var(--bg-subtle);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            transition: border-color 0.2s;
+        }
+
+        .framework-card:hover {
+            border-color: #484f58;
+        }
+
+        .framework-title {
+            font-weight: 700;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Tech Table */
+        .tech-table {
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            overflow: hidden;
+            margin: 2rem 0;
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--bg-subtle);
+        }
+
+        .tech-table th {
+            background: var(--bg-element);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .tech-table td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 0.95rem;
+        }
+
+        .tech-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .tech-badge {
+            background: rgba(0, 229, 255, 0.1);
+            color: var(--accent-primary);
+            padding: 2px 8px;
+            border-radius: 4px;
+            border: 1px solid rgba(0, 229, 255, 0.2);
+            font-size: 0.7rem;
+            font-weight: 600;
+            margin-left: 0.5rem;
+        }
+
+        /* Code Blocks - Dark Modern */
+        .code-block {
+            background: #0d1117;
+            /* GitHub Dark Dimmed */
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            overflow-x: auto;
+        }
+
+        .code-header {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.75rem;
+            margin-bottom: 1rem;
+            font-weight: 500;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        pre {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            color: #e6edf3;
+            margin: 0;
+        }
+
+        /* Syntax - Dark Mode Matches */
+        .k {
+            color: #ff7b72;
+        }
+
+        /* Keyword - Red */
+        .f {
+            color: #d2a8ff;
+        }
+
+        /* Function - Purple */
+        .s {
+            color: #a5d6ff;
+        }
+
+        /* String - Blue */
+        .c {
+            color: #8b949e;
+        }
+
+        /* Comment - Gray */
+
+        /* Images */
+        .img-wrapper {
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            overflow: hidden;
+            margin: 3rem 0;
+            background: var(--bg-element);
+            box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.05);
+            /* Proper dark mode border */
+        }
+
+        .img-caption {
+            padding: 0.75rem;
+            background: var(--bg-subtle);
+            border-top: 1px solid var(--border-color);
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-align: center;
+        }
+
+        /* Metrics Grid */
+        .metrics-section {
+            padding: 4rem 0;
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            margin: 4rem 0;
+            background: linear-gradient(to right, rgba(0, 229, 255, 0.02), transparent);
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .metric-value {
+            font-size: 3rem;
+            font-weight: 800;
+            line-height: 1;
+            margin-bottom: 0.5rem;
+            /* Gradient Text match */
+            background: linear-gradient(135deg, #fff 0%, #a5d6ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .metric-label {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+
+        /* CTA Box - Brand Gradient refined */
+        .cta-box {
+            background: linear-gradient(135deg, rgba(21, 128, 61, 0.1) 0%, rgba(0, 0, 0, 0) 100%);
+            padding: 4rem 2rem;
+            border-radius: 16px;
+            text-align: center;
+            margin: 4rem 0;
+            border: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Subtle Glow behind CTA */
+        .cta-box::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 229, 255, 0.05) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 2rem;
+            background: var(--text-main);
+            color: var(--bg-page);
+            /* Inverted for high contrast */
+            border-radius: 99px;
+            font-weight: 600;
+            margin: 0.5rem;
+            transition: all 0.2s;
+            position: relative;
+            z-index: 2;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
+            text-decoration: none;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-outline:hover {
+            background: var(--bg-subtle);
+            border-color: var(--text-main);
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.25rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.125rem;
+            }
+
+            .project-meta,
+            .metrics-grid,
+            .framework-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                text-align: left;
+            }
+
+            .container,
+            .container-narrow {
+                padding: 0 1.25rem;
+            }
+
+            .hero::after {
+                display: none;
+            }
+
+            /* Remove heavy gradients on mobile */
+            .logo-img {
+                height: 45px;
+            }
+
+            /* Smaller logo on mobile */
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container header-content">
+            <a href="/" class="logo-wrapper">
+                <img src="d:/blog/assets/logos/header-logo.png" alt="SUMANTHWORKS" class="logo-img">
+            </a>
+            <nav>
+                <ul class="nav">
+                    <li><a href="#challenge">Challenge</a></li>
+                    <li><a href="#solution">Solution</a></li>
+                    <li><a href="#tech">Stack</a></li>
+                    <li><a href="#results">Results</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero -->
+        <div class="container hero">
+            <span class="hero-badge">Technical Case Study</span>
+            <h1>Raja Cycle Mart: Bringing a Local Shop into 2026 for $0/Month</h1>
+            <p class="hero-subtitle">
+                How I transformed a 37-year-old cycle repair shop into a digital revenue engine using
+                Firebase, Serverless APIs, and AI chatbots.
+            </p>
+
+            <div class="project-meta">
+                <div>
+                    <div class="meta-label">Tech Stack</div>
+                    <div class="meta-value">Firebase + Vercel + AI</div>
+                </div>
+                <div>
+                    <div class="meta-label">Monthly Cost</div>
+                    <div class="meta-value">₹0.00</div>
+                </div>
+                <div>
+                    <div class="meta-label">Dev Time</div>
+                    <div class="meta-value">3 Weeks</div>
+                </div>
+                <div>
+                    <div class="meta-label">Status</div>
+                    <div class="meta-value" style="color: #4ade80;">Live & Profitable</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-narrow">
+
+            <!-- Screenshot: Homepage -->
+            <div class="img-wrapper">
+                <img src="C:/Users/sumanth/.gemini/antigravity/brain/b44ae518-f750-4266-93d5-104224d879db/homepage_hero_section_1768823441824.png"
+                    alt="Raja Cycle Mart Homepage">
+                <div class="img-caption">The new digital face of a 37-year-old business</div>
+            </div>
+
+            <!-- Introduction -->
+            <section id="challenge">
+                <h2>The Challenge: Digitize or Die</h2>
+                <p>
+                    Raja Cycle Mart has been serving Tumkur's cycling community since 1987. But in 2025, they faced
+                    an existential crisis: <strong>customers were moving online</strong>.
+                </p>
+                <p>
+                    Amazon was selling cycles cheaper. Competitors had WhatsApp booking. And the shop's only
+                    digital presence was a phone number on Google Maps. They needed a way to capture the online market
+                    without adding complex overhead.
+                </p>
+
+                <div class="framework-section">
+                    <div class="framework-grid">
+                        <div class="framework-card">
+                            <div class="framework-title" style="color: #ff7b72;">❌ The Problems</div>
+                            <ul>
+                                <li>Losing sales to e-commerce</li>
+                                <li>Manual phone-only booking</li>
+                                <li>No simplified way to retain customers</li>
+                                <li>Zero passive revenue</li>
+                            </ul>
+                        </div>
+
+                        <div class="framework-card">
+                            <div class="framework-title" style="color: #4ade80;">✅ The Solutions</div>
+                            <ul>
+                                <li><strong>Affiliate Marketplace</strong> (Passive Income)</li>
+                                <li><strong>AI Chatbot</strong> (24/7 Booking)</li>
+                                <li><strong>Lucky Draw System</strong> (Retention)</li>
+                                <li><strong>Serverless Arch</strong> (Zero Cost)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tech Stack -->
+            <section id="tech">
+                <h2>The Tech Stack</h2>
+                <p>
+                    In 2026, the best tech stack isn't the most complex—it's the one that delivers value fastest.
+                    Here's why I chose this specific architecture:
+                </p>
+
+                <table class="tech-table">
+                    <thead>
+                        <tr>
+                            <th>Technology</th>
+                            <th>Why I Chose It</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Vanilla JavaScript</strong> <span class="tech-badge">Speed</span></td>
+                            <td>Zero build time, instant load, no framework bloat.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Firebase Firestore</strong> <span class="tech-badge">Real-time</span></td>
+                            <td>Handles live lucky draw updates without managing a WebSocket server.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Vercel Serverless</strong> <span class="tech-badge">Scale</span></td>
+                            <td>Runs backend logic (OTP, Email) on-demand for free.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>HuggingFace Chatbot</strong> <span class="tech-badge">AI</span></td>
+                            <td>Intelligent booking agent that feels human.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- Feature Deep Dive: Lucky Draw -->
+            <section id="solution">
+                <h2>Feature Highlight: The "Hard" Part</h2>
+                <p>
+                    The client wanted a <strong>Lucky Draw System</strong> to keep customers coming back. The catch?
+                    It had to be secure (no fake entries) but cost nothing to run.
+                </p>
+
+                <div class="img-wrapper">
+                    <img src="C:/Users/sumanth/.gemini/antigravity/brain/b44ae518-f750-4266-93d5-104224d879db/lucky_draw_page_1768823573514.png"
+                        alt="Lucky Draw System">
+                    <div class="img-caption">Secure OTP-verified entry system</div>
+                </div>
+
+                <h3>The Solution: Serverless Verification</h3>
+                <p>
+                    I used Vercel Serverless Functions to handle the sensitive OTP logic. This ensures the client-side
+                    never sees the secret keys, but we don't need a running server.
+                </p>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span>/api/send-email.js</span>
+                        <span>JavaScript (Serverless)</span>
+                    </div>
+                    <pre><code><span class="k">export default async function</span> <span class="f">handler</span>(req, res) {
+  <span class="c">// 1. Generate secure 6-digit OTP</span>
+  <span class="k">const</span> otp = Math.floor(<span class="s">100000</span> + Math.random() * <span class="s">900000</span>);
+  
+  <span class="c">// 2. Send via EmailJS (Server-side)</span>
+  <span class="k">const</span> emailParams = {
+    to_email: req.body.email,
+    otp_code: otp,
+    user_name: req.body.name
+  };
+  
+  <span class="k">await</span> <span class="f">sendEmail</span>(emailParams);
+  
+  <span class="c">// 3. Return success (never return the OTP!)</span>
+  res.status(<span class="s">200</span>).json({ message: <span class="s">"OTP sent"</span> });
+}</code></pre>
+                </div>
+            </section>
+
+            <!-- Feature: Chatbot -->
+            <section>
+                <h2>AI-Powered Operations</h2>
+                <p>
+                    The shop owner was overwhelmed with calls asking "Are you open?" or "How much for a service?".
+                    I implemented a HuggingFace-powered chatbot that intercepts these queries and pushes qualified
+                    bookings directly to Telegram.
+                </p>
+
+                <div class="img-wrapper">
+                    <img src="C:/Users/sumanth/.gemini/antigravity/brain/b44ae518-f750-4266-93d5-104224d879db/chatbot_interface_1768823533430.png"
+                        alt="Chatbot Interface">
+                </div>
+            </section>
+        </div>
+
+        <!-- Metric Results -->
+        <section id="results" class="metrics-section">
+            <div class="container">
+                <div class="metrics-grid">
+                    <div>
+                        <div class="metric-value">127</div>
+                        <div class="metric-label">Lucky Draw Entries</div>
+                    </div>
+                    <div>
+                        <div class="metric-value">43</div>
+                        <div class="metric-label">Auto Bookings</div>
+                    </div>
+                    <div>
+                        <div class="metric-value">₹0</div>
+                        <div class="metric-label">Hosting Cost</div>
+                    </div>
+                    <div>
+                        <div class="metric-value">24/7</div>
+                        <div class="metric-label">Uptime</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <div class="container-narrow">
+            <div class="cta-box">
+                <h2>Ready to digitize your business?</h2>
+                <p>
+                    I build cost-effective, high-impact digital solutions that solve real business problems.
+                    Let's discuss how we can bring your business into 2026.
+                </p>
+                <div style="margin-top: 2rem;">
+                    <a href="mailto:contact@sumanthworks.com" class="btn">Get in Touch</a>
+                    <a href="https://raja-cycle-mart.vercel.app" target="_blank" class="btn btn-outline">View Live
+                        Site</a>
+                </div>
+            </div>
+
+            <footer style="text-align: center; color: var(--text-muted); font-size: 0.875rem; padding-bottom: 4rem;">
+                © 2026 SUMANTHWORKS. All rights reserved.
+            </footer>
+        </div>
+    </main>
+</body>
+
+</html>
